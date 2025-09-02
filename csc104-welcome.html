@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to CSC104</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Main Container -->
+    <div class="container mx-auto max-w-4xl px-4 py-8 sm:py-12">
+
+        <!-- Header Section -->
+        <header class="mb-8 text-center sm:text-left">
+            <h1 class="text-3xl font-bold text-blue-800 sm:text-4xl">CSC104 - Computers and Computer Applications</h1>
+            <p class="mt-2 text-lg text-gray-600">Welcome to the course!</p>
+        </header>
+
+        <!-- Main Content Section -->
+        <main>
+            <!-- Video Placeholder Section -->
+            <section aria-labelledby="video-heading">
+                <h2 id="video-heading" class="text-2xl font-semibold mb-4">Welcome Video</h2>
+                
+                <!-- This div simulates an embedded video player -->
+                <div class="aspect-w-16 aspect-h-9 bg-black rounded-lg shadow-lg flex items-center justify-center">
+                    <div class="text-center text-white" aria-hidden="true">
+                        <!-- Play Icon -->
+                        <svg class="w-16 h-16 mx-auto" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path></svg>
+                        <p class="mt-2 font-semibold">Video Coming Soon</p>
+                    </div>
+                    <span class="sr-only">A placeholder for the course welcome video, which is not yet available.</span>
+                </div>
+            </section>
+
+            <!-- Transcript Section -->
+            <section class="mt-8" aria-labelledby="transcript-heading">
+                <h2 id="transcript-heading" class="sr-only">Video Transcript</h2>
+                
+                <!-- The <details> element provides an accessible accordion out of the box -->
+                <details class="bg-white p-4 sm:p-6 rounded-lg shadow">
+                    <summary class="text-lg font-medium text-gray-900 cursor-pointer hover:text-blue-700">
+                        View Welcome Video Transcript
+                    </summary>
+                    <div class="mt-4 prose max-w-none text-gray-700">
+                        <p>
+                            [Speaker: Professor Smith]
+                        </p>
+                        <p>
+                            Hello everyone, and welcome to CSC104: Computers and Computer Applications. I'm Professor Smith, and I'll be your instructor for this course.
+                        </p>
+                        <p>
+                            Throughout this semester, we will explore the fundamental concepts of computing, how computers work, and how they impact our daily lives. We'll cover a range of topics from hardware and software basics to understanding the internet, cybersecurity, and the ethical implications of technology in modern society.
+                        </p>
+                        <p>
+                            This course is designed for students from all backgrounds, so no prior computer science experience is necessary. Our goal is to make you a more confident and competent user of technology. Please take a moment to review the syllabus, which you can find in the "Course Materials" section. I look forward to a great semester with all of you.
+                        </p>
+                        <p>
+                            [End of transcript]
+                        </p>
+                    </div>
+                </details>
+            </section>
+
+        </main>
+        
+        <!-- Footer -->
+        <footer class="text-center mt-12 text-sm text-gray-500">
+            <p>&copy; 2025 David Pai. All Rights Reserved.</p>
+        </footer>
+
+    </div>
+
+    <!-- Script to make the aspect ratio plugin for Tailwind work -->
+    <script>
+        // This is a polyfill for older browsers that might not support aspect-ratio CSS property well.
+        // It's part of the standard Tailwind CSS aspect ratio plugin.
+        // No actual script is needed if we are just using the class names with modern browsers,
+        // but it's good practice to acknowledge it.
+    </script>
+</body>
+</html>
+
