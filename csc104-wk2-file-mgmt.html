@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultimate Guide to File Management: Windows & Mac</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Light gray background */
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .tab-button.active {
+            border-bottom-color: #3b82f6; /* Blue-500 */
+            color: #1e40af; /* Blue-800 */
+            font-weight: 600;
+        }
+        /* Accessibility focus styles */
+        .focusable:focus-visible {
+            outline: 2px solid #3b82f6;
+            outline-offset: 2px;
+            border-radius: 0.25rem;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-5xl">
+        <header class="text-center mb-8">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-900">The Ultimate Guide to File Management</h1>
+            <p class="mt-4 text-lg text-gray-600">Master your digital clutter on Windows and Mac.</p>
+        </header>
+
+        <main>
+            <!-- YouTube Video Section -->
+            <section class="bg-white p-6 rounded-lg shadow-md mb-8">
+                <h2 class="text-2xl font-bold mb-4 text-gray-900">Introduction and Overview to File Management and MS Word</h2>
+                <div class="aspect-w-16 aspect-h-9 bg-gray-200 rounded-lg mb-4">
+                     <!-- This is a placeholder for an embedded YouTube video. -->
+                    <div class="flex items-center justify-center h-full">
+                        <p class="text-gray-500">YouTube Video Placeholder</p>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-2">Video Transcript</h3>
+                    <div class="bg-gray-100 p-4 rounded-lg h-48 overflow-y-auto text-sm text-gray-700">
+                        <p>This is a placeholder for the video transcript. An accurate transcript is important for accessibility, allowing users who are deaf or hard of hearing to understand the content. It also benefits those who prefer to read along or quickly scan the information presented in the video.</p>
+                        <p class="mt-2">[00:05] Introduction to file management...</p>
+                        <p>[00:25] Demonstrating folder creation...</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Why is File Management Important? -->
+            <section class="bg-white p-6 rounded-lg shadow-md mb-8">
+                <h2 class="text-2xl font-bold mb-4 text-gray-900">Why Bother with File Management?</h2>
+                <p class="mb-4">In a digital world, we create and download files constantly. Without a system, your computer can quickly become a digital junk drawer. Good file management is the practice of organizing your digital files in a way that makes them easy to find and use.</p>
+                <div class="grid md:grid-cols-3 gap-6 text-center">
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <h3 class="font-bold text-lg text-blue-800">Saves Time</h3>
+                        <p class="text-gray-700">Stop wasting time searching for that one specific file you know you saved somewhere.</p>
+                    </div>
+                    <div class="bg-green-50 p-4 rounded-lg">
+                        <h3 class="font-bold text-lg text-green-800">Reduces Stress</h3>
+                        <p class="text-gray-700">A clean, organized digital workspace promotes a clearer mind and less anxiety.</p>
+                    </div>
+                    <div class="bg-yellow-50 p-4 rounded-lg">
+                        <h3 class="font-bold text-lg text-yellow-800">Increases Productivity</h3>
+                        <p class="text-gray-700">Find what you need when you need it and get back to what you were doing faster.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Best Practices -->
+            <section class="mb-8">
+                <h2 class="text-3xl font-bold text-center mb-6 text-gray-900">Best Practices for Everyone</h2>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="font-semibold text-xl mb-2">1. Use a Clear Folder Structure</h3>
+                        <p>Create broad categories first (e.g., 'Work', 'Personal', 'Photos'), then create more specific subfolders inside. Think of it like a physical filing cabinet.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="font-semibold text-xl mb-2">2. Name Files Consistently</h3>
+                        <p>A good naming convention is your best friend. A common format is `YYYY-MM-DD_Project-Name_Version.ext`. For example: `2023-10-27_Marketing-Report_V2.docx`.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="font-semibold text-xl mb-2">3. Don't Clutter Your Desktop</h3>
+                        <p>Your desktop should be for temporary files or shortcuts to frequently used applications, not a permanent storage location. Clean it up regularly!</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="font-semibold text-xl mb-2">4. Archive, Don't Hoard</h3>
+                        <p>For old projects or files you don't need regularly, move them to an 'Archive' folder or an external drive. This keeps your main folders clean.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Windows vs Mac -->
+            <section class="bg-white p-6 rounded-lg shadow-md mb-8">
+                <h2 class="text-3xl font-bold text-center mb-6 text-gray-900">Platform Specifics: Windows vs. Mac</h2>
+                <div class="border-b border-gray-200">
+                    <nav class="flex -mb-px" aria-label="Tabs">
+                        <button class="tab-button active w-1/2 py-4 px-1 text-center border-b-2 font-medium text-sm focusable" aria-controls="windows-panel" role="tab" aria-selected="true" id="windows-tab">
+                            Windows File Explorer
+                        </button>
+                        <button class="tab-button w-1/2 py-4 px-1 text-center border-b-2 font-medium text-sm text-gray-500 hover:text-gray-700 hover:border-gray-300 focusable" aria-controls="mac-panel" role="tab" aria-selected="false" id="mac-tab">
+                            macOS Finder
+                        </button>
+                    </nav>
+                </div>
+
+                <div id="windows-panel" class="tab-content active p-4" role="tabpanel" aria-labelledby="windows-tab">
+                    <h3 class="text-xl font-semibold mb-2">Key Features of File Explorer</h3>
+                    <ul class="list-disc list-inside space-y-2">
+                        <li><strong>Quick Access:</strong> Pin your most-used folders and see recent files at the top of the list.</li>
+                        <li><strong>Libraries:</strong> Group folders from different locations into one 'Library'. For example, your 'Pictures' library can show photos from your C: drive and an external hard drive all in one place.</li>
+                        <li><strong>Ribbon Interface:</strong> The top ribbon provides quick access to common commands like copy, paste, rename, and create a new folder.</li>
+                        <li><strong>File Details and Preview Panes:</strong> View details about a file (like date created) or even preview its contents without opening it.</li>
+                    </ul>
+                </div>
+
+                <div id="mac-panel" class="tab-content p-4" role="tabpanel" aria-labelledby="mac-tab">
+                    <h3 class="text-xl font-semibold mb-2">Key Features of macOS Finder</h3>
+                     <ul class="list-disc list-inside space-y-2">
+                        <li><strong>Tags:</strong> Assign color-coded tags to files, regardless of their folder location. You can then find all files with a specific tag (e.g., 'Important' or 'In Progress').</li>
+                        <li><strong>Smart Folders:</strong> Create folders that automatically gather files based on criteria you set. For example, a Smart Folder could show you all PDF documents you've opened in the last week.</li>
+                        <li><strong>Quick Look:</strong> Press the spacebar on any selected file to get a full-size preview without launching an application.</li>
+                        <li><strong>iCloud Drive Integration:</strong> Seamlessly syncs your Desktop and Documents folders across all your Apple devices.</li>
+                    </ul>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="text-center mt-12 text-gray-500">
+            <p>&copy; 2025 David Pai. All rights reserved.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const tabs = document.querySelectorAll('.tab-button');
+        const tabPanels = document.querySelectorAll('.tab-content');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Deactivate all tabs and panels
+                tabs.forEach(item => {
+                    item.classList.remove('active');
+                    item.setAttribute('aria-selected', 'false');
+                });
+                tabPanels.forEach(panel => {
+                    panel.classList.remove('active');
+                });
+
+                // Activate the clicked tab and its corresponding panel
+                tab.classList.add('active');
+                tab.setAttribute('aria-selected', 'true');
+                const targetPanelId = tab.getAttribute('aria-controls');
+                const targetPanel = document.getElementById(targetPanelId);
+                if (targetPanel) {
+                    targetPanel.classList.add('active');
+                }
+            });
+             // Keyboard navigation for accessibility
+            tab.addEventListener('keydown', (e) => {
+                let index = Array.from(tabs).indexOf(e.target);
+                let nextIndex;
+                if (e.key === 'ArrowRight') {
+                    nextIndex = (index + 1) % tabs.length;
+                    tabs[nextIndex].focus();
+                } else if (e.key === 'ArrowLeft') {
+                    nextIndex = (index - 1 + tabs.length) % tabs.length;
+                    tabs[nextIndex].focus();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
