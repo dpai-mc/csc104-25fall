@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSC104 - Week 5: Multipage documents in MS Word</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #FDFBF8;
+            color: #383838;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .code-font {
+            font-family: 'Fira Code', monospace;
+        }
+        
+        /* Style for the currently active transcript line */
+        .active-transcript-line {
+            background-color: #F0EBE8;
+            font-weight: 600;
+            color: #000;
+            border-left: 4px solid #383838;
+        }
+
+        /* Accessibility: visible-on-focus skip link */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: #383838;
+            color: white;
+            padding: 8px;
+            z-index: 100;
+            transition: top 0.3s;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <div class="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
+        <header class="mb-8">
+            <h1 class="text-4xl font-bold text-gray-900">CSC104 - Week 5 Introduction</h1>
+            <p class="text-lg text-gray-600 mt-1">Multipage documents in MS Word</p>
+        </header>
+
+        <main id="main-content">
+            <p class="mb-8 text-gray-700">
+                Welcome to Week 5! This week, we'll be covering how to work with multipage documents in Microsoft Word. These concepts are crucial for creating structured and complex documents like reports and academic papers. Before you begin the learning modules, please watch the introductory video below. The transcript will highlight the text in sync with the video.
+            </p>
+
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+                <div class="lg:col-span-3">
+                    <div class="aspect-video w-full bg-black rounded-lg shadow-lg overflow-hidden">
+                        <div id="player" class="w-full h-full"></div>
+                    </div>
+                </div>
+                <div class="lg:col-span-2">
+                    <h2 class="text-2xl font-bold mb-4">Transcript</h2>
+                    <div id="transcript-container" class="h-96 bg-white p-4 rounded-lg shadow-sm border overflow-y-auto space-y-2" tabindex="0" aria-label="Video Transcript">
+                        </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const transcriptData = `1
+00:00:00,960 --> 00:00:06,880
+Aloha and welcome to week five and this is word multi-page document is the title
+
+2
+00:00:06,880 --> 00:00:11,580
+but really what we're going to be doing or learning this week is
+
+3
+00:00:11,580 --> 00:00:20,800
+a lot to do with kind of things that you would use for papers proposals you know that kind of
+
+4
+00:00:20,800 --> 00:00:25,520
+thing like a research paper proposal for instance you know creating a cover page how do you create
+
+5
+00:00:25,520 --> 00:00:33,440
+a cover page okay using the formatting tools of word so that if you decide to change the title
+
+6
+00:00:33,440 --> 00:00:38,640
+or add something new you know the formatting doesn't get messed up
+
+7
+00:00:39,360 --> 00:00:49,120
+modifying page formatting specific pages deleting page breaks heading styles you can
+
+8
+00:00:49,120 --> 00:00:55,280
+format pages differently in word you can create sections and have one section be
+
+9
+00:00:55,280 --> 00:00:55,500
+multi-page and you can create sections and have one section be multi-page and you can
+
+10
+00:00:55,520 --> 00:01:00,880
+write column another section be single column things like that so there's a lot of things like
+
+11
+00:01:00,880 --> 00:01:09,200
+that that go into a multi-page document like a report maybe you have headers and footers
+
+12
+00:01:09,200 --> 00:01:13,920
+and the left page in the right hand side page because you bind your papers that way
+
+13
+00:01:14,560 --> 00:01:19,840
+are different you know so they show up like the page number shows up towards the outside
+
+14
+00:01:19,840 --> 00:01:24,320
+rather than the inside or rather than always on the right side of the page so that
+
+15
+00:01:25,200 --> 00:01:28,320
+you know like a book the left side of the book you want it on the
+
+16
+00:01:29,200 --> 00:01:35,120
+outside probably in the right side of a book you want it on the right things like that okay let's
+
+17
+00:01:35,120 --> 00:01:39,760
+go all that kind of stuff formatting list tables a lot on tables how to play with tables how to
+
+18
+00:01:39,760 --> 00:01:47,440
+mess with tables you know merging cells entering text in cells splitting cells
+
+19
+00:01:49,120 --> 00:01:54,240
+moving boundaries resize tables i don't even know i don't know if they have it in this part
+
+20
+00:01:54,320 --> 00:02:02,720
+but you can do math in your table okay insert a formula in a table like add the rows to get
+
+21
+00:02:02,720 --> 00:02:06,880
+add everything in a row or add everything in a column things like that in word tables so
+
+22
+00:02:07,920 --> 00:02:12,800
+you go through that and then how to create a watermark so typically a lot of times if you
+
+23
+00:02:12,800 --> 00:02:16,880
+have a and you're in a business you want to have the watermark on your page it shows that
+
+24
+00:02:16,880 --> 00:02:20,720
+hey this is my stuff that i created this stuff this is what it belongs to basically
+
+25
+00:02:23,120 --> 00:02:24,080
+okay and so that's what
+
+26
+00:02:24,720 --> 00:02:28,160
+this week is about it's about learning how to do a lot of that
+
+27
+00:02:29,280 --> 00:02:37,200
+formatting by using the tools of word rather than trying to manually format stuff okay so that's
+
+28
+00:02:37,920 --> 00:02:46,880
+this week is and so um read that read the text walk through it you won't
+
+29
+00:02:47,760 --> 00:02:53,360
+in you know when you read it you won't absorb it all um you have three practice things you can play
+
+30
+00:02:53,360 --> 00:02:54,160
+with if you want
+
+31
+00:02:54,880 --> 00:02:59,200
+yes and then you just have the one project assignment and it's always the same typical
+
+32
+00:02:59,200 --> 00:03:02,720
+you're going to download a file you're going to do all the changes to the file
+
+33
+00:03:02,720 --> 00:03:07,360
+and then you're going to upload that file it's going to get graded you can do that several times
+
+34
+00:03:08,320 --> 00:03:15,360
+um some people ask me and i've provided them information on their report their grade report
+
+35
+00:03:15,360 --> 00:03:19,600
+from cengage to say well here's what some gauge says you missed
+
+36
+00:03:19,600 --> 00:03:19,760
+i won't tell you all the things and how to fix them but i'll tell you more about them that way
+
+37
+00:03:19,760 --> 00:03:19,860
+um all the things and how to fix them but i'll tell you more about them later
+
+38
+00:03:19,860 --> 00:03:19,920
+okay um you're going to go to your 목p and then we'll talk about it first
+
+39
+00:03:19,920 --> 00:03:20,740
+i've been using double trending
+
+40
+00:03:20,740 --> 00:03:21,760
+and um i've been using acknowledge fiverr
+
+41
+00:03:21,760 --> 00:03:22,000
+for baked 달ard is it able to remediate individual files several times or multiple versions of your page
+
+42
+00:03:22,000 --> 00:03:27,200
+all the things and how to fix them but i'll tell you most of them like where it's telling me like
+
+43
+00:03:27,200 --> 00:03:32,700
+what step you did because there's a step of instructions like step 13 step 12 that kind of
+
+44
+00:03:32,700 --> 00:03:40,480
+stuff all right um so it's a quick one that's what we're doing this week and then i think next
+
+45
+00:03:40,480 --> 00:03:45,980
+week is our last week of word and then we'll move on to either powerpoint excel i'm still debating
+
+46
+00:03:45,980 --> 00:03:51,940
+all right have a good week and again if you have any questions or anything just please do reach out
+
+47
+00:03:51,940 --> 00:03:57,000
+don't wait reach out as soon as possible all right thanks`;
+            let parsedTranscript = [];
+            let player;
+            let timeUpdater;
+            
+            // --- Helper Functions ---
+            const timeToSeconds = (timeStr) => {
+                const [hms, ms] = timeStr.split(',');
+                const [h, m, s] = hms.split(':').map(Number);
+                return h * 3600 + m * 60 + s + Number(ms) / 1000;
+            };
+
+            const parseSrt = (srt) => {
+                const lines = srt.trim().split(/\r?\n\r?\n/);
+                return lines.map(line => {
+                    const parts = line.split('\n');
+                    if (parts.length < 3) return null; // Basic error check for malformed entries
+                    const time = parts[1].split(' --> ');
+                    if (time.length < 2) return null;
+                    return {
+                        start: timeToSeconds(time[0]),
+                        end: timeToSeconds(time[1]),
+                        text: parts.slice(2).join(' ')
+                    };
+                }).filter(Boolean); // Filter out any null entries
+            };
+
+            const populateTranscript = () => {
+                const container = document.getElementById('transcript-container');
+                if (!container) return;
+                container.innerHTML = ''; // Clear previous content
+                parsedTranscript.forEach((line, index) => {
+                    const p = document.createElement('p');
+                    p.id = `transcript-line-${index}`;
+                    p.dataset.start = line.start;
+                    p.dataset.end = line.end;
+                    p.textContent = line.text;
+                    p.className = 'p-2 rounded-md transition-colors duration-200 cursor-pointer';
+                    p.setAttribute('role', 'button');
+                    p.setAttribute('tabindex', '0');
+                    
+                    const seekAndPlay = () => {
+                        if(player && typeof player.seekTo === 'function') {
+                            player.seekTo(line.start);
+                            player.playVideo();
+                        }
+                    };
+                    
+                    p.addEventListener('click', seekAndPlay);
+                    p.addEventListener('keydown', (e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                           e.preventDefault();
+                           seekAndPlay();
+                        }
+                    });
+
+                    container.appendChild(p);
+                });
+            };
+
+            const highlightCurrentLine = () => {
+                if (!player || typeof player.getCurrentTime !== 'function') return;
+                const currentTime = player.getCurrentTime();
+                const allLines = document.querySelectorAll('#transcript-container p');
+                
+                let foundActive = false;
+                allLines.forEach(line => {
+                    const start = parseFloat(line.dataset.start);
+                    const end = parseFloat(line.dataset.end);
+
+                    if (currentTime >= start && currentTime <= end) {
+                        if (!line.classList.contains('active-transcript-line')) {
+                           const currentlyActive = document.querySelector('.active-transcript-line');
+                           if(currentlyActive) {
+                               currentlyActive.classList.remove('active-transcript-line');
+                           }
+                           line.classList.add('active-transcript-line');
+                           line.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
+                        }
+                        foundActive = true;
+                    }
+                });
+                
+                if(!foundActive) {
+                    const currentlyActive = document.querySelector('.active-transcript-line');
+                    if(currentlyActive) {
+                        currentlyActive.classList.remove('active-transcript-line');
+                    }
+                }
+            };
+
+            // --- YouTube IFrame API ---
+            window.onYouTubeIframeAPIReady = function() {
+                player = new YT.Player('player', {
+                    height: '100%',
+                    width: '100%',
+                    videoId: 'DnauMKmnqGo',
+                    playerVars: {
+                        'playsinline': 1,
+                        'rel': 0, // Disable related videos
+                        'modestbranding': 1 // Use a more subtle YouTube logo
+                    },
+                    events: {
+                        'onReady': onPlayerReady,
+                        'onStateChange': onPlayerStateChange
+                    }
+                });
+            };
+
+            function onPlayerReady(event) {
+                console.log('YouTube player is ready.');
+            }
+
+            function onPlayerStateChange(event) {
+                clearInterval(timeUpdater); // Clear any existing interval
+                if (event.data === YT.PlayerState.PLAYING) {
+                    timeUpdater = setInterval(highlightCurrentLine, 300);
+                }
+            }
+            
+            // --- Initialization ---
+            function initialize() {
+                parsedTranscript = parseSrt(transcriptData);
+                populateTranscript();
+                
+                // Load the YouTube IFrame Player API script if it's not already loaded
+                if (typeof(YT) == 'undefined' || typeof(YT.Player) == 'undefined') {
+                    const tag = document.createElement('script');
+                    tag.src = "https://www.youtube.com/iframe_api";
+                    const firstScriptTag = document.getElementsByTagName('script')[0];
+                    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+                } else {
+                    onYouTubeIframeAPIReady();
+                }
+                
+                console.log('Introduction page initialized.');
+            }
+
+            initialize();
+        });
+    </script>
+</body>
+</html>
