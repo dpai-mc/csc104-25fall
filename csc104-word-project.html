@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MS Word Assignment: Business Proposal Instructions</title>
+    
+    <!-- Meta Comments as per Specification -->
+    <!-- Chosen Palette: Scholarly Neutrals -->
+    <!-- Application Structure Plan: A single-page HTML document with collapsible sections (using <details> and <summary>) for each part of the assignment. This provides a clean, interactive guide for a project to be completed offline in MS Word. -->
+    <!-- Visualization & Content Choices: The assignment instructions are presented in a clear, step-by-step format within each collapsible section. Required text content is provided in distinct code blocks for easy copying. The focus is on providing clear specifications, not on web-based interaction. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter and Fira Code -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        /* Custom styles based on the specification */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FDFBF8;
+            color: #383838;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        h1 {
+            font-size: 2.25rem; /* text-4xl */
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: 1.5rem; /* text-2xl */
+            font-weight: 600;
+            display: inline;
+        }
+
+        details {
+            border: 1px solid #EADDD7;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        summary {
+            cursor: pointer;
+            padding: 1rem 1.5rem;
+            background-color: #FFFFFF;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            list-style: none; /* Remove default marker */
+        }
+        
+        summary::-webkit-details-marker {
+            display: none; /* Hide Safari arrow */
+        }
+        
+        summary:hover {
+            background-color: #fcfaf8;
+        }
+        
+        summary::after {
+            content: '▼';
+            font-size: 0.8em;
+            transition: transform 0.2s;
+        }
+        
+        details[open] summary::after {
+            transform: rotate(180deg);
+        }
+
+        .details-content {
+            padding: 0.5rem 1.5rem 1.5rem 1.5rem;
+            background-color: #FFFFFF;
+            border-top: 1px solid #EADDD7;
+        }
+        
+        .details-content ul {
+            list-style-type: disc;
+            margin-left: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .details-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .code-block {
+            background-color: #f7f7f7;
+            border: 1px solid #EADDD7;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            white-space: pre-wrap;
+            font-family: 'Fira Code', monospace;
+            color: #555;
+            margin-top: 1rem;
+        }
+        
+        strong {
+            font-weight: 600;
+            color: #383838;
+        }
+        
+        .rubric-table {
+            width: 100%;
+            margin-top: 1rem;
+            border-collapse: collapse;
+        }
+        .rubric-table th, .rubric-table td {
+            border: 1px solid #EADDD7;
+            padding: 0.75rem;
+            text-align: left;
+        }
+        .rubric-table th {
+            background-color: #fcfaf8;
+        }
+        .points {
+            text-align: center;
+        }
+
+        /* Print-friendly styles */
+        @media print {
+            body {
+                background-color: #FFFFFF;
+                color: #000000;
+            }
+            main {
+                max-width: 100%;
+                padding: 0;
+                border: none;
+                box-shadow: none;
+            }
+            details {
+                page-break-inside: avoid;
+                border: 1px solid #ccc;
+            }
+            details[open] {
+                 display: block;
+            }
+            summary {
+                 background-color: #f0f0f0;
+            }
+             summary::after {
+                display: none;
+            }
+            .no-print {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:z-50 p-3 bg-white text-blue-600">Skip to main content</a>
+
+    <main id="main-content" class="max-w-4xl mx-auto p-4 md:p-8 my-8">
+        
+        <header class="text-center mb-8">
+            <h1 class="text-3xl md:text-4xl font-bold">MS Word Assignment: Business Proposal</h1>
+            <p class="text-lg text-gray-600 mt-2">Follow the instructions below to create the proposal in Microsoft Word.</p>
+        </header>
+
+        <section class="mb-8 p-6 bg-white border border-[#EADDD7] rounded-lg">
+            <h2 class="text-xl font-bold mb-2 text-center" style="display: block;">Your Scenario</h2>
+            <p class="text-gray-700">
+                Imagine you are a Project Manager at <strong>Innovate Solutions</strong>. You've had a promising initial meeting with a potential client, "The Morning Grind," and now you need to create a professional proposal to win their business. While your team is still finalizing some of the specific marketing copy, your task is to build the document's structure and format the content you already have.
+            </p>
+            <p class="text-gray-700 mt-2 font-semibold">
+                Please use only the text provided in the instructions below. Do not add or generate your own content to fill out the proposal.
+            </p>
+        </section>
+
+        <details>
+            <summary><h2>Part 1: Overall Document & Page Setup</h2></summary>
+            <div class="details-content">
+                <p>Begin by opening a new blank document in Word and applying the following settings to the entire file.</p>
+                <ul>
+                    <li><strong>Theme:</strong> Apply the "Office" theme.</li>
+                    <li><strong>Margins:</strong> Set the page margins to "Narrow".</li>
+                    <li><strong>Watermark:</strong> Add a "Confidential" watermark.</li>
+                    <li><strong>Page Border:</strong> Apply a simple "Box" page border.</li>
+                    <li><strong>Document Properties:</strong> In the document's info/properties, set the "Subject" field to `Marketing Proposal`.</li>
+                </ul>
+            </div>
+        </details>
+
+        <details>
+            <summary><h2>Part 2: Cover Page, Header & Footer</h2></summary>
+            <div class="details-content">
+                <p>Create the framing elements for your professional document.</p>
+                <ul>
+                    <li><strong>Cover Page:</strong> Insert the built-in "Facet" style cover page and fill in the following details:
+                        <ul>
+                            <li><strong>Document Title:</strong> Website & Social Media Proposal</li>
+                            <li><strong>Document Subtitle:</strong> Prepared for The Morning Grind</li>
+                            <li><strong>Author:</strong> Your Name</li>
+                            <li><strong>Company:</strong> Innovate Solutions</li>
+                        </ul>
+                    </li>
+                    <li><strong>Header:</strong> Insert a header that is different on the first page. Starting on page 2, the header must contain the text "Proposal for The Morning Grind", aligned to the right.</li>
+                    <li><strong>Footer:</strong> Insert a footer that contains a centered page number on all pages except the cover page.</li>
+                </ul>
+            </div>
+        </details>
+
+        <details>
+            <summary><h2>Part 3: Proposal Letter</h2></summary>
+            <div class="details-content">
+                 <p>On the second page of your document, create the proposal letter using the content below and apply the specified formatting.</p>
+                 <ul>
+                    <li><strong>Letterhead:</strong> Create a simple letterhead by inserting a <strong>Rectangle Shape</strong> at the top of the page. Apply the "Subtle Effect - Blue, Accent 1" shape style and add the text "Innovate Solutions" to the shape. Format this text to be <strong>16pt</strong> and <strong>Bold</strong>.</li>
+                    <li><strong>Bold Formatting:</strong> Use the Find and Replace tool to find all instances of "The Morning Grind" in the letter and make them <strong>Bold</strong>.</li>
+                    <li><strong>Numbered List:</strong> Format the three project phases (starting with "Phase 1...") as a numbered list.</li>
+                    <li><strong>Paragraph Shading:</strong> Apply a "Blue, Accent 1, Lighter 80%" background shading to the paragraph that begins "Our team is confident...".</li>
+                    <li><strong>Picture:</strong> Insert an online picture of a coffee cup. Resize it to be <strong>2 inches wide</strong>, apply the "Metal Oval" picture style, and set the text wrapping to "Square". Position it to the right of the numbered list.</li>
+                    <li><strong>Footnote:</strong> At the end of the sentence "...drive customer engagement.", insert a footnote with the text: `Source: 2023 Digital Marketing Report.`</li>
+                 </ul>
+                 <h3>Content for Proposal Letter</h3>
+                 <div class="code-block">
+                    <p>October 26, 2025</p>
+                    <p>Mr. David Chen<br>Owner, The Morning Grind<br>123 Main Street<br>Anytown, USA 12345</p>
+                    <p>Dear Mr. Chen,</p>
+                    <p>Thank you for considering Innovate Solutions for your digital marketing needs. We are excited about the opportunity to partner with The Morning Grind to enhance your online presence. We specialize in modern, responsive web design and targeted social media strategies that drive customer engagement.</p>
+                    <p>Our proposed project is divided into three clear phases:</p>
+                    <p>Phase 1: Website Development. This includes a full site design, mobile optimization, and an online menu page.<br>
+                    Phase 2: Social Media Launch. We will create and manage official profiles on three major platforms.<br>
+                    Phase 3: Ongoing Content & Analytics. We will provide weekly content updates and a monthly performance report.</p>
+                    <p>Our team is confident that this proposal for The Morning Grind outlines a path to significant growth. We look forward to the possibility of working together.</p>
+                    <p>Sincerely,</p>
+                    <p>[Your Name]<br>Project Manager<br>Innovate Solutions</p>
+                </div>
+            </div>
+        </details>
+        
+        <details>
+            <summary><h2>Part 4: Proposal Content Sections</h2></summary>
+            <div class="details-content">
+                <p>On a new page after the letter (insert a Page Break), add the following content sections. Apply the specified styles and formatting.</p>
+                <ul>
+                    <li><strong>Headings:</strong> For the titles "Project Goals & Approach" and "Detailed Scope of Work", apply the <strong>Heading 1</strong> style.</li>
+                    <li><strong>Bulleted List:</strong> Under "Detailed Scope of Work", format the list of website features (starting with "Custom 5-page design...") as a standard bulleted list.</li>
+                </ul>
+                <h3>Content for Sections</h3>
+                <div class="code-block">
+                    <p>Project Goals & Approach</p>
+                    <p>Our primary goal is to increase online visibility and drive foot traffic to The Morning Grind. We will achieve this by creating a modern, user-friendly website that showcases your unique brand and products. Our social media strategy will focus on building a community of loyal customers through engaging content and targeted promotions.</p>
+                    <p>Detailed Scope of Work</p>
+                    <p>The project will include the following deliverables:</p>
+                    <p>Custom 5-page design (Home, About, Menu, Blog, Contact)<br>
+                    Mobile-responsive layout for all devices<br>
+                    Online menu with high-quality images<br>
+                    Setup of three social media profiles (e.g., Instagram, Facebook, Twitter)<br>
+                    Initial content creation and a one-month content calendar</p>
+                </div>
+            </div>
+        </details>
+
+        <details>
+            <summary><h2>Part 5: Costs & Timeline</h2></summary>
+            <div class="details-content">
+                <p>On a new page after the content sections, add the project's cost breakdown and timeline.</p>
+                <ul>
+                    <li><strong>Title:</strong> Type "Project Cost Breakdown" and apply the <strong>Heading 1</strong> style.</li>
+                    <li><strong>Table:</strong> Insert a table using the data provided below.
+                        <ul>
+                            <li>Apply the "Grid Table 5 Dark - Accent 1" table style.</li>
+                            <li>Center all content within the table cells both horizontally and vertically.</li>
+                            <li>In the final row, <strong>merge the cells</strong> and enter the text "Total Cost: $2,100", formatted in <strong>Bold</strong>.</li>
+                        </ul>
+                    </li>
+                    <li><strong>SmartArt:</strong> Below the table, insert a "Basic Process" SmartArt graphic.
+                        <ul>
+                           <li>Enter the three project phases into the shapes: `Website Development`, `Social Media Launch`, and `Content & Analytics`.</li>
+                           <li>Change the colors to "Colorful Range - Accent Colors 1 to 2".</li>
+                           <li>Apply the "Intense Effect" SmartArt style.</li>
+                        </ul>
+                    </li>
+                </ul>
+                <h3>Data for Cost Breakdown Table</h3>
+                <div class="code-block">
+                    Row 1: Service | Description | Cost
+                    <br>Row 2: Website Design | 5-page custom site | $1,200
+                    <br>Row 3: Social Media Setup | Profile creation & branding | $500
+                    <br>Row 4: Social Media Content | Weekly content updates | $400
+                </div>
+            </div>
+        </details>
+
+        <details>
+            <summary><h2>Part 6: Grading Rubric</h2></summary>
+            <div class="details-content">
+                 <p>Your assignment will be graded based on the following 200-point scale.</p>
+                 <table class="rubric-table">
+                    <thead>
+                        <tr>
+                            <th>Task / Skill Demonstrated</th>
+                            <th class="points">Points</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td colspan="2"><strong>Part 1: Document Setup (20 pts)</strong></td></tr>
+                        <tr><td>Document Theme set to "Office"</td><td class="points">5</td></tr>
+                        <tr><td>Page Margins set to "Narrow"</td><td class="points">5</td></tr>
+                        <tr><td>"Confidential" Watermark is applied</td><td class="points">5</td></tr>
+                        <tr><td>Box Page Border is applied</td><td class="points">5</td></tr>
+                        
+                        <tr><td colspan="2"><strong>Part 2: Cover Page, Header & Footer (30 pts)</strong></td></tr>
+                        <tr><td>"Facet" Cover Page inserted and filled correctly</td><td class="points">10</td></tr>
+                        <tr><td>Header is present, right-aligned, and not on the first page</td><td class="points">10</td></tr>
+                        <tr><td>Footer with centered page number is present and not on first page</td><td class="points">10</td></tr>
+
+                        <tr><td colspan="2"><strong>Part 3: Proposal Letter (60 pts)</strong></td></tr>
+                        <tr><td>Rectangle shape inserted and styled for letterhead</td><td class="points">10</td></tr>
+                        <tr><td>"Innovate Solutions" text is 16pt and Bold within shape</td><td class="points">10</td></tr>
+                        <tr><td>"The Morning Grind" is bolded throughout the letter</td><td class="points">10</td></tr>
+                        <tr><td>Numbered List correctly applied to the three "Phase" items</td><td class="points">10</td></tr>
+                        <tr><td>Paragraph shading applied correctly</td><td class="points">5</td></tr>
+                        <tr><td>Picture inserted, styled with "Metal Oval", resized, and wrapped</td><td class="points">10</td></tr>
+                        <tr><td>Footnote inserted with correct text</td><td class="points">5</td></tr>
+
+                        <tr><td colspan="2"><strong>Part 4: Proposal Content (30 pts)</strong></td></tr>
+                        <tr><td>Page Break inserted before new content</td><td class="points">5</td></tr>
+                        <tr><td>Heading 1 style applied to both section titles</td><td class="points">15</td></tr>
+                        <tr><td>Bulleted list correctly applied to scope of work</td><td class="points">10</td></tr>
+
+                        <tr><td colspan="2"><strong>Part 5: Costs & Timeline (50 pts)</strong></td></tr>
+                        <tr><td>Page Break inserted before cost section</td><td class="points">5</td></tr>
+                        <tr><td>Heading 1 style applied to title</td><td class="points">5</td></tr>
+                        <tr><td>Table inserted with correct style and centered content</td><td class="points">15</td></tr>
+                        <tr><td>Bottom row of table merged with bolded text</td><td class="points">10</td></tr>
+                        <tr><td>SmartArt inserted with correct text, colors, and style</td><td class="points">15</td></tr>
+                        
+                        <tr><td colspan="2"><strong>Part 6: Document Properties & Submission (10 pts)</strong></td></tr>
+                        <tr><td>Document Properties (Subject) are updated</td><td class="points">5</td></tr>
+                        <tr><td>Document saved with the correct file name</td><td class="points">5</td></tr>
+                        
+                        <tr>
+                            <td><strong>Total Points</strong></td>
+                            <td class="points"><strong>200</strong></td>
+                        </tr>
+                    </tbody>
+                 </table>
+            </div>
+        </details>
+        
+        <section class="mt-10 text-center bg-white p-6 border border-[#EADDD7] rounded-lg">
+            <h2 class="text-xl font-bold" style="display: block;">Submission Instructions</h2>
+            <p class="mt-2 text-gray-700">After completing all the steps in Microsoft Word, save your document as <strong>`Proposal_YourName.docx`</strong>. Submit this single `.docx` file for grading. Your instructor will review the Word document to verify that all features and formatting were implemented correctly.</p>
+        </section>
+    </main>
+
+    <script>
+        // JavaScript to ensure only one <details> element is open at a time for a cleaner accordion experience.
+        const allDetails = document.querySelectorAll('details');
+
+        allDetails.forEach(details => {
+            details.addEventListener('toggle', event => {
+                if (details.open) {
+                    allDetails.forEach(otherDetails => {
+                        if (otherDetails !== details) {
+                            otherDetails.open = false;
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
