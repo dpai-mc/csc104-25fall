@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSC104 - Week 6: Resumes & Sharing in MS Word</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #FDFBF8;
+            color: #383838;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .code-font {
+            font-family: 'Fira Code', monospace;
+        }
+        
+        /* Style for the currently active transcript line */
+        .active-transcript-line {
+            background-color: #F0EBE8;
+            font-weight: 600;
+            color: #000;
+            border-left: 4px solid #383838;
+        }
+
+        /* Accessibility: visible-on-focus skip link */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: #383838;
+            color: white;
+            padding: 8px;
+            z-index: 100;
+            transition: top 0.3s;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <div class="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
+        <header class="mb-8">
+            <h1 class="text-4xl font-bold text-gray-900">CSC104 - Week 6 Introduction</h1>
+            <p class="text-lg text-gray-600 mt-1">Resumes, Document Sharing, and the Final Word Project</p>
+        </header>
+
+        <main id="main-content">
+            <p class="mb-8 text-gray-700">
+                Welcome to Week 6! This is our final week on Microsoft Word. We'll be covering how to create a resume using templates and various document sharing features. This week also introduces the final MS Word project, which is a separate assignment from the usual Cengage work. Please watch the introductory video below for a detailed overview. The transcript will highlight the text in sync with the video.
+            </p>
+
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+                <div class="lg:col-span-3">
+                    <div class="aspect-video w-full bg-black rounded-lg shadow-lg overflow-hidden">
+                        <div id="player" class="w-full h-full"></div>
+                    </div>
+                </div>
+                <div class="lg:col-span-2">
+                    <h2 class="text-2xl font-bold mb-4">Transcript</h2>
+                    <div id="transcript-container" class="h-96 bg-white p-4 rounded-lg shadow-sm border overflow-y-auto space-y-2" tabindex="0" aria-label="Video Transcript">
+                        </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const transcriptData = `1
+00:00:00,800 --> 00:00:10,240
+Aloha and welcome. So we are week six into this semester and we're doing Word. This is our final
+
+2
+00:00:10,240 --> 00:00:15,740
+Word section. So it's module five from the textbook and it's about creating a resume
+
+3
+00:00:15,740 --> 00:00:24,100
+and sharing documents. And if we look at that section, you can see a lot of stuff about,
+
+4
+00:00:24,100 --> 00:00:30,300
+you know, different things you can do, how to create it from a template because there's
+
+5
+00:00:30,300 --> 00:00:34,840
+templates, resume templates. And so in this one, you'll use the resume template, but there's
+
+6
+00:00:34,840 --> 00:00:43,800
+other templates. There's templates for projects, for, you know, reports, for emails, for lots
+
+7
+00:00:43,800 --> 00:00:49,740
+of different things. Okay. And then it'll be how to change colors, how to do stuff with
+
+8
+00:00:49,740 --> 00:00:53,260
+fonts and themes and okay. 9
+00:00:54,100 --> 00:01:02,500
+So table rows, building blocks, auto-complete. There's lots of stuff in here. Again, like
+
+10
+00:01:02,500 --> 00:01:08,400
+I've said in the past, you go through it, understand what's available, what exists. 11
+00:01:09,260 --> 00:01:18,160
+Make sure when you're doing your projects in Cengage, it matters how you do stuff. Okay. 12
+00:01:18,160 --> 00:01:24,080
+If it says, you know, apply a style, typically what that means is they're a
+
+13
+00:01:24,080 --> 00:01:24,100
+style. If it says, you know, apply a style, typically what that means is they're a style. 14
+00:01:24,100 --> 00:01:30,980
+So if you want to change the style of that type, name that style in Word. Okay. And you
+
+15
+00:01:30,980 --> 00:01:36,140
+create custom styles if you want, but there's existing styles in Word and then you can modify
+
+16
+00:01:36,140 --> 00:01:42,480
+them and apply them. So any text that is of that style, when you modify the style, they
+
+17
+00:01:42,480 --> 00:01:48,800
+all change automatically. Okay. So that means you don't have to copy and pick copy and then
+
+18
+00:01:48,800 --> 00:01:54,080
+or highlight and change what it looks like. You would just want to use the styles. Okay.
+
+19
+00:01:54,100 --> 00:02:05,780
+Okay. Stuff like that. Sharing documents. I kind of have a little heartburn a little bit with this
+
+20
+00:02:05,780 --> 00:02:12,060
+one. Obviously PDFs are great, except for when you need to edit them or change them, then they're not
+
+21
+00:02:12,060 --> 00:02:22,280
+great. You can open a PDF in Word and it kind of opens funny and there's a bunch of extra formatting
+
+22
+00:02:22,280 --> 00:02:23,100
+stuff in there. 23
+00:02:24,100 --> 00:02:27,360
+But then if you really wanted to use it in Word, you got to get rid of, it's kind of
+
+24
+00:02:27,360 --> 00:02:34,820
+a pain. But anyway, you can create PDF files in Word. You can grab a PDF file and as long
+
+25
+00:02:34,820 --> 00:02:39,800
+as it's a text-based file and not an image file, Word will attempt to open it and read
+
+26
+00:02:39,800 --> 00:02:48,220
+it and you'll have text that you can then play with. Okay. Different file types, same
+
+27
+00:02:48,220 --> 00:02:54,080
+to the OneDrive. How do you share it from your OneDrive? Remove a watermark. You can
+
+28
+00:02:54,080 --> 00:03:03,040
+send it using email. Okay. Hyperlinks. How to create web pages from Word. So if you can
+
+29
+00:03:03,040 --> 00:03:09,360
+give a Word document, you can just publish it as an HTML file or Word page. You can publish
+
+30
+00:03:09,360 --> 00:03:15,180
+it as an HTML file. It's a quick way if you're building a website or something. It's one
+
+31
+00:03:15,180 --> 00:03:19,960
+of the quickest ways where you can actually build something in Word, you know, kind of
+
+32
+00:03:19,960 --> 00:03:23,900
+format it, do bullets, whatever you want. Put in some images.
+
+33
+00:03:24,080 --> 00:03:33,240
+And then publish it as a web page and then put it up there. I personally hate it. That's
+
+34
+00:03:33,240 --> 00:03:42,960
+the word I hate. I hate doing it because it's kind of clunky from a web page side. Okay. 35
+00:03:43,020 --> 00:03:48,160
+Every text is tagged with a certain format. And then if you want to change something,
+
+36
+00:03:48,160 --> 00:03:54,060
+it becomes a pain because it's not optimized, if you will. 37
+00:03:54,080 --> 00:04:01,200
+So for web, it looks okay. It looks good. It does what it says it does. But it's not
+
+38
+00:04:01,200 --> 00:04:07,740
+easy editable. The file you get isn't very easily editable unless you do it in Word again. 39
+00:04:09,180 --> 00:04:15,620
+Okay. But anyway, that's all the Word stuff. And that'll finish us up for Word. And next
+
+40
+00:04:15,620 --> 00:04:21,860
+week, we're going to start Excel. Okay. But before we do that, I want to mention that
+
+41
+00:04:21,860 --> 00:04:24,060
+this week, you have Excel. 42
+00:04:24,080 --> 00:04:31,160
+It shows two assignments this week. One is the standard Cengage. Do this assignment. 43
+00:04:31,160 --> 00:04:34,480
+Submit it through Cengage. Hopefully, that's working for everybody. I know that I have
+
+44
+00:04:34,480 --> 00:04:42,240
+one or two people that are still having issues. But hopefully, we can work through them. And
+
+45
+00:04:42,240 --> 00:04:47,920
+then I have a MS Word project. And this is not turned in through Cengage. It's not done
+
+46
+00:04:47,920 --> 00:04:53,060
+through Cengage. You do this in Word and you submit your Word file.
+
+47
+00:04:54,080 --> 00:05:00,620
+Okay. Now, the one thing, it's not due next week. It's due roughly two weeks, except for
+
+48
+00:05:00,620 --> 00:05:07,020
+instead of on a Monday, it's due on Sunday. So that's why it puts up here, one, no late
+
+49
+00:05:07,020 --> 00:05:13,660
+submissions. You have to turn it in by October 19th. Okay. And it's due on Sunday, not on
+
+50
+00:05:13,660 --> 00:05:19,480
+Monday. I made it worth 200 points. So it's worth two of the projects. So it's worth effectively
+
+51
+00:05:19,480 --> 00:05:21,220
+two weeks of work.
+
+52
+00:05:24,080 --> 00:05:30,780
+And when you look at the assignment, okay, it gives you a description. Here's what you're
+
+53
+00:05:30,780 --> 00:05:39,720
+doing. It tells you, you know, that's part one. Do this. You know, similar, but not the
+
+54
+00:05:39,720 --> 00:05:44,660
+same as the textbook, but similar. And I'm not, when I get done, I'm going to grade you
+
+55
+00:05:44,660 --> 00:05:50,600
+on, you know, I'll look through each file and I'll grade you on all these elements. 56
+00:05:51,220 --> 00:05:54,060
+Okay. You don't have to create anything. There's a preparation. You don't have to create anything. 57
+00:05:54,080 --> 00:05:58,660
+There's a proposal letter. So you're going to copy this information, dump it into word,
+
+58
+00:05:58,660 --> 00:06:03,120
+and then apply all this stuff to it, this formatting and whatever else it says to do. 59
+00:06:04,120 --> 00:06:09,940
+Okay. And same, you're going to have some proposal content. So it's a mini proposal. 60
+00:06:10,220 --> 00:06:15,400
+It's very short, but it's going to have like a cover page and a letter that goes with it. 61
+00:06:15,740 --> 00:06:22,400
+And you're going to do it all in one file. Okay. So you can put this in there and then you're
+
+62
+00:06:22,400 --> 00:06:23,860
+going to do this, change the settings. 63
+00:06:24,080 --> 00:06:28,020
+You're going to do this for the bulleted list, the information, and then you're going to have
+
+64
+00:06:28,020 --> 00:06:32,720
+a little table you got to put in. Here's some information for a table and do some stuff like
+
+65
+00:06:32,720 --> 00:06:39,860
+that. And then the last thing here is just how I'm going to grade it. Okay. It just deletes
+
+66
+00:06:39,860 --> 00:06:45,220
+everything basically that it says to do. It's going to be one for one, pretty much here. This
+
+67
+00:06:45,220 --> 00:06:51,840
+is where five is where 10. Okay. And then when you're done, you're going to save it as a doc X
+
+68
+00:06:52,120 --> 00:06:54,060
+file. It has to be a doc X file.
+
+69
+00:06:54,080 --> 00:07:01,440
+Okay. It has to be done in word with a doc X extension. So I want your word file, your actual
+
+70
+00:07:01,440 --> 00:07:09,140
+word file. And so you upload it. If you do not upload a doc X file, it won't let you upload it. 71
+00:07:09,660 --> 00:07:15,120
+So if you take your file and convert it to PDF, you can't upload the PDF. Okay. It needs to be a
+
+72
+00:07:15,120 --> 00:07:23,760
+doc X. Right. And so that's, I think it's going to be easier to do than the labs. 73
+00:07:24,080 --> 00:07:31,680
+I mean, the actual projects in Cengage, but it's going through, it's not covering every single item
+
+74
+00:07:31,680 --> 00:07:36,380
+over the five modules. It's just picking and choosing a few of them. I didn't pick them all. 75
+00:07:36,560 --> 00:07:47,220
+I picked 20 or 30% of them and I threw them in this file. Okay. And so hopefully that won't
+
+76
+00:07:47,220 --> 00:07:51,700
+cause anybody too much trouble and you'll be able to submit it. 77
+00:07:54,080 --> 00:07:56,160
+I'm going to go ahead and add some things. 78
+00:07:56,160 --> 00:07:58,080
+I'll just, I'll go ahead and add a little, a little bit of text.
+
+79
+00:07:58,080 --> 00:08:00,080
+Okay. And then I'm going to add the timeline.
+
+80
+00:08:00,080 --> 00:08:02,760
+Note this, do not add or generate your own content. 81
+00:08:02,760 --> 00:08:05,760
+So the proposal itself is not a real full proposal. 82
+00:08:05,760 --> 00:08:10,500
+It's just placeholder stuff and has some things in it that I want you to play with, but I'm not
+
+83
+00:08:10,500 --> 00:08:11,500
+doing things. 84
+00:08:11,500 --> 00:08:15,500
+Some things like I have a long proposal, I'd have a lot of text and I'm going to have you put a
+
+85
+00:08:15,500 --> 00:08:19,780
+picture in, and then wrap the text around the picture and do some stuff like that. 86
+00:08:19,780 --> 00:08:20,600
+I'm not doing that.
+
+87
+00:08:20,600 --> 00:08:23,600
+Be a little bit more basic than that. 88
+00:08:24,080 --> 00:08:30,580
+all right so I just want to mention that this is in there if you have questions or
+
+89
+00:08:30,580 --> 00:08:35,320
+if I get a lot of questions maybe I'll set up a time when I'll be available
+
+90
+00:08:35,320 --> 00:08:40,200
+maybe next Monday or something but if they want something like that if you
+
+91
+00:08:40,200 --> 00:08:49,020
+want to have a time where you can try to join me as a group to talk about
+
+92
+00:08:49,020 --> 00:08:53,460
+anything in the class or this particular in particular do so if not
+
+93
+00:08:53,460 --> 00:08:57,700
+you can just schedule the people that have been having some issues with them
+
+94
+00:08:57,700 --> 00:09:00,520
+scheduling one-on-one meetings you can always schedule a one-on-one meeting on
+
+95
+00:09:00,520 --> 00:09:05,180
+my calendar okay and you can find that as part of the syllabus where my
+
+96
+00:09:05,180 --> 00:09:13,440
+calendar is right so that's all I wanted to say this week good luck and again
+
+97
+00:09:13,440 --> 00:09:17,400
+hopefully everything's working out for you and if it's not please reach out and
+
+98
+00:09:17,400 --> 00:09:19,000
+I've haven't responded yet
+
+99
+00:09:19,000 --> 00:09:21,700
+you've reached out and I haven't responded to you yet I'm sorry about
+
+100
+00:09:21,700 --> 00:09:27,960
+that but I will get back to you either tonight or tomorrow thanks`;
+            let parsedTranscript = [];
+            let player;
+            let timeUpdater;
+            
+            // --- Helper Functions ---
+            const timeToSeconds = (timeStr) => {
+                const [hms, ms] = timeStr.split(',');
+                const [h, m, s] = hms.split(':').map(Number);
+                return h * 3600 + m * 60 + s + Number(ms) / 1000;
+            };
+
+            const parseSrt = (srt) => {
+                const lines = srt.trim().split(/\r?\n\r?\n/);
+                return lines.map(line => {
+                    const parts = line.split('\n');
+                    if (parts.length < 3) return null; // Basic error check for malformed entries
+                    const time = parts[1].split(' --> ');
+                    if (time.length < 2) return null;
+                    return {
+                        start: timeToSeconds(time[0]),
+                        end: timeToSeconds(time[1]),
+                        text: parts.slice(2).join(' ')
+                    };
+                }).filter(Boolean); // Filter out any null entries
+            };
+
+            const populateTranscript = () => {
+                const container = document.getElementById('transcript-container');
+                if (!container) return;
+                container.innerHTML = ''; // Clear previous content
+                parsedTranscript.forEach((line, index) => {
+                    const p = document.createElement('p');
+                    p.id = `transcript-line-${index}`;
+                    p.dataset.start = line.start;
+                    p.dataset.end = line.end;
+                    p.textContent = line.text;
+                    p.className = 'p-2 rounded-md transition-colors duration-200 cursor-pointer';
+                    p.setAttribute('role', 'button');
+                    p.setAttribute('tabindex', '0');
+                    
+                    const seekAndPlay = () => {
+                        if(player && typeof player.seekTo === 'function') {
+                            player.seekTo(line.start);
+                            player.playVideo();
+                        }
+                    };
+                    
+                    p.addEventListener('click', seekAndPlay);
+                    p.addEventListener('keydown', (e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                           e.preventDefault();
+                           seekAndPlay();
+                        }
+                    });
+
+                    container.appendChild(p);
+                });
+            };
+
+            const highlightCurrentLine = () => {
+                if (!player || typeof player.getCurrentTime !== 'function') return;
+                const currentTime = player.getCurrentTime();
+                const allLines = document.querySelectorAll('#transcript-container p');
+                
+                let foundActive = false;
+                allLines.forEach(line => {
+                    const start = parseFloat(line.dataset.start);
+                    const end = parseFloat(line.dataset.end);
+
+                    if (currentTime >= start && currentTime <= end) {
+                        if (!line.classList.contains('active-transcript-line')) {
+                           const currentlyActive = document.querySelector('.active-transcript-line');
+                           if(currentlyActive) {
+                               currentlyActive.classList.remove('active-transcript-line');
+                           }
+                           line.classList.add('active-transcript-line');
+                           line.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
+                        }
+                        foundActive = true;
+                    }
+                });
+                
+                if(!foundActive) {
+                    const currentlyActive = document.querySelector('.active-transcript-line');
+                    if(currentlyActive) {
+                        currentlyActive.classList.remove('active-transcript-line');
+                    }
+                }
+            };
+
+            // --- YouTube IFrame API ---
+            window.onYouTubeIframeAPIReady = function() {
+                player = new YT.Player('player', {
+                    height: '100%',
+                    width: '100%',
+                    videoId: 'T-7n9W0WaWM',
+                    playerVars: {
+                        'playsinline': 1,
+                        'rel': 0, // Disable related videos
+                        'modestbranding': 1 // Use a more subtle YouTube logo
+                    },
+                    events: {
+                        'onReady': onPlayerReady,
+                        'onStateChange': onPlayerStateChange
+                    }
+                });
+            };
+
+            function onPlayerReady(event) {
+                console.log('YouTube player is ready.');
+            }
+
+            function onPlayerStateChange(event) {
+                clearInterval(timeUpdater); // Clear any existing interval
+                if (event.data === YT.PlayerState.PLAYING) {
+                    timeUpdater = setInterval(highlightCurrentLine, 300);
+                }
+            }
+            
+            // --- Initialization ---
+            function initialize() {
+                parsedTranscript = parseSrt(transcriptData);
+                populateTranscript();
+                
+                // Load the YouTube IFrame Player API script if it's not already loaded
+                if (typeof(YT) == 'undefined' || typeof(YT.Player) == 'undefined') {
+                    const tag = document.createElement('script');
+                    tag.src = "https://www.youtube.com/iframe_api";
+                    const firstScriptTag = document.getElementsByTagName('script')[0];
+                    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+                } else {
+                    onYouTubeIframeAPIReady();
+                }
+                
+                console.log('Introduction page initialized.');
+            }
+
+            initialize();
+        });
+    </script>
+</body>
+</html>
