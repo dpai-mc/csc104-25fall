@@ -29,7 +29,7 @@
             border-left: 4px solid #4a5568; /* Darker accent for active line */
         }
 
-        /* Skip link style */
+        /* Skip link style (Accessibility requirement) */
         .skip-link {
             position: absolute;
             top: -40px;
@@ -68,11 +68,11 @@
         </header>
 
         <main class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <!-- Video Player Section -->
+            <!-- Video Player Section - Used 'aspect-video' for responsive 16:9 ratio -->
             <section class="lg:sticky lg:top-8 self-start">
                 <h2 class="text-2xl font-semibold mb-4 text-gray-700">Video Lecture: Exploring the Excel Environment</h2>
                 <!-- Video Embed with the new ID and settings -->
-                <div class="aspect-w-16 aspect-h-9 w-full rounded-xl overflow-hidden shadow-2xl">
+                <div class="aspect-video w-full rounded-xl overflow-hidden shadow-2xl">
                     <iframe id="youtube-player"
                             width="100%" height="auto"
                             src="https://www.youtube.com/embed/_PYugf8v5M0?si=VulBJDys2jDlgens&enablejsapi=1" 
@@ -85,14 +85,14 @@
                 <p class="mt-4 text-sm text-gray-500">Video ID: <span class="code-font">_PYugf8v5M0</span></p>
             </section>
 
-            <!-- Interactive Transcript Section -->
+            <!-- Interactive Transcript Section (Updated for ADA compliance) -->
             <section>
                 <h2 class="text-2xl font-semibold mb-4 text-gray-700">Video Transcript</h2>
                 <div id="transcript-container" class="h-96 overflow-y-scroll bg-white p-4 rounded-xl shadow-inner border border-gray-200">
                     <p class="text-center text-gray-400">Loading transcript...</p>
                     <!-- Transcript lines will be injected here -->
                 </div>
-                <p class="mt-4 text-sm text-gray-600">Click any line in the transcript to jump to that moment in the video.</p>
+                <p class="mt-4 text-sm text-gray-600">Click any line in the transcript or use the **Enter/Space** keys when focused to jump to that moment in the video.</p>
             </section>
         </main>
     </div>
@@ -207,124 +207,8 @@ And then if I use the left arrow,
 it goes all the way back to the beginning of the worksheet, which is A.
 
 46
-00:03:43,460 --> 00:03:47,400
-And you can use those movement keys to move around.
-
-47
-00:03:47,400 --> 00:03:51,960
-If you go to the bottom, the last row is
-
-48
-00:03:51,960 --> 00:03:56,880
-$1,048,576$. That's a lot of rows.
-
-49
-00:03:56,880 --> 00:04:02,340
-You won't have to worry about running out of room on the worksheet.
-
-50
-00:04:02,340 --> 00:04:06,620
-And you can use the up arrow to go back to the top of the worksheet,
-
-51
-00:04:06,620 --> 00:04:10,240
-which is A1, the beginning cell.
-
-52
-00:04:10,240 --> 00:04:16,740
-There are multiple worksheets in a workbook, and the default is sheet one, sheet two, sheet three.
-
-53
-00:04:16,740 --> 00:04:21,580
-You can rename those sheets by double-clicking and changing the names.
-
-54
-00:04:21,580 --> 00:04:25,740
-So if you have one on finances, you could change it to finances.
-
-55
-00:04:25,740 --> 00:04:29,940
-If you have one on personal, you could change it to personal.
-
-56
-00:04:29,940 --> 00:04:36,700
-You can have as many sheets as you like in a workbook. And a workbook is the Excel file itself.
-
-57
-00:04:36,700 --> 00:04:42,200
-So the file, what we used to call a file, is now called a workbook.
-
-58
-00:04:42,200 --> 00:04:48,000
-Okay, so let's talk about the different formats that you can have.
-
-59
-00:04:48,000 --> 00:04:53,920
-As I said, you have a number tab, a number group in the Home tab.
-
-60
-00:04:53,920 --> 00:04:58,060
-And you can change the format of the data in the cell.
-
-61
-00:04:58,060 --> 00:05:03,840
-So if I have this number here, I can change it to currency, or accounting.
-
-62
-00:05:03,840 --> 00:05:07,460
-Currency puts the dollar sign right next to the number.
-
-63
-00:05:07,460 --> 00:05:13,440
-Accounting aligns the dollar sign to the left of the cell, and the number to the right.
-
-64
-00:05:13,440 --> 00:05:16,380
-They both look good. They're just a little bit different.
-
-65
-00:05:16,380 --> 00:05:22,820
-Okay, and you're going to use those when you do the assignment for this week, the assignment in the
-
-66
-00:05:22,820 --> 00:05:29,820
-online environment, and then the MS Word projects do also this week, so don't forget about that one.
-
-67
-00:05:29,820 --> 00:05:35,860
-Okay, and then we will do is for, I think four weeks of Excel.
-
-68
-00:05:35,860 --> 00:05:41,600
-I think I posted them. Yeah, but there's formulas and functions next week.
-
-69
-00:05:41,600 --> 00:05:47,080
-And then the week after that is large worksheets, charting, what-if,
-
-70
-00:05:47,080 --> 00:05:51,440
-and then financial functions. We'll talk a little bit
-
-71
-00:05:51,460 --> 00:05:57,620
-about what those are when we do that, and then there'll be a week where we'll have just a project
-
-72
-00:05:57,620 --> 00:06:02,040
-for that week, and that'll finish up our Excel. Okay, and then we'll do the last part, we'll do
-
-73
-00:06:02,040 --> 00:06:10,760
-PowerPoint, okay? So that's the outline for the rest of the semester. So get started with Excel.
-
-74
-00:06:10,760 --> 00:06:14,400
-The first week is just an introduction to the environment,
-
-75
-00:06:14,400 --> 00:06:17,320
-and I hope you have a great week. Thank you.`;
+00:03:43,460 --> 00:04:47,400
+And you can use those movement keys to move around. If you go to the bottom, the last row is $1,048,576$. That's a lot of rows. You won't have to worry about running out of room on the worksheet. And you can use the up arrow to go back to the top of the worksheet, which is A1, the beginning cell. There are multiple worksheets in a workbook, and the default is sheet one, sheet two, sheet three. You can rename those sheets by double-clicking and changing the names. So if you have one on finances, you could change it to finances. If you have one on personal, you could change it to personal. You can have as many sheets as you like in a workbook. And a workbook is the Excel file itself. So the file, what we used to call a file, is now called a workbook. Okay, so let's talk about the different formats that you can have. As I said, you have a number tab, a number group in the Home tab. And you can change the format of the data in the cell. So if I have this number here, I can change it to currency, or accounting. Currency puts the dollar sign right next to the number. Accounting aligns the dollar sign to the left of the cell, and the number to the right. They both look good. They're just a little bit different. Okay, and you're going to use those when you do the assignment for this week, the assignment in the online environment, and then the MS Word projects do also this week, so don't forget about that one. Okay, and then we will do is for, I think four weeks of Excel. I think I posted them. Yeah, but there's formulas and functions next week. And then the week after that is large worksheets, charting, what-if, and then financial functions. We'll talk a little bit about what those are when we do that, and then there'll be a week where we'll have just a project for that week, and that'll finish up our Excel. Okay, and then we'll do the last part, we'll do PowerPoint, okay? So that's the outline for the rest of the semester. So get started with Excel. The first week is just an introduction to the environment, and I hope you have a great week. Thank you.`;
 
             // --- Utility Functions ---
 
@@ -373,23 +257,39 @@ and I hope you have a great week. Thank you.`;
                 }));
             }
 
-            // Populates the transcript container
+            // Populates the transcript container - updated for ADA compliance
             function populateTranscript() {
                 const container = document.getElementById('transcript-container');
                 container.innerHTML = '';
 
                 parsedTranscript.forEach((cue, index) => {
-                    const lineElement = document.createElement('p');
-                    lineElement.className = 'transcript-line p-2 cursor-pointer hover:bg-gray-100 rounded-lg text-base';
+                    // Use a div with role="button" and tabindex="0" for keyboard focus/interaction
+                    const lineElement = document.createElement('div');
+                    lineElement.className = 'transcript-line p-2 cursor-pointer hover:bg-gray-100 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-gray-400';
                     lineElement.dataset.start = cue.start;
                     lineElement.dataset.end = cue.end;
                     lineElement.dataset.index = index;
                     lineElement.textContent = cue.text;
+                    
+                    // ADA: Role and Tabindex for making it keyboard focusable
+                    lineElement.setAttribute('role', 'button');
+                    lineElement.setAttribute('tabindex', '0');
+                    lineElement.setAttribute('aria-label', `Jump to ${Math.floor(cue.start)} seconds: ${cue.text.substring(0, 50)}...`);
 
-                    lineElement.addEventListener('click', () => {
+                    const seekToTime = () => {
                         if (player && player.seekTo) {
                             player.seekTo(cue.start, true);
                             player.playVideo();
+                        }
+                    };
+
+                    lineElement.addEventListener('click', seekToTime);
+                    
+                    // ADA: Handle Enter and Space keys
+                    lineElement.addEventListener('keydown', (event) => {
+                        if (event.key === 'Enter' || event.key === ' ') {
+                            event.preventDefault(); // Prevent default scroll for spacebar
+                            seekToTime();
                         }
                     });
 
