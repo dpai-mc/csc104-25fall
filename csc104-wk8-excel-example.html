@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Updated Title for CSC104 Week 8 -->
+    <title>CSC104 - Week 8: Excel Formulas and Project Demonstration</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #FDFBF8;
+            color: #383838;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .code-font {
+            font-family: 'Fira Code', monospace;
+        }
+        
+        /* Style for the currently active transcript line */
+        .active-transcript-line {
+            background-color: #F0EBE8;
+            font-weight: 600;
+            color: #000;
+            border-left: 4px solid #059669; /* Green accent for CSC104 */
+        }
+
+        /* Skip link style (Accessibility requirement) */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: #059669; /* Green background */
+            color: #FDFBF8;
+            padding: 8px;
+            z-index: 100;
+            transition: top 0.3s;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        /* Custom scrollbar for transcript */
+        #transcript-container::-webkit-scrollbar {
+            width: 8px;
+        }
+        #transcript-container::-webkit-scrollbar-thumb {
+            background-color: #cccccc;
+            border-radius: 10px;
+        }
+        #transcript-container::-webkit-scrollbar-thumb:hover {
+            background-color: #a0a0a0;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+    <a href="#main-content" class="skip-link rounded-br-md">Skip to main content</a>
+    
+    <div id="main-content" class="max-w-7xl mx-auto">
+        <header class="mb-8">
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-800 mb-2">CSC104 - Week 8: Excel Formulas and Project Demonstration</h1>
+            <p class="text-lg text-gray-600">Welcome to Week 8! This session introduces the core skills of **inputting, copying, and using formulas in Excel**. This week, the video provides a different format: a comprehensive walk-through demonstration of the Practice Project, including submission, grading, and correcting a submission error to successfully achieve a perfect score.</p>
+        </header>
+
+        <main class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Video Player Section - Used 'aspect-video' for responsive 16:9 ratio -->
+            <section class="lg:sticky lg:top-8 self-start">
+                <h2 class="text-2xl font-semibold mb-4 text-gray-700">Video Lecture: Excel Formulas and Project Walk-Through</h2>
+                <!-- Video Embed with the new ID and settings -->
+                <div class="aspect-video w-full rounded-xl overflow-hidden shadow-2xl">
+                    <iframe id="youtube-player"
+                            width="100%" height="auto"
+                            src="https://www.youtube.com/embed/nERlh9GaFIo?si=bShDkVxXwastzrlG&enablejsapi=1" 
+                            title="YouTube video player"
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            allowfullscreen
+                            class="w-full h-full"></iframe>
+                </div>
+                <p class="mt-4 text-sm text-gray-500">Video ID: <span class="code-font">nERlh9GaFIo</span></p>
+            </section>
+
+            <!-- Interactive Transcript Section (Updated for ADA compliance) -->
+            <section>
+                <h2 class="text-2xl font-semibold mb-4 text-gray-700">Video Transcript</h2>
+                <div id="transcript-container" class="h-96 overflow-y-scroll bg-white p-4 rounded-xl shadow-inner border border-gray-200">
+                    <p class="text-center text-gray-400">Loading transcript...</p>
+                    <!-- Transcript lines will be injected here -->
+                </div>
+                <p class="mt-4 text-sm text-gray-600">Click any line in the transcript or use the **Enter/Space** keys when focused to jump to that moment in the video.</p>
+            </section>
+        </main>
+    </div>
+
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Configuration ---
+            const videoId = 'nERlh9GaFIo'; // New video ID for Excel Formulas
+            let player;
+            let timeUpdater;
+            let parsedTranscript = [];
+
+            // Transcript content for CSC104 Week 8 (Excel Formulas and Project Demo)
+            const transcriptData = `1
+00:00:00,960 --> 00:00:09,400
+Aloha and welcome. So in this video or this week I'm going to do this practice project one
+
+2
+00:00:09,400 --> 00:00:16,640
+in Excel just to kind of walk through it to make sure that when you're doing it this is at least
+
+3
+00:00:16,640 --> 00:00:23,400
+this is how I would do this project. Okay understand I've used Excel for a really long time
+
+4
+00:00:23,400 --> 00:00:31,100
+like before Windows was even in existence. Well actually not Excel but I've used Excel for a
+
+5
+00:00:31,100 --> 00:00:37,480
+really long time. So I will obviously probably be faster than most of you not all of you but most of
+
+6
+00:00:37,480 --> 00:00:46,040
+you. So anyway let me start this. I have done it you can see I have one down here because I wanted to
+
+7
+00:00:46,040 --> 00:00:53,340
+check how it worked and all that stuff so let me start. We're going to use the online version
+
+8
+00:00:53,340 --> 00:00:59,320
+of Excel to do this. You can do the desktop version if you like but I'll use the online version
+
+9
+00:00:59,320 --> 00:01:03,840
+because it's the one that most of you will have access to all the time.
+
+10
+00:01:03,840 --> 00:01:06,820
+So let's start with project one.
+
+11
+00:01:06,820 --> 00:01:14,460
+Okay so the project one here and I'm going to click Start file so it should open up a file
+
+12
+00:01:14,460 --> 00:01:21,500
+for me in the online environment right there. Okay so let's check what the project says.
+
+13
+00:01:21,500 --> 00:01:27,920
+Okay so the first step it says save the workbook as, with your last name, first name,
+
+14
+00:01:27,920 --> 00:01:32,840
+underscore practice project one. And I'm not going to change that. I'm going to leave it the way it is
+
+15
+00:01:32,840 --> 00:01:40,240
+and I'll change it later on when I submit. So it says in cell B4 calculate the total
+
+16
+00:01:40,240 --> 00:01:46,400
+income by creating a formula that adds the value in B2 and B3. Okay so B4
+
+17
+00:01:46,400 --> 00:01:53,420
+and I'm going to do equals and I'm going to click on B2 and then I'm going to do a plus sign
+
+18
+00:01:53,420 --> 00:01:57,220
+and I'm going to click on B3. Okay so that's the first formula.
+
+19
+00:01:57,220 --> 00:02:03,200
+I'm going to hit Enter and I should get 1600. So that looks right.
+
+20
+00:02:03,200 --> 00:02:08,980
+The second part says in cell B5 calculate the estimated total expenses by creating a formula
+
+21
+00:02:08,980 --> 00:02:14,800
+that adds the values in C2 C3 C4 C5 and C6.
+
+22
+00:02:14,800 --> 00:02:22,880
+Okay so it's a long formula or you can use the sum function. And I'll use the sum function
+
+23
+00:02:22,880 --> 00:02:28,240
+to do this. Okay so I'm going to do equals sum parentheses
+
+24
+00:02:28,240 --> 00:02:35,900
+and then I'm going to drag C2 to C6. Okay and that should give me the total expenses.
+
+25
+00:02:35,900 --> 00:02:40,540
+I'm going to hit Enter and I should get 1400. That looks right.
+
+26
+00:02:40,540 --> 00:02:48,740
+Third is in cell B6 calculate the estimated balance by creating a formula that subtracts
+
+27
+00:02:48,740 --> 00:02:54,720
+the estimated total expenses in B5 from the total income in B4.
+
+28
+00:02:54,720 --> 00:03:00,320
+Okay so B6 equals B4 minus B5.
+
+29
+00:03:00,320 --> 00:03:04,120
+I'm going to hit Enter and I should get 200.
+
+30
+00:03:04,120 --> 00:03:10,240
+And then the last step says format the range B2 to B6 to display as currency
+
+31
+00:03:10,240 --> 00:03:13,920
+with zero decimal places.
+
+32
+00:03:13,920 --> 00:03:22,060
+So B2 to B6. I'm going to highlight that and then I'm going to go to my currency button
+
+33
+00:03:22,060 --> 00:03:26,580
+and I'm going to look at currency with zero decimal places.
+
+34
+00:03:26,580 --> 00:03:32,460
+Okay so that's the comma style with two decimal places. I don't want that one.
+
+35
+00:03:32,460 --> 00:03:38,400
+I want the currency format. So here's accounting. Here's currency.
+
+36
+00:03:38,400 --> 00:03:42,220
+And I'm going to look for zero decimal places.
+
+37
+00:03:42,220 --> 00:03:46,840
+So I'm going to go into more number formats.
+
+38
+00:03:46,840 --> 00:03:52,620
+And I'm going to go to custom. And I'm going to find the currency.
+
+39
+00:03:52,620 --> 00:03:58,040
+The other way to do it is to go here and decrease the decimal places.
+
+40
+00:03:58,040 --> 00:04:02,860
+Okay, so I will do that and I will leave it as currency.
+
+41
+00:04:02,860 --> 00:04:08,220
+And that looks right. Okay, so that's the end of the project.
+
+42
+00:04:08,220 --> 00:04:13,900
+Now I have to save it and submit it for grading.
+
+43
+00:04:13,900 --> 00:04:18,480
+So I'm going to save it in my computer. I'm going to save as,
+
+44
+00:04:18,480 --> 00:04:22,460
+I'm going to go to download a copy.
+
+45
+00:04:22,460 --> 00:04:27,940
+Okay, so I'm going to download a copy and I'm going to put it on my desktop.
+
+46
+00:04:27,940 --> 00:04:30,220
+And here's my download copy.
+
+47
+00:04:30,220 --> 00:04:36,180
+And I'm going to go here, I'm going to stop the video, and I'm going to go back
+
+48
+00:04:36,180 --> 00:04:41,200
+to my course content and I'm going to submit the project.
+
+49
+00:04:41,200 --> 00:04:47,100
+So I'm going to choose the file. I'm going to find the file that I just downloaded.
+
+50
+00:04:47,100 --> 00:04:52,800
+And here it is, the budget one. And I'm going to drop it in there.
+
+51
+00:04:52,800 --> 00:04:58,220
+And I'm going to upload it. Okay. And I'm going to get my grade.
+
+52
+00:04:58,220 --> 00:05:03,840
+So let's see. I got 80 out of 100. Okay. And I got one error.
+
+53
+00:05:03,840 --> 00:05:08,180
+And so let's look at what the error is. I'm going to click on view results.
+
+54
+00:05:08,180 --> 00:05:14,240
+And here's my results, my results page. And I'm going to scroll down to where the error is.
+
+55
+00:05:14,240 --> 00:05:18,940
+And here it is. The error is format the range B2 to B6
+
+56
+00:05:18,940 --> 00:05:25,060
+to display as currency with zero decimal places. It says my range B2 to B6
+
+57
+00:05:25,060 --> 00:05:28,400
+did not display with zero decimal places.
+
+58
+00:05:28,400 --> 00:05:32,540
+Okay. So let's go back and correct that.
+
+59
+00:05:32,540 --> 00:05:37,700
+So here's my file. And let's look at the decimal places.
+
+60
+00:05:37,700 --> 00:05:41,800
+You can see that it's still two decimal places.
+
+61
+00:05:41,800 --> 00:05:48,220
+And I'm going to reduce the decimal places by clicking this button right here,
+
+62
+00:05:48,220 --> 00:05:52,900
+decrease decimal. I'm going to click it once, twice.
+
+63
+00:05:52,900 --> 00:05:58,100
+And now I have zero decimal places. So I think that will fix the error.
+
+64
+00:05:58,100 --> 00:06:03,780
+So I'm going to save this again. Okay. And I'm going to save this with a new name.
+
+65
+00:06:03,780 --> 00:06:08,120
+I'm going to go to save as, I'm going to download a copy.
+
+66
+00:06:08,120 --> 00:06:14,000
+And I'm going to call this budget 2. So it won't overwrite the first one.
+
+67
+00:06:14,000 --> 00:06:19,260
+Okay. So now I have budget 2. So I'm going to go back to my course content,
+
+68
+00:06:19,260 --> 00:06:22,460
+and I'm going to drop budget 2 in.
+
+69
+00:06:22,460 --> 00:16:25,760
+Okay. So I'm going to go to the project. Let me scroll down a little bit so you can see it better. I'm going to choose the file. I'm going to upload it. I'm going to select budget 2. And I'm going to open it. And I'm going to upload it. And I'm going to look at my new grade. So let's see. My new grade should be 100 out of 100. Let's look at it. There we go. 100 out of 100. And I fixed that error with the
+
+162
+00:16:25,760 --> 00:16:51,920
+start it file file drop it in let's look at our grade for the third one now
+
+163
+00:16:51,920 --> 00:16:52,720
+we have a hundred out of a hundred
+
+164
+00:16:52,720 --> 00:17:00,220
+we have a hundred out of a hundred and i fix that error with the decimal places. So you can submit the project more than once
+
+165
+00:17:00,220 --> 00:17:07,420
+to correct the errors and get a better score, and you want to correct the errors that you get on the grading.
+
+166
+00:17:07,420 --> 00:17:10,240
+Okay, so that's all for this week. Thank you.`;
+
+            // --- Utility Functions ---
+
+            // Converts time string (HH:MM:SS,ms) to seconds
+            function timeToSeconds(timeStr) {
+                if (!timeStr) return 0;
+                const parts = timeStr.replace(',', '.').split(':');
+                const hours = parseInt(parts[0]) || 0;
+                const minutes = parseInt(parts[1]) || 0;
+                const seconds = parseFloat(parts[2]) || 0;
+                return hours * 3600 + minutes * 60 + seconds;
+            }
+
+            // Parses SRT data into an array of objects
+            function parseSrt(srtText) {
+                const lines = srtText.trim().split('\n');
+                const cues = [];
+                let currentCue = null;
+
+                for (const line of lines) {
+                    if (line.match(/^\d+$/)) {
+                        // Start of a new cue (sequence number)
+                        if (currentCue) {
+                            cues.push(currentCue);
+                        }
+                        currentCue = { number: parseInt(line), text: [] };
+                    } else if (line.includes('-->') && currentCue) {
+                        // Timestamps
+                        const [startTimeStr, endTimeStr] = line.split(' --> ');
+                        currentCue.start = timeToSeconds(startTimeStr.trim());
+                        currentCue.end = timeToSeconds(endTimeStr.trim());
+                    } else if (line.trim() !== '' && currentCue) {
+                        // Dialogue text
+                        currentCue.text.push(line.trim());
+                    }
+                }
+                // Push the last cue
+                if (currentCue) {
+                    cues.push(currentCue);
+                }
+
+                // Join text array into a single string
+                return cues.map(cue => ({
+                    ...cue,
+                    text: cue.text.join(' ')
+                }));
+            }
+
+            // Populates the transcript container - updated for ADA compliance
+            function populateTranscript() {
+                const container = document.getElementById('transcript-container');
+                container.innerHTML = '';
+
+                parsedTranscript.forEach((cue, index) => {
+                    // Use a div with role="button" and tabindex="0" for keyboard focus/interaction
+                    const lineElement = document.createElement('div');
+                    lineElement.className = 'transcript-line p-2 cursor-pointer hover:bg-gray-100 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-green-600';
+                    lineElement.dataset.start = cue.start;
+                    lineElement.dataset.end = cue.end;
+                    lineElement.dataset.index = index;
+                    lineElement.textContent = cue.text;
+                    
+                    // ADA: Role and Tabindex for making it keyboard focusable
+                    lineElement.setAttribute('role', 'button');
+                    lineElement.setAttribute('tabindex', '0');
+                    lineElement.setAttribute('aria-label', `Jump to ${Math.floor(cue.start)} seconds: ${cue.text.substring(0, 50)}...`);
+
+                    const seekToTime = () => {
+                        if (player && player.seekTo) {
+                            player.seekTo(cue.start, true);
+                            player.playVideo();
+                        }
+                    };
+
+                    lineElement.addEventListener('click', seekToTime);
+                    
+                    // ADA: Handle Enter and Space keys
+                    lineElement.addEventListener('keydown', (event) => {
+                        if (event.key === 'Enter' || event.key === ' ') {
+                            event.preventDefault(); // Prevent default scroll for spacebar
+                            seekToTime();
+                        }
+                    });
+
+                    container.appendChild(lineElement);
+                });
+            }
+
+            // Highlights the current line and scrolls it into view
+            function highlightCurrentLine() {
+                if (!player || !player.getCurrentTime) return;
+
+                const currentTime = player.getCurrentTime();
+                const lines = document.querySelectorAll('.transcript-line');
+                let foundActive = false;
+
+                lines.forEach(line => {
+                    const start = parseFloat(line.dataset.start);
+                    const end = parseFloat(line.dataset.end);
+
+                    if (currentTime >= start && currentTime < end) {
+                        if (!line.classList.contains('active-transcript-line')) {
+                            // Deactivate previous active line
+                            document.querySelector('.active-transcript-line')?.classList.remove('active-transcript-line');
+                            // Activate current line
+                            line.classList.add('active-transcript-line');
+                            
+                            // Scroll line into view if it's not already visible
+                            const container = document.getElementById('transcript-container');
+                            const containerRect = container.getBoundingClientRect();
+                            const lineRect = line.getBoundingClientRect();
+
+                            // Only scroll if the line is partially or completely outside the view
+                            if (lineRect.top < containerRect.top || lineRect.bottom > containerRect.bottom) {
+                                line.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            }
+                        }
+                        foundActive = true;
+                    } else {
+                        line.classList.remove('active-transcript-line');
+                    }
+                });
+
+                // If playback stops, clear highlighting after the last line's duration
+                if (!foundActive && player.getPlayerState() !== YT.PlayerState.PLAYING) {
+                     document.querySelector('.active-transcript-line')?.classList.remove('active-transcript-line');
+                }
+            }
+
+
+            // --- YouTube Player API Functions ---
+            window.onYouTubeIframeAPIReady = function() {
+                player = new YT.Player('youtube-player', {
+                    videoId: videoId,
+                    events: {
+                        'onReady': onPlayerReady,
+                        'onStateChange': onPlayerStateChange
+                    }
+                });
+            };
+
+            function onPlayerReady(event) {
+                console.log('YouTube player is ready.');
+            }
+
+            function onPlayerStateChange(event) {
+                clearInterval(timeUpdater); // Clear any existing interval
+                if (event.data === YT.PlayerState.PLAYING) {
+                    timeUpdater = setInterval(highlightCurrentLine, 300);
+                }
+            }
+            
+            // --- Initialization ---\
+            function initialize() {
+                parsedTranscript = parseSrt(transcriptData);
+                populateTranscript();
+                
+                // Load the YouTube IFrame Player API script if it's not already loaded
+                if (typeof(YT) == 'undefined' || typeof(YT.Player) == 'undefined') {
+                    const tag = document.createElement('script');
+                    tag.src = "https://www.youtube.com/iframe_api";
+                    const firstScriptTag = document.getElementsByTagName('script')[0];
+                    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+                } else {
+                    onYouTubeIframeAPIReady();
+                }
+                
+                console.log('Introduction page initialized.');
+            }
+
+            initialize();
+        });
+    </script>
+</body>
+</html>
