@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Title for CSC104 Week 9 -->
+    <title>CSC104 - Week 9: Excel Large Worksheets and What-Ifs</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            /* Light, professional color scheme suitable for an IT/CS class */
+            background-color: #F8F9FA; 
+            color: #212529;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .code-font {
+            font-family: 'Fira Code', monospace;
+        }
+        
+        /* Style for the currently active transcript line */
+        .active-transcript-line {
+            background-color: #E9ECEF; /* Light gray/blue accent */
+            font-weight: 600;
+            color: #000;
+            border-left: 4px solid #007BFF; /* Primary blue accent for active line */
+        }
+
+        /* Skip link style (Accessibility requirement) */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: #007BFF;
+            color: #F8F9FA;
+            padding: 8px;
+            z-index: 100;
+            transition: top 0.3s;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        /* Custom scrollbar for transcript */
+        #transcript-container::-webkit-scrollbar {
+            width: 8px;
+        }
+        #transcript-container::-webkit-scrollbar-thumb {
+            background-color: #ced4da;
+            border-radius: 10px;
+        }
+        #transcript-container::-webkit-scrollbar-thumb:hover {
+            background-color: #adb5bd;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+    <a href="#main-content" class="skip-link rounded-br-md">Skip to main content</a>
+    
+    <div id="main-content" class="max-w-7xl mx-auto">
+        <header class="mb-8">
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-800 mb-2">CSC104 - Week 9: Excel Large Worksheets and What-If Analysis</h1>
+            <p class="text-lg text-gray-600">Welcome to **Week 9**! This module is all about taking your Excel skills to the next level. We'll focus on methods for efficiently managing **large datasets** and documents, as well as introducing the powerful concept of **What-If Analysis** . Understanding these tools is essential for making data-driven decisions and creating robust, professional-grade spreadsheets.</p>
+        </header>
+
+        <main class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Video Player Section - Used 'aspect-video' for responsive 16:9 ratio -->
+            <section class="lg:sticky lg:top-8 self-start">
+                <h2 class="text-2xl font-semibold mb-4 text-gray-700">Video Lecture: Large Worksheets & What-Ifs</h2>
+                <!-- Video Embed with the provided ID and settings -->
+                <div class="aspect-video w-full rounded-xl overflow-hidden shadow-2xl">
+                    <iframe id="youtube-player"
+                            width="100%" height="auto"
+                            src="https://www.youtube.com/embed/FY7QTAqdSk4?si=GJSerSBm4oCLg6-n&enablejsapi=1" 
+                            title="YouTube video player"
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            allowfullscreen
+                            class="w-full h-full"></iframe>
+                </div>
+                <p class="mt-4 text-sm text-gray-500">Video ID: <span class="code-font">FY7QTAqdSk4</span></p>
+            </section>
+
+            <!-- Interactive Transcript Section -->
+            <section>
+                <h2 class="text-2xl font-semibold mb-4 text-gray-700">Video Transcript</h2>
+                <div id="transcript-container" class="h-96 overflow-y-scroll bg-white p-4 rounded-xl shadow-inner border border-gray-200">
+                    <p class="text-center text-gray-400">Loading transcript...</p>
+                    <!-- Transcript lines will be injected here -->
+                </div>
+                <p class="mt-4 text-sm text-gray-600">Click any line in the transcript or use the **Enter/Space** keys when focused to jump to that moment in the video.</p>
+            </section>
+        </main>
+    </div>
+
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Configuration ---
+            const videoId = 'FY7QTAqdSk4'; 
+            let player;
+            let timeUpdater;
+            let parsedTranscript = [];
+
+            // Transcript content for CSC104 Week 9 (from uploaded file)
+            const transcriptData = `1
+00:00:00,400 --> 00:00:07,740
+Aloha and welcome to week nine. This is large worksheets, charting, and what-if analysis in Excel.
+
+2
+00:00:08,960 --> 00:00:22,060
+All right, so standard format, we have our reading to do for this week for module three, which covers a lot of different stuff.
+
+3
+00:00:22,060 --> 00:00:37,260
+The biggest being what-if analysis, I think, is what-if analysis, but there's other stuff like charts and how you embed charts on a page, how you rotate text.
+
+4
+00:00:38,820 --> 00:00:46,320
+Autofill, one of the biggest things is the fill handle and playing with the fill handle, left-click and drag versus right-click and drag.
+
+5
+00:00:46,320 --> 00:00:49,800
+When you move and copy, those do different things.
+
+6
+00:00:50,640 --> 00:00:51,320
+And so you should...
+
+7
+00:00:52,060 --> 00:00:55,900
+Know what those...
+
+8
+00:00:56,360 --> 00:00:59,380
+Are and how they work.
+
+9
+00:01:00,740 --> 00:01:06,860
+And then the next is going to be our project, which is this week is still a project.
+
+10
+00:01:06,860 --> 00:01:13,620
+And so for this week, we're going to do the What If and Large Worksheets project.
+
+11
+00:01:13,940 --> 00:01:21,060
+And this is where we're going to do a lot of those commands, a lot of those, um,
+
+12
+00:01:21,060 --> 00:01:27,700
+functions and formulas, and more importantly, the what-if analysis.
+
+13
+00:01:27,700 --> 00:01:31,760
+And the goal seeker is part of that.
+
+14
+00:01:32,460 --> 00:01:35,700
+And so it's a good project.
+
+15
+00:01:35,700 --> 00:01:42,300
+It's an easy one, but you're going to have to make sure you pay attention to the instructions
+
+16
+00:01:42,300 --> 00:01:46,240
+and how to do the fill handle, especially.
+
+17
+00:01:46,540 --> 00:01:50,660
+And that's why I'm emphasizing that one because that one's kind of important
+
+18
+00:01:50,660 --> 00:01:55,140
+that you use it right, because you can lose points on that one.
+
+19
+00:01:55,560 --> 00:02:00,100
+All right, and then the last part is the assignments.
+
+20
+00:02:00,440 --> 00:02:05,800
+And you still have a project due this week for week eight,
+
+21
+00:02:06,120 --> 00:02:11,580
+which is the formulas and functions project.
+
+22
+00:02:11,940 --> 00:02:20,380
+And so you should be working on that, and I recommend that you use the practice.
+
+23
+00:02:20,380 --> 00:02:27,240
+Project to do that, you know, and just watch how I do it, and you should be able to do it.
+
+24
+00:02:27,240 --> 00:02:30,240
+Right, but that's what's due this week.
+
+25
+00:02:30,460 --> 00:02:34,800
+And then next week you'll have the week nine project due.
+
+26
+00:02:35,160 --> 00:02:40,240
+All right, so that's all for this week. Hopefully, you're doing okay.
+
+27
+00:02:40,240 --> 00:02:43,400
+The first Excel assignment, you should have
+
+28
+00:02:43,400 --> 00:02:49,700
+a pretty good understanding of the basics of Excel after that.
+
+29
+00:02:50,000 --> 00:02:55,800
+And this is just going to take it up a step, you know, adding charts.
+
+30
+00:02:55,800 --> 00:03:00,000
+And, you know, what if analysis?
+
+31
+00:03:00,000 --> 00:03:07,520
+And then next week is the last week for Excel, where we're going to talk about financial functions,
+
+32
+00:03:07,520 --> 00:03:13,880
+which is important, and you'll probably use those in your financial management class,
+
+33
+00:03:14,260 --> 00:03:16,740
+if you have to take one of those.
+
+34
+00:03:16,740 --> 00:03:22,860
+And so it's a good place to be, to kind of understand how those work.
+
+35
+00:03:22,860 --> 00:03:31,680
+All right, so good luck on week nine, and let me know if you have any questions. Thank you.`;
+
+            // --- Utility Functions ---
+
+            // Converts time string (HH:MM:SS,ms) to seconds
+            function timeToSeconds(timeStr) {
+                if (!timeStr) return 0;
+                // Use a regex to safely replace comma with dot for both format types
+                const cleanTimeStr = timeStr.replace(',', '.');
+                const parts = cleanTimeStr.split(':');
+                
+                // Handle missing hour part if format is MM:SS.ms (common in SRT)
+                let hours = 0;
+                let minutes = 0;
+                let seconds = 0;
+                
+                if (parts.length === 3) {
+                    hours = parseInt(parts[0]) || 0;
+                    minutes = parseInt(parts[1]) || 0;
+                    seconds = parseFloat(parts[2]) || 0;
+                } else if (parts.length === 2) {
+                    minutes = parseInt(parts[0]) || 0;
+                    seconds = parseFloat(parts[1]) || 0;
+                }
+                
+                return hours * 3600 + minutes * 60 + seconds;
+            }
+
+            // Parses SRT data into an array of objects
+            function parseSrt(srtText) {
+                const lines = srtText.trim().split('\n');
+                const cues = [];
+                let currentCue = null;
+
+                for (const line of lines) {
+                    if (line.match(/^\d+$/)) {
+                        // Start of a new cue (sequence number)
+                        if (currentCue) {
+                            cues.push(currentCue);
+                        }
+                        currentCue = { number: parseInt(line), text: [] };
+                    } else if (line.includes('-->') && currentCue) {
+                        // Timestamps
+                        const [startTimeStr, endTimeStr] = line.split(' --> ');
+                        currentCue.start = timeToSeconds(startTimeStr.trim());
+                        currentCue.end = timeToSeconds(endTimeStr.trim());
+                    } else if (line.trim() !== '' && currentCue) {
+                        // Dialogue text
+                        currentCue.text.push(line.trim());
+                    }
+                }
+                // Push the last cue
+                if (currentCue) {
+                    cues.push(currentCue);
+                }
+
+                // Join text array into a single string
+                return cues.map(cue => ({
+                    ...cue,
+                    text: cue.text.join(' ')
+                }));
+            }
+
+            // Populates the transcript container - updated for ADA compliance
+            function populateTranscript() {
+                const container = document.getElementById('transcript-container');
+                container.innerHTML = '';
+
+                parsedTranscript.forEach((cue, index) => {
+                    // Use a div with role="button" and tabindex="0" for keyboard focus/interaction
+                    const lineElement = document.createElement('div');
+                    lineElement.className = 'transcript-line p-2 cursor-pointer hover:bg-gray-100 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-blue-500';
+                    lineElement.dataset.start = cue.start;
+                    lineElement.dataset.end = cue.end;
+                    lineElement.dataset.index = index;
+                    lineElement.textContent = cue.text;
+                    
+                    // ADA: Role and Tabindex for making it keyboard focusable
+                    lineElement.setAttribute('role', 'button');
+                    lineElement.setAttribute('tabindex', '0');
+                    lineElement.setAttribute('aria-label', `Jump to ${Math.floor(cue.start)} seconds: ${cue.text.substring(0, 50)}...`);
+
+                    const seekToTime = () => {
+                        if (player && player.seekTo) {
+                            player.seekTo(cue.start, true);
+                            player.playVideo();
+                        }
+                    };
+
+                    lineElement.addEventListener('click', seekToTime);
+                    
+                    // ADA: Handle Enter and Space keys
+                    lineElement.addEventListener('keydown', (event) => {
+                        if (event.key === 'Enter' || event.key === ' ') {
+                            event.preventDefault(); // Prevent default scroll for spacebar
+                            seekToTime();
+                        }
+                    });
+
+                    container.appendChild(lineElement);
+                });
+            }
+
+            // Highlights the current line and scrolls it into view
+            function highlightCurrentLine() {
+                if (!player || !player.getCurrentTime) return;
+
+                const currentTime = player.getCurrentTime();
+                const lines = document.querySelectorAll('.transcript-line');
+                let foundActive = false;
+
+                lines.forEach(line => {
+                    const start = parseFloat(line.dataset.start);
+                    const end = parseFloat(line.dataset.end);
+
+                    if (currentTime >= start && currentTime < end) {
+                        if (!line.classList.contains('active-transcript-line')) {
+                            // Deactivate previous active line
+                            document.querySelector('.active-transcript-line')?.classList.remove('active-transcript-line');
+                            // Activate current line
+                            line.classList.add('active-transcript-line');
+                            
+                            // Scroll line into view if it's not already visible
+                            const container = document.getElementById('transcript-container');
+                            const containerRect = container.getBoundingClientRect();
+                            const lineRect = line.getBoundingClientRect();
+
+                            // Only scroll if the line is partially or completely outside the view
+                            if (lineRect.top < containerRect.top || lineRect.bottom > containerRect.bottom) {
+                                line.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            }
+                        }
+                        foundActive = true;
+                    } else {
+                        line.classList.remove('active-transcript-line');
+                    }
+                });
+
+                // If playback stops, clear highlighting after the last line's duration
+                if (!foundActive && player.getPlayerState() !== YT.PlayerState.PLAYING) {
+                     document.querySelector('.active-transcript-line')?.classList.remove('active-transcript-line');
+                }
+            }
+
+
+            // --- YouTube Player API Functions ---
+            window.onYouTubeIframeAPIReady = function() {
+                player = new YT.Player('youtube-player', {
+                    videoId: videoId,
+                    events: {
+                        'onReady': onPlayerReady,
+                        'onStateChange': onPlayerStateChange
+                    }
+                });
+            };
+
+            function onPlayerReady(event) {
+                console.log('YouTube player is ready.');
+            }
+
+            function onPlayerStateChange(event) {
+                clearInterval(timeUpdater); // Clear any existing interval
+                if (event.data === YT.PlayerState.PLAYING) {
+                    timeUpdater = setInterval(highlightCurrentLine, 300);
+                }
+            }
+            
+            // --- Initialization ---
+            function initialize() {
+                parsedTranscript = parseSrt(transcriptData);
+                populateTranscript();
+                
+                // Load the YouTube IFrame Player API script if it's not already loaded
+                if (typeof(YT) == 'undefined' || typeof(YT.Player) == 'undefined') {
+                    const tag = document.createElement('script');
+                    tag.src = "https://www.youtube.com/iframe_api";
+                    const firstScriptTag = document.getElementsByTagName('script')[0];
+                    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+                } else {
+                    onYouTubeIframeAPIReady();
+                }
+                
+                console.log('CSC104 Week 9 page initialized.');
+            }
+
+            initialize();
+        });
+    </script>
+</body>
+</html>
