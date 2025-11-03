@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Title for CSC104 Week 10 -->
+    <title>CSC104 - Week 10: Excel Financial Functions, Data Tables, and Amortization</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            /* Warm, approachable color scheme suitable for a business/applications class */
+            background-color: #F8F9FA; 
+            color: #343A40;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .code-font {
+            font-family: 'Fira Code', monospace;
+        }
+        
+        /* Style for the currently active transcript line */
+        .active-transcript-line {
+            background-color: #E9ECEF; /* Light gray accent */
+            font-weight: 600;
+            color: #000;
+            border-left: 4px solid #1E88E5; /* Professional blue accent for active line */
+        }
+
+        /* Skip link style (Accessibility requirement) */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: #1E88E5;
+            color: #F8F9FA;
+            padding: 8px;
+            z-index: 100;
+            transition: top 0.3s;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        /* Custom scrollbar for transcript */
+        #transcript-container::-webkit-scrollbar {
+            width: 8px;
+        }
+        #transcript-container::-webkit-scrollbar-thumb {
+            background-color: #ced4da;
+            border-radius: 10px;
+        }
+        #transcript-container::-webkit-scrollbar-thumb:hover {
+            background-color: #adb5bd;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+    <a href="#main-content" class="skip-link rounded-br-md">Skip to main content</a>
+    
+    <div id="main-content" class="max-w-7xl mx-auto">
+        <header class="mb-8">
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-800 mb-2">CSC104 - Week 10: Excel Financial Functions, Data Tables, and Amortization</h1>
+            <p class="text-lg text-gray-600">Aloha, and welcome to **Week 10**! This week focuses on leveraging the utility of **named ranges** and powerful built-in **financial functions** within Excel, particularly for creating **amortization schedules** and **data tables**. It is important to note that the tools and approaches we cover here—like modularity, labeling, and planning—can and should be applied to *any* and *every* context, whether you're managing a budget, tracking inventory, or analyzing experimental data.</p>
+        </header>
+
+        <main class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Video Player Section - Used 'aspect-video' for responsive 16:9 ratio -->
+            <section class="lg:sticky lg:top-8 self-start">
+                <h2 class="text-2xl font-semibold mb-4 text-gray-700">Video Lecture: Financial Functions in Excel</h2>
+                <!-- Video Embed with the provided ID and settings -->
+                <div class="aspect-video w-full rounded-xl overflow-hidden shadow-2xl">
+                    <iframe id="youtube-player"
+                            width="100%" height="auto"
+                            src="https://www.youtube.com/embed/nghbLgVO2m0?si=DSPZeI7b7bLfJFu3&enablejsapi=1" 
+                            title="YouTube video player"
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            allowfullscreen
+                            class="w-full h-full"></iframe>
+                </div>
+                <p class="mt-4 text-sm text-gray-500">Video ID: <span class="code-font">nghbLgVO2m0</span></p>
+            </section>
+
+            <!-- Interactive Transcript Section -->
+            <section>
+                <h2 class="text-2xl font-semibold mb-4 text-gray-700">Video Transcript</h2>
+                <div id="transcript-container" class="h-96 overflow-y-scroll bg-white p-4 rounded-xl shadow-inner border border-gray-200">
+                    <p class="text-center text-gray-400">Loading transcript...</p>
+                    <!-- Transcript lines will be injected here -->
+                </div>
+                <p class="mt-4 text-sm text-gray-600">Click any line in the transcript or use the **Enter/Space** keys when focused to jump to that moment in the video.</p>
+            </section>
+        </main>
+    </div>
+
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Configuration ---
+            const videoId = 'nghbLgVO2m0'; 
+            let player;
+            let timeUpdater;
+            let parsedTranscript = [];
+
+            // Transcript content for CSC104 Week 10 (from uploaded file)
+            const transcriptData = `1
+00:00:00,420 --> 00:00:08,080
+Aloha and welcome to week 10. This is our fourth week, I think, in Excel.
+
+2
+00:00:08,940 --> 00:00:15,740
+And this week is chapters about financial functions, data tables, and amortization schedules.
+
+3
+00:00:16,520 --> 00:00:22,060
+But what I want to say, it's the context we're using is the financial functions.
+
+4
+00:00:22,060 --> 00:00:30,140
+If you're a business major, these are great. If you just want to really organize your finances
+
+5
+00:00:30,140 --> 00:00:36,880
+in your future life or your current life, some of these are great things to have and know what
+
+6
+00:00:36,880 --> 00:00:44,120
+they are. But more important than the actual financial functions is that the methods we use,
+
+7
+00:00:44,120 --> 00:00:52,040
+how we go about using them, are good for lots of things. Okay, not just,
+
+8
+00:00:52,040 --> 00:00:58,040
+you know, financial, you know, planning and stuff. They're good for lots of things.
+
+9
+00:00:58,040 --> 00:01:05,320
+Okay, so, and this is where we're going to use the named ranges extensively.
+
+10
+00:01:05,320 --> 00:01:14,240
+If you remember from last week, we talked a little bit about named ranges, and this week we're going to use them extensively in terms of how you're using them.
+
+11
+00:01:14,240 --> 00:01:21,300
+And if you want to look like you're an Excel guru, or you know what you're doing,
+
+12
+00:01:21,300 --> 00:01:28,400
+use named ranges. I think it's one of the best things to do, because not only does it make the formula better,
+
+13
+00:01:28,400 --> 00:01:32,800
+it makes it more human-readable.
+
+14
+00:01:32,800 --> 00:01:37,780
+Right? So you look in there and say, oh, that's what that formula is doing.
+
+15
+00:01:37,780 --> 00:01:42,200
+It's calculating my monthly payment. It's not just using,
+
+16
+00:01:42,200 --> 00:01:47,760
+you know, D14, E15, and F16.
+
+17
+00:01:47,760 --> 00:01:52,240
+Right? So that's the big thing I want you to get out of this week.
+
+18
+00:01:52,240 --> 00:01:57,980
+But, so we're going to look at financial functions. We're going to look at data tables.
+
+19
+00:01:57,980 --> 00:02:00,820
+And then we're going to look at amortization schedules.
+
+20
+00:02:00,820 --> 00:02:04,780
+And the amortization schedules are just,
+
+21
+00:02:04,780 --> 00:02:11,540
+you know, for a car loan or for a house loan or for an appliance loan,
+
+22
+00:02:11,540 --> 00:02:14,800
+how does the money come off?
+
+23
+00:02:14,800 --> 00:02:19,200
+How much of that first payment is principle? How much of that first payment is
+
+24
+00:02:19,200 --> 00:02:26,860
+interest? And so you'll see that, and that's usually done in a chart of some kind.
+
+25
+00:02:26,860 --> 00:02:30,060
+I mean, in a table of some kind.
+
+26
+00:02:30,060 --> 00:02:35,260
+So, uh, that's what we're going to do. And so we'll look at those things.
+
+27
+00:02:35,260 --> 00:02:40,400
+And then we'll also have a quiz this week. So don't forget the quiz.
+
+28
+00:02:40,400 --> 00:02:43,400
+The quiz is always due on Sunday.
+
+29
+00:02:43,400 --> 00:02:51,980
+And then you'll also have this week a practice project to do, which is using those financial functions.
+
+30
+00:02:51,980 --> 00:02:54,780
+You'll download it from the online environment.
+
+31
+00:02:54,780 --> 00:03:00,780
+And then you'll fill in the answers, and then you'll upload it.
+
+32
+00:03:00,780 --> 00:03:03,800
+And if you have any questions, please let me know.
+
+33
+00:03:03,800 --> 00:03:07,520
+You'll see a video on how to do that project.
+
+34
+00:03:07,520 --> 00:03:13,680
+You'll see a video on how to do the Excel functions for this week.
+
+35
+00:03:13,680 --> 00:03:15,440
+And it's really the big ones.
+
+36
+00:03:15,440 --> 00:03:17,320
+It's the PMT function.
+
+37
+00:03:17,320 --> 00:03:22,800
+That's the one that's going to calculate what your monthly payment is.
+
+38
+00:03:22,800 --> 00:03:28,880
+It's a really good one to have, especially if you're shopping for a car or for a house.
+
+39
+00:03:28,880 --> 00:03:31,040
+And then there's the other ones.
+
+40
+00:03:31,040 --> 00:03:38,440
+It's the principal payment, which is your PPMT, and your interest payment, which is your IPMT.
+
+41
+00:03:38,440 --> 00:03:42,320
+And you'll use those three functions.
+
+42
+00:03:42,320 --> 00:03:46,920
+And the interest payment is very important.
+
+43
+00:03:46,920 --> 00:03:52,920
+Because you can really see how much you're actually paying for a loan.
+
+44
+00:03:52,920 --> 00:03:55,200
+When you start out, it's a lot.
+
+45
+00:03:55,200 --> 00:04:00,120
+And then as you go through the life of the loan, it goes down.
+
+46
+00:04:00,120 --> 00:04:05,320
+And then we use the goal seek to basically find out,
+
+47
+00:04:05,320 --> 00:04:10,040
+you know, how much of a car can I afford?
+
+48
+00:04:10,040 --> 00:04:13,880
+You know, I want to make a payment of $300.
+
+49
+00:04:13,880 --> 00:04:17,840
+How much of a car can I afford for $300 a month?
+
+50
+00:04:17,840 --> 00:04:22,280
+And so you'll use the goal seek feature for that.
+
+51
+00:04:22,280 --> 00:04:25,840
+And then what if analysis is very important.
+
+52
+00:04:25,840 --> 00:04:31,760
+You'll see a small one-variable data table in the project this week.
+
+53
+00:04:31,760 --> 00:04:35,720
+And that is a very small version of the what if analysis.
+
+54
+00:04:35,720 --> 00:04:39,000
+But the what if analysis can be used
+
+55
+00:04:39,000 --> 00:04:46,080
+in a lot of different forms. The whole concept of what if analysis is to change one variable
+
+56
+00:04:46,080 --> 00:04:52,800
+and see how it affects a lot of other different formulas and cells.
+
+57
+00:04:52,800 --> 00:04:59,480
+And so we can change the interest rate from three percent to five percent,
+
+58
+00:04:59,480 --> 00:05:03,600
+and see what it does to our monthly payment.
+
+59
+00:05:03,600 --> 00:05:07,040
+And that's what the data tables will do for you.
+
+60
+00:05:07,040 --> 00:05:08,200
+And they're very powerful.
+
+61
+00:05:08,200 --> 00:05:13,320
+And they're used in a lot of different fields, not just financial.
+
+62
+00:05:13,320 --> 00:05:19,200
+Like I said, the concepts that we're talking about are applicable to anything.
+
+63
+00:05:19,200 --> 00:05:22,600
+So you should be thinking outside the box,
+
+64
+00:05:22,600 --> 00:05:28,400
+not just, you know, car loans and house loans.
+
+65
+00:05:28,400 --> 00:05:32,960
+What if I change the number of people on my team?
+
+66
+00:05:32,960 --> 00:05:35,280
+What if I change the number of computers?
+
+67
+00:05:35,280 --> 00:05:38,520
+What if I change the clock speed of my computer?
+
+68
+00:05:38,520 --> 00:05:43,440
+Those things all have financial implications.
+
+69
+00:05:43,440 --> 00:05:46,840
+You know, I change the number of miles per gallon.
+
+70
+00:05:46,840 --> 00:05:51,520
+What does that do to the budget for my company?
+
+71
+00:05:51,520 --> 00:05:53,440
+So they all have implications.
+
+72
+00:05:53,440 --> 00:06:01,800
+And so that's what the what if analysis is, and that's the big take home for this week.
+
+73
+00:06:01,800 --> 00:06:04,640
+It's just to start thinking about that.
+
+74
+00:06:04,640 --> 00:06:11,520
+Okay, so you'll see a video on how to do all of the functions and the data table.
+
+75
+00:06:11,520 --> 00:06:17,200
+And then you'll see a video on how to do the project, which is the practice project.
+
+76
+00:06:17,200 --> 00:06:21,720
+And then you'll also have a quiz this week.
+
+77
+00:06:21,720 --> 00:06:26,560
+So there's a lot of stuff going on this week, but it's really easy.
+
+78
+00:06:26,560 --> 00:06:33,080
+It's just the fact that there are a lot of videos to watch and a lot of reading.
+
+79
+00:06:33,080 --> 00:06:35,240
+But it's going to be a fun week.
+
+80
+00:06:35,240 --> 00:06:40,240
+It's a lot of stuff that you're going to use in your future.
+
+81
+00:06:40,240 --> 00:06:49,720
+And you know, you can use these skills if you want to be an Excel guru and know what you're doing.
+
+82
+00:06:49,720 --> 00:09:16,240
+All right, I'll see you online.`;
+
+            // --- Utility Functions ---
+
+            // Converts time string (HH:MM:SS,ms) to seconds
+            function timeToSeconds(timeStr) {
+                if (!timeStr) return 0;
+                // Use a regex to safely replace comma with dot for both format types
+                const cleanTimeStr = timeStr.replace(',', '.');
+                const parts = cleanTimeStr.split(':');
+                
+                // Handle missing hour part if format is MM:SS.ms (common in SRT)
+                let hours = 0;
+                let minutes = 0;
+                let seconds = 0;
+                
+                if (parts.length === 3) {
+                    hours = parseInt(parts[0]) || 0;
+                    minutes = parseInt(parts[1]) || 0;
+                    seconds = parseFloat(parts[2]) || 0;
+                } else if (parts.length === 2) {
+                    minutes = parseInt(parts[0]) || 0;
+                    seconds = parseFloat(parts[1]) || 0;
+                }
+                
+                return hours * 3600 + minutes * 60 + seconds;
+            }
+
+            // Parses SRT data into an array of objects
+            function parseSrt(srtText) {
+                const lines = srtText.trim().split('\n');
+                const cues = [];
+                let currentCue = null;
+
+                for (const line of lines) {
+                    if (line.match(/^\d+$/)) {
+                        // Start of a new cue (sequence number)
+                        if (currentCue) {
+                            cues.push(currentCue);
+                        }
+                        currentCue = { number: parseInt(line), text: [] };
+                    } else if (line.includes('-->') && currentCue) {
+                        // Timestamps
+                        const [startTimeStr, endTimeStr] = line.split(' --> ');
+                        currentCue.start = timeToSeconds(startTimeStr.trim());
+                        currentCue.end = timeToSeconds(endTimeStr.trim());
+                    } else if (line.trim() !== '' && currentCue) {
+                        // Dialogue text
+                        currentCue.text.push(line.trim());
+                    }
+                }
+                // Push the last cue
+                if (currentCue) {
+                    cues.push(currentCue);
+                }
+
+                // Join text array into a single string
+                return cues.map(cue => ({
+                    ...cue,
+                    text: cue.text.join(' ')
+                }));
+            }
+
+            // Populates the transcript container - updated for ADA compliance
+            function populateTranscript() {
+                const container = document.getElementById('transcript-container');
+                container.innerHTML = '';
+
+                parsedTranscript.forEach((cue, index) => {
+                    // Use a div with role="button" and tabindex="0" for keyboard focus/interaction
+                    const lineElement = document.createElement('div');
+                    lineElement.className = 'transcript-line p-2 cursor-pointer hover:bg-gray-100 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-blue-500';
+                    lineElement.dataset.start = cue.start;
+                    lineElement.dataset.end = cue.end;
+                    lineElement.dataset.index = index;
+                    lineElement.textContent = cue.text;
+                    
+                    // ADA: Role and Tabindex for making it keyboard focusable
+                    lineElement.setAttribute('role', 'button');
+                    lineElement.setAttribute('tabindex', '0');
+                    lineElement.setAttribute('aria-label', `Jump to ${Math.floor(cue.start)} seconds: ${cue.text.substring(0, 50)}...`);
+
+                    const seekToTime = () => {
+                        if (player && player.seekTo) {
+                            player.seekTo(cue.start, true);
+                            player.playVideo();
+                        }
+                    };
+
+                    lineElement.addEventListener('click', seekToTime);
+                    
+                    // ADA: Handle Enter and Space keys
+                    lineElement.addEventListener('keydown', (event) => {
+                        if (event.key === 'Enter' || event.key === ' ') {
+                            event.preventDefault(); // Prevent default scroll for spacebar
+                            seekToTime();
+                        }
+                    });
+
+                    container.appendChild(lineElement);
+                });
+            }
+
+            // Highlights the current line and scrolls it into view
+            function highlightCurrentLine() {
+                if (!player || !player.getCurrentTime) return;
+
+                const currentTime = player.getCurrentTime();
+                const lines = document.querySelectorAll('.transcript-line');
+                let foundActive = false;
+
+                lines.forEach(line => {
+                    const start = parseFloat(line.dataset.start);
+                    const end = parseFloat(line.dataset.end);
+
+                    if (currentTime >= start && currentTime < end) {
+                        if (!line.classList.contains('active-transcript-line')) {
+                            // Deactivate previous active line
+                            document.querySelector('.active-transcript-line')?.classList.remove('active-transcript-line');
+                            // Activate current line
+                            line.classList.add('active-transcript-line');
+                            
+                            // Scroll line into view if it's not already visible
+                            const container = document.getElementById('transcript-container');
+                            const containerRect = container.getBoundingClientRect();
+                            const lineRect = line.getBoundingClientRect();
+
+                            // Only scroll if the line is partially or completely outside the view
+                            if (lineRect.top < containerRect.top || lineRect.bottom > containerRect.bottom) {
+                                line.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            }
+                        }
+                        foundActive = true;
+                    } else {
+                        line.classList.remove('active-transcript-line');
+                    }
+                });
+
+                // If playback stops, clear highlighting after the last line's duration
+                if (!foundActive && player.getPlayerState() !== YT.PlayerState.PLAYING) {
+                     document.querySelector('.active-transcript-line')?.classList.remove('active-transcript-line');
+                }
+            }
+
+
+            // --- YouTube Player API Functions ---
+            window.onYouTubeIframeAPIReady = function() {
+                player = new YT.Player('youtube-player', {
+                    videoId: videoId,
+                    events: {
+                        'onReady': onPlayerReady,
+                        'onStateChange': onPlayerStateChange
+                    }
+                });
+            };
+
+            function onPlayerReady(event) {
+                console.log('YouTube player is ready.');
+            }
+
+            function onPlayerStateChange(event) {
+                clearInterval(timeUpdater); // Clear any existing interval
+                if (event.data === YT.PlayerState.PLAYING) {
+                    timeUpdater = setInterval(highlightCurrentLine, 300);
+                }
+            }
+            
+            // --- Initialization ---
+            function initialize() {
+                parsedTranscript = parseSrt(transcriptData);
+                populateTranscript();
+                
+                // Load the YouTube IFrame Player API script if it's not already loaded
+                if (typeof(YT) == 'undefined' || typeof(YT.Player) == 'undefined') {
+                    const tag = document.createElement('script');
+                    tag.src = "https://www.youtube.com/iframe_api";
+                    const firstScriptTag = document.getElementsByTagName('script')[0];
+                    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+                } else {
+                    onYouTubeIframeAPIReady();
+                }
+                
+                console.log('CSC104 Week 10 page initialized.');
+            }
+
+            initialize();
+        });
+    </script>
+</body>
+</html>
