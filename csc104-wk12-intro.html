@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Title for CSC104 Week 12 -->
+    <title>CSC104 - Week 12: Introduction to PowerPoint</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            /* Warm, approachable color scheme suitable for a business/applications class */
+            background-color: #F8F9FA; 
+            color: #343A40;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .code-font {
+            font-family: 'Fira Code', monospace;
+        }
+        
+        /* Style for the currently active transcript line */
+        .active-transcript-line {
+            background-color: #f0f7ff;
+            font-weight: 600;
+            border-left: 4px solid #1e88e5;
+            padding-left: 12px;
+            transition: background-color 0.2s;
+        }
+
+        /* Skip link style (Accessibility requirement) */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: #1E88E5;
+            color: #F8F9FA;
+            padding: 8px;
+            z-index: 100;
+            transition: top 0.3s;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        /* Custom scrollbar for transcript */
+        #transcript-container::-webkit-scrollbar {
+            width: 8px;
+        }
+        #transcript-container::-webkit-scrollbar-thumb {
+            background-color: #ced4da;
+            border-radius: 10px;
+        }
+        #transcript-container::-webkit-scrollbar-thumb:hover {
+            background-color: #adb5bd;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+    <a href="#main-content" class="skip-link rounded-br-md">Skip to main content</a>
+    
+    <div id="main-content" class="max-w-7xl mx-auto">
+        <header class="mb-8">
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-800 mb-2">CSC104 - Week 12: Introduction to PowerPoint</h1>
+            <p class="text-lg text-gray-600">Aloha, and welcome to <strong>Week 12</strong>! This week we begin our exploration of <strong>PowerPoint</strong>, Microsoft's presentation software. We'll focus on the fundamentals: creating and editing presentations, working with themes, adding and organizing slides, incorporating images, and understanding the PowerPoint interface. PowerPoint tends to be more intuitive than Excel, as many of the formatting concepts carry over from Word. The key is learning how to organize information visually on slides and navigate PowerPoint's unique layout tools.</p>
+        </header>
+
+        <main>
+            <!-- Video and Transcript Section using v2 Guide Layout -->
+            <div class="flex flex-col lg:flex-row gap-4 w-full mb-8">
+                <!-- Video Player Section: 66% width on large screens -->
+                <div class="w-full lg:w-2/3 flex-shrink-0">
+                    <h2 class="text-2xl font-semibold mb-4 text-gray-700">Video Lecture: PowerPoint Basics</h2>
+                    <div id="video-container" style="width: 100%; height: 0; padding-bottom: 56.25%; position: relative;">
+                        <iframe id="youtube-player"
+                                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+                                src="https://www.youtube.com/embed/q7J49zTYcDw?enablejsapi=1"
+                                title="YouTube video player"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin"
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                    <p class="mt-4 text-sm text-gray-500">Video ID: <span class="code-font">q7J49zTYcDw</span></p>
+                </div>
+
+                <!-- Transcript Container Section: 33% width on large screens -->
+                <div class="w-full lg:w-1/3 flex-shrink-0">
+                    <h2 class="text-2xl font-semibold mb-4 text-gray-700">Video Transcript</h2>
+                    <div id="transcript-container" class="h-96 overflow-y-scroll bg-white shadow-inner p-4 rounded-lg border border-gray-300">
+                        <p class="text-gray-500 text-center">Loading transcript...</p>
+                    </div>
+                    <p class="mt-4 text-sm text-gray-600">Click any line in the transcript or use the <strong>Enter/Space</strong> keys when focused to jump to that moment in the video.</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // 1. CONFIGURATION
+        const VIDEO_ID = 'q7J49zTYcDw';
+        let player;
+        let timeUpdater;
+        let parsedTranscript = [];
+
+        // --- VTT CONTENT ---
+        const vttContent = `WEBVTT
+
+00:00.560 --> 00:08.380
+Aloha and welcome. So we are on week 12. It's our first week of PowerPoint and I just wanted to
+
+00:08.380 --> 00:16.060
+quickly go over the rest of the semester. So this is this week the 17th through the 23rd. Next week
+
+00:16.060 --> 00:23.400
+week 13 is Thanksgiving week so we have some time off so it's really just a short week
+
+00:23.400 --> 00:29.480
+but we'll still have something to do and then I need to look at the last two weeks
+
+00:30.000 --> 00:34.580
+because I do want to do this inserting word art charts and tables as part of PowerPoint
+
+00:34.580 --> 00:43.240
+and then I need to do email and calendar and outlook. So probably during sometime next week
+
+00:43.240 --> 00:48.040
+I'll publish all of this stuff. I have it pretty much all laid out. I just need to go through a
+
+00:48.040 --> 00:52.860
+couple things and then I need to create new videos for each one. Other than that though
+
+00:52.860 --> 00:56.320
+we're looking like we're pretty much close to the end of the semester.
+
+00:59.480 --> 00:59.980
+PowerPoint
+
+00:59.980 --> 01:04.700
+we're starting PowerPoint so PowerPoint is a
+
+01:04.700 --> 01:14.360
+it's a presentation software okay and so that's what this first part is is just creating and
+
+01:14.360 --> 01:22.580
+editing presentations with pictures and themes and changing fonts and titles and different
+
+01:22.580 --> 01:29.000
+slide layouts and adding slides moving them around in your presentation and that kind of stuff.
+
+01:29.980 --> 01:37.580
+Okay um it should for the most part a lot of the stuff will be the same as in Excel and in Word like
+
+01:37.580 --> 01:43.260
+themes and colors and all that kind of stuff. There's a difference now in that it's displaying
+
+01:43.260 --> 01:50.440
+information in a slightly different way and the organization of your page is slightly different.
+
+01:50.440 --> 01:54.000
+So that's the primary difference. People tend to find PowerPoint easier to do when what they're really just editing for them to do do than thinking through the way PowerPoint works.
+
+01:54.000 --> 01:55.360
+They apply something to their page you know. so how do I do this in glitzy and compartir information?
+
+01:55.360 --> 01:59.960
+We're going to do this here but one thing that's important isSněuneve 숨к revelations
+
+01:59.980 --> 02:05.920
+or Excel. Excel tends to be the most difficult for people and PowerPoint
+
+02:05.920 --> 02:10.180
+tends to be the easiest. So hopefully that'll make sure everything goes
+
+02:10.180 --> 02:16.600
+smoothly for everyone for the rest of the semester. So the other thing I didn't
+
+02:16.600 --> 02:19.160
+really was wasn't gonna go through all these different things because they're
+
+02:19.160 --> 02:25.000
+all the basic stuff of how you add a slide, change a slide, move a slide, add a
+
+02:25.000 --> 02:29.800
+picture, move a picture around, change the size of the picture, you know that kind
+
+02:29.800 --> 02:41.620
+of thing. Okay so but what I did want to do quickly is so if we look at well for
+
+02:41.620 --> 02:47.680
+me this was the original. This is this week's project that you have to do. It
+
+02:47.680 --> 02:52.000
+opens up. This is what it looks like when you open it and then so you have all
+
+02:52.000 --> 02:59.380
+your slides on the left. This is then called the normal view and in your in
+
+02:59.380 --> 02:59.780
+your book.
+
+02:59.780 --> 03:04.460
+It'll talk about all these things. Okay it's seven slides in this in this
+
+03:04.460 --> 03:11.020
+presentation because everything's a presentation. So there's seven slides and
+
+03:11.020 --> 03:16.500
+like it's just called normal view. You have all the slides on the left. The
+
+03:16.500 --> 03:20.560
+center is where you're working on which slides you're currently on. It should be
+
+03:20.560 --> 03:25.220
+highlighted. It's hard to tell but there's a little like red rim around the
+
+03:25.220 --> 03:29.360
+number one slide here. And then there's notes and so I
+
+03:29.360 --> 03:35.060
+can change this and it says the file specifically created for and should
+
+03:35.060 --> 03:40.720
+have your name in it. I don't know if everybody gets identical slide sets. But
+
+03:40.720 --> 03:47.400
+anyway this is the one I got. So this is the PowerPoint. Then we have the
+
+03:47.400 --> 03:54.800
+instructions. Okay you know and it talks about hey this is the first thing so
+
+03:54.800 --> 03:59.080
+just like all the routes, change the name to number two. Do these things, change the theme to all.
+
+03:59.360 --> 04:05.000
+orange resize the picture change this to bold okay on each slide it talks about
+
+04:05.000 --> 04:21.140
+doing these things okay so the only one I really wanted to say this one six it
+
+04:21.140 --> 04:27.740
+says select all the text in the placeholder and this is on slide five so
+
+04:27.740 --> 04:38.100
+when I go to PowerPoint I go to slide five now this is not slide five at that
+
+04:38.100 --> 04:41.540
+point this is slide five when you get to this point this will be slide five
+
+04:41.540 --> 04:46.840
+because you'll have to add it in a new slide so I think it's this is slide five
+
+04:46.840 --> 04:51.440
+but when it says the placeholder what it's actually talking about is this
+
+04:51.440 --> 04:57.080
+block of text here okay so there's two sides this is the title
+
+04:57.740 --> 05:03.080
+then this is the content and it's talking about this text making the
+
+05:03.080 --> 05:13.640
+changes to this text okay okay so it's saying change it to orange accent one
+
+05:13.640 --> 05:23.660
+darker 25 you do that the same way as you did in word okay go in here and I
+
+05:23.660 --> 05:27.740
+think this is a wrong theme to have orange
+
+05:27.740 --> 05:37.340
+that's gold here's orange this is accent four i think it's supposed to be accent two
+
+05:37.340 --> 05:42.880
+darker 25 but anyway because earlier you need to change the theme
+
+05:42.880 --> 05:52.800
+okay and themes are a little bit different in design so you have themes on the left
+
+05:52.800 --> 06:01.720
+and variants on the right okay variants are like change the color scheme and you can pick
+
+06:01.720 --> 06:09.620
+any of these different color schemes okay themes are the basic the slide layouts where's the title
+
+06:09.620 --> 06:16.100
+where's all this other stuff and there's many different pre-built themes in here you know wood
+
+06:16.100 --> 06:22.580
+type if you put your mouse over my hold up for a little bit i'll tell you what they are you want
+
+06:22.580 --> 06:22.780
+to do
+
+06:22.800 --> 06:30.100
+office use this one facet okay and so there's a bunch of different slide types
+
+06:30.100 --> 06:35.660
+or themes that you can use and it'll change where the title is and things like that change the color
+
+06:35.660 --> 06:40.700
+schemes and stuff all right so anyway though that's the only thing i really wanted to say
+
+06:40.700 --> 06:45.260
+because i found that i thought that might be a little confusing when it says select all the
+
+06:45.260 --> 06:52.500
+text in the placeholder what it meant was in the basic text on the in the text box for the
+
+06:52.500 --> 06:52.580
+slide
+
+06:52.580 --> 06:58.740
+slide itself so all your bullets and stuff like that okay and then when you're done with it
+
+07:01.780 --> 07:07.540
+you should look something like this because it asks you to show it in this view
+
+07:09.380 --> 07:13.700
+mine looks slightly different than the one in the
+
+07:16.820 --> 07:21.220
+instructions the difference was in the instructions this text this is the new
+
+07:22.580 --> 07:28.580
+text why it matters okay this text here mine is kind of like a dark blue
+
+07:30.100 --> 07:35.780
+and if we look at the instructions and you scroll down to the bottom of the instructions
+
+07:35.780 --> 07:39.380
+there's this kind of bright blue i don't know why that is
+
+07:41.940 --> 07:47.380
+i picked the same color scheme it should have worked out identical but came out slightly
+
+07:47.380 --> 07:52.340
+different but when they submitted it for grade i didn't i got 100 so it didn't matter
+
+07:52.580 --> 08:01.060
+okay so just all the steps if you do the steps might look slightly different everything else
+
+08:01.060 --> 08:06.420
+looked identical except for that for me that was the only one that looked different but
+
+08:06.420 --> 08:11.540
+when i scored it it scored the same so for whatever reason
+
+08:13.860 --> 08:18.900
+all right and so that's it for this week in terms of powerpoint is to just do this
+
+08:18.900 --> 08:20.100
+um
+
+08:20.100 --> 08:22.100
+um
+
+08:22.580 --> 08:27.060
+i guess the only other thing i'll say is when you if you download your grade report
+
+08:30.340 --> 08:30.660
+from
+
+08:34.180 --> 08:36.100
+the thing you download your grade report
+
+08:37.700 --> 08:42.100
+um there's an extra slide it adds a new slide the last slide is your grade report
+
+08:42.900 --> 08:46.100
+so it's what you got did you do this did you do this did you do all this stuff
+
+08:47.380 --> 08:50.100
+okay that's where you'll get your grade
+
+08:53.380 --> 08:58.100
+all right so that's the powerpoint let's get started with powerpoint
+
+08:59.300 --> 09:05.220
+again if you have any questions the best thing to do is to go to the syllabus and find my
+
+09:06.820 --> 09:12.180
+calendar link and create a you know create a meeting with me especially if you're having
+
+09:12.180 --> 09:18.660
+some problems uploading downloading something's not working right that tends to be the easiest way
+
+09:19.620 --> 09:22.340
+sometimes i'm able to troubleshoot people if they
+
+09:22.340 --> 09:28.660
+send me enough information but it's always easier if i can see what's going on typically
+
+09:28.660 --> 09:32.820
+most of the issues that i've found or had students have had have been things like i
+
+09:32.820 --> 09:39.300
+just showed you misinterpretations of what is being asked of you that's the biggest one
+
+09:40.820 --> 09:44.740
+and usually i can spot them fairly quick if that's something simple like that if it's a
+
+09:45.860 --> 09:52.100
+some internal technical issue then that can take a lot longer but we tend not to really have those
+
+09:52.100 --> 10:00.820
+very often so all right well good luck have fun and talk to you soon`;
+        // ------------------------------------
+
+        // 2. CORE UTILITIES
+        function timeToSeconds(timeStr) {
+            if (!timeStr) return 0;
+            const parts = timeStr.trim().split(':');
+            
+            // Handle both MM:SS.mmm and HH:MM:SS.mmm formats
+            if (parts.length === 2) {
+                // MM:SS.mmm format
+                let minutes = parseInt(parts[0]) || 0;
+                let seconds = parseFloat(parts[1]) || 0;
+                return minutes * 60 + seconds;
+            } else if (parts.length === 3) {
+                // HH:MM:SS.mmm format
+                let hours = parseInt(parts[0]) || 0;
+                let minutes = parseInt(parts[1]) || 0;
+                let seconds = parseFloat(parts[2]) || 0;
+                return hours * 3600 + minutes * 60 + seconds;
+            }
+            return 0;
+        }
+
+        function parseVtt(vttText) {
+            const cues = vttText.trim().split(/\n\n+/);
+            const parsedCues = [];
+            
+            cues.forEach(cueBlock => {
+                if (cueBlock.startsWith('WEBVTT') || cueBlock.trim() === '') return;
+                
+                const lines = cueBlock.trim().split('\n');
+                const timeLine = lines.find(line => line.includes('-->'));
+                if (!timeLine) return;
+
+                const [startTimeStr, endTimeStr] = timeLine.split(' --> ');
+                const textLines = lines.slice(lines.indexOf(timeLine) + 1);
+                
+                parsedCues.push({
+                    start: timeToSeconds(startTimeStr),
+                    end: timeToSeconds(endTimeStr),
+                    text: textLines.join(' ').trim()
+                });
+            });
+            return parsedCues;
+        }
+
+        // 3. TRANSCRIPT RENDERING AND INTERACTIVITY
+        function populateTranscript() {
+            const container = document.getElementById('transcript-container');
+            container.innerHTML = '';
+
+            parsedTranscript.forEach(cue => {
+                const lineElement = document.createElement('div');
+                lineElement.className = 'transcript-line p-2 cursor-pointer hover:bg-gray-100 rounded-lg';
+                lineElement.dataset.start = cue.start;
+                lineElement.dataset.end = cue.end;
+                lineElement.textContent = cue.text;
+                lineElement.setAttribute('role', 'button');
+                lineElement.setAttribute('tabindex', '0');
+
+                const seekToTime = () => {
+                    if (player && player.seekTo) {
+                        player.seekTo(cue.start, true);
+                        player.playVideo();
+                    }
+                };
+                
+                lineElement.addEventListener('click', seekToTime);
+                lineElement.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') { 
+                        e.preventDefault(); 
+                        seekToTime(); 
+                    }
+                });
+
+                container.appendChild(lineElement);
+            });
+        }
+
+        // 4. SYNC LOGIC
+        function highlightCurrentLine() {
+            if (!player || !player.getCurrentTime) return;
+
+            const currentTime = player.getCurrentTime();
+            const lines = document.querySelectorAll('#transcript-container .transcript-line');
+            let foundActive = false;
+
+            lines.forEach(line => {
+                const start = parseFloat(line.dataset.start);
+                const end = parseFloat(line.dataset.end);
+
+                if (currentTime >= start && currentTime < end) {
+                    if (!line.classList.contains('active-transcript-line')) {
+                        document.querySelector('.active-transcript-line')?.classList.remove('active-transcript-line');
+                        line.classList.add('active-transcript-line');
+                        line.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                    foundActive = true;
+                } else {
+                    line.classList.remove('active-transcript-line');
+                }
+            });
+        }
+
+        // 5. HEIGHT SYNCHRONIZATION (Transcript matches video container)
+        function syncTranscriptHeight() {
+            const mediaQuery = window.matchMedia('(min-width: 1024px)');
+            const videoContainer = document.getElementById('video-container');
+            const transcriptContainer = document.getElementById('transcript-container');
+            
+            if (!videoContainer || !transcriptContainer) return;
+            
+            if (mediaQuery.matches) {
+                // On large screens, match the video container height
+                const videoHeight = videoContainer.offsetHeight;
+                transcriptContainer.style.maxHeight = videoHeight + 'px';
+            } else {
+                // On mobile, revert to default fixed height
+                transcriptContainer.style.maxHeight = '24rem'; // h-96 equivalent
+            }
+        }
+
+        // 6. PLAYER STATE MANAGEMENT
+        function onPlayerStateChange(event) {
+            clearInterval(timeUpdater);
+            if (event.data === YT.PlayerState.PLAYING) {
+                timeUpdater = setInterval(highlightCurrentLine, 300);
+            }
+        }
+
+        // 7. INITIALIZATION
+        window.onYouTubeIframeAPIReady = function() {
+            player = new YT.Player('youtube-player', {
+                videoId: VIDEO_ID,
+                events: {
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        };
+
+        // --- DOM READY INITIALIZATION ---
+        document.addEventListener('DOMContentLoaded', () => {
+            parsedTranscript = parseVtt(vttContent);
+            populateTranscript();
+            syncTranscriptHeight();
+            
+            // Load YouTube API
+            if (typeof(YT) == 'undefined' || typeof(YT.Player) == 'undefined') {
+                const tag = document.createElement('script');
+                tag.src = "https://www.youtube.com/iframe_api";
+                document.head.appendChild(tag);
+            } else {
+                onYouTubeIframeAPIReady();
+            }
+            
+            console.log('CSC104 Week 12 page initialized.');
+        });
+
+        // 8. WINDOW RESIZE HANDLER
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(syncTranscriptHeight, 250);
+        });
+    </script>
+</body>
+</html>
