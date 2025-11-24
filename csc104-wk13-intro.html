@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Title for CSC104 Week 13 -->
+    <title>CSC104 - Week 13: Enhancing PowerPoint with Shapes and SmartArt</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            /* Warm, approachable color scheme suitable for a business/applications class */
+            background-color: #F8F9FA; 
+            color: #343A40;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .code-font {
+            font-family: 'Fira Code', monospace;
+        }
+        
+        /* Style for the currently active transcript line */
+        .active-transcript-line {
+            background-color: #f0f7ff;
+            font-weight: 600;
+            border-left: 4px solid #1e88e5;
+            padding-left: 12px;
+            transition: background-color 0.2s;
+        }
+
+        /* Skip link style (Accessibility requirement) */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: #1E88E5;
+            color: #F8F9FA;
+            padding: 8px;
+            z-index: 100;
+            transition: top 0.3s;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        /* Custom scrollbar for transcript */
+        #transcript-container::-webkit-scrollbar {
+            width: 8px;
+        }
+        #transcript-container::-webkit-scrollbar-thumb {
+            background-color: #ced4da;
+            border-radius: 10px;
+        }
+        #transcript-container::-webkit-scrollbar-thumb:hover {
+            background-color: #adb5bd;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+    <a href="#main-content" class="skip-link rounded-br-md">Skip to main content</a>
+    
+    <div id="main-content" class="max-w-7xl mx-auto">
+        <header class="mb-8">
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-800 mb-2">CSC104 - Week 13: Enhancing PowerPoint with Shapes and SmartArt</h1>
+            <p class="text-lg text-gray-600">Aloha, and welcome to <strong>Week 13</strong>! This is a short week for Thanksgiving, but we're continuing our PowerPoint exploration. This week focuses on <strong>enhancing your presentations using shapes and SmartArt</strong>. These tools help you create more engaging, visually appealing slides that effectively communicate your ideas. We'll explore how to add shapes, arrange them effectively, and use SmartArt to represent relationships and processes visually. By the end of this week, you'll be able to transform basic slides into more polished and professional presentations.</p>
+        </header>
+
+        <main>
+            <!-- Video and Transcript Section using v2 Guide Layout -->
+            <div class="flex flex-col lg:flex-row gap-4 w-full mb-8">
+                <!-- Video Player Section: 66% width on large screens -->
+                <div class="w-full lg:w-2/3 flex-shrink-0">
+                    <h2 class="text-2xl font-semibold mb-4 text-gray-700">Video Lecture: Enhancing PowerPoint Presentations</h2>
+                    <div id="video-container" style="width: 100%; height: 0; padding-bottom: 56.25%; position: relative;">
+                        <iframe id="youtube-player"
+                                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+                                src="https://www.youtube.com/embed/C3RC7eV3voI?enablejsapi=1"
+                                title="YouTube video player"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin"
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                    <p class="mt-4 text-sm text-gray-500">Video ID: <span class="code-font">C3RC7eV3voI</span></p>
+                </div>
+
+                <!-- Transcript Container Section: 33% width on large screens -->
+                <div class="w-full lg:w-1/3 flex-shrink-0">
+                    <h2 class="text-2xl font-semibold mb-4 text-gray-700">Video Transcript</h2>
+                    <div id="transcript-container" class="h-96 overflow-y-scroll bg-white shadow-inner p-4 rounded-lg border border-gray-300">
+                        <p class="text-gray-500 text-center">Loading transcript...</p>
+                    </div>
+                    <p class="mt-4 text-sm text-gray-600">Click any line in the transcript or use the <strong>Enter/Space</strong> keys when focused to jump to that moment in the video.</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // 1. CONFIGURATION
+        const VIDEO_ID = 'C3RC7eV3voI';
+        let player;
+        let timeUpdater;
+        let parsedTranscript = [];
+
+        // --- VTT CONTENT ---
+        const vttContent = `WEBVTT
+
+00:00.400 --> 00:02.920
+Aloha and welcome to week 13.
+
+00:03.860 --> 00:08.460
+We only have this week 13, which is a short week for Thanksgiving.
+
+00:09.140 --> 00:11.620
+And then we just have two more weeks after that.
+
+00:11.840 --> 00:13.980
+So coming up to the end.
+
+00:15.820 --> 00:21.140
+I wanted to say I do have, we do have a section for this week to review.
+
+00:21.380 --> 00:24.260
+So if you get some time, please take some time to review it.
+
+00:24.820 --> 00:27.660
+The assignment actually won't be due for another week.
+
+00:27.660 --> 00:32.000
+But having said that, in week 14, there's another assignment.
+
+00:32.820 --> 00:34.900
+And in week 15, there's an assignment.
+
+00:35.240 --> 00:38.060
+So there will be assignments throughout.
+
+00:38.320 --> 00:41.080
+So if you can get to it, do it now.
+
+00:41.120 --> 00:42.740
+If you can't, don't worry.
+
+00:42.880 --> 00:44.460
+It's not due until the 7th.
+
+00:44.460 --> 00:45.800
+I actually put a date on it.
+
+00:46.440 --> 00:47.320
+It's a due date.
+
+00:47.740 --> 00:50.700
+You have obviously until the 12th to submit everything.
+
+00:50.700 --> 00:57.420
+Okay, so this week's is enhancing your presentations using shapes and smart art.
+
+00:57.660 --> 01:00.120
+So in your.
+
+01:03.080 --> 01:03.720
+Let's see.
+
+01:03.720 --> 01:05.220
+So we have our PowerPoint.
+
+01:06.480 --> 01:07.800
+We have our instructions.
+
+01:07.800 --> 01:10.040
+So let me.
+
+01:11.280 --> 01:12.840
+This up here.
+
+01:15.780 --> 01:16.580
+Instructions.
+
+01:16.580 --> 01:16.780
+Okay.
+
+01:16.780 --> 01:17.580
+So I'm side by side.
+
+01:17.580 --> 01:19.220
+So this is a completed one.
+
+01:19.980 --> 01:25.440
+I, I walked through and I completed the whole assignment and really the only
+
+01:25.440 --> 01:27.240
+thing I wanted to say about this.
+
+01:27.240 --> 01:35.180
+I wanted to say about the assignment here is when we're.
+
+01:35.180 --> 01:36.040
+Let's see.
+
+01:36.040 --> 01:38.220
+Let's do a page view this year.
+
+01:38.220 --> 01:38.480
+Okay.
+
+01:38.480 --> 01:42.200
+So when you're going through this assignment and doing these steps in the
+
+01:42.200 --> 01:46.740
+spring gardening tips, that's, that's what I got when I downloaded spring
+
+01:46.740 --> 01:47.480
+gardening tips.
+
+01:48.580 --> 01:50.000
+Um, it's pretty straightforward.
+
+01:50.580 --> 01:56.260
+I believe it's pretty straight forward in a way everything's, um, obvious from the
+
+01:56.260 --> 01:56.760
+instructions.
+
+01:56.760 --> 01:57.220
+Um,
+
+01:57.880 --> 01:59.640
+it pretty much tells you exactly what to do.
+
+01:59.640 --> 02:05.580
+The only time when there's a discrepancy between the instructions and what you
+
+02:05.580 --> 02:12.840
+should do is right here on slide two, when you're using this line, right.
+
+02:12.840 --> 02:14.760
+And distribute vertically.
+
+02:16.000 --> 02:16.480
+Okay.
+
+02:16.740 --> 02:22.200
+You can see here, you have three boxes here that if they're talking about these
+
+02:22.200 --> 02:25.620
+three boxes, not two of them.
+
+02:27.240 --> 02:34.200
+Um, up here in C it's saying two of them, and then here it says, you line, align the
+
+02:34.200 --> 02:35.400
+selected objects to each other.
+
+02:35.400 --> 02:40.800
+Well, um, they don't mean the two you did in C they mean all three of these boxes.
+
+02:41.760 --> 02:42.060
+Okay.
+
+02:42.060 --> 02:47.700
+So that's the only time that I found the instructions not to be clear.
+
+02:47.980 --> 02:48.300
+Okay.
+
+02:48.840 --> 02:49.660
+So align, right.
+
+02:49.660 --> 02:50.820
+And distribute vertically.
+
+02:50.860 --> 02:52.860
+You're using it all three of these boxes.
+
+02:53.280 --> 02:57.160
+You have to do all three for distribute vertically.
+
+02:57.160 --> 02:57.220
+Okay.
+
+02:57.240 --> 03:03.840
+Because you can't vertically distribute two boxes because basically what distribute
+
+03:03.840 --> 03:07.800
+vertically does, it takes the highest one and the lowest one.
+
+03:07.800 --> 03:12.720
+And then it, and however many you select, it distributes them between the two.
+
+03:12.720 --> 03:14.460
+It doesn't move them on the page.
+
+03:15.120 --> 03:18.660
+So the top and the bottom stay, and it moves the middle one in this case, up and
+
+03:18.660 --> 03:19.800
+down to get it right in the middle.
+
+03:21.300 --> 03:21.720
+Okay.
+
+03:21.780 --> 03:26.800
+So, um, you have to have three, at least to do distribute horizontal or vertical.
+
+03:27.840 --> 03:37.920
+So those two, two D and two E were the only ones I found that I felt like really did not make sense.
+
+03:39.660 --> 03:40.080
+Okay.
+
+03:40.500 --> 03:42.100
+That's really all I had to say this week.
+
+03:42.120 --> 03:47.400
+Um, but basically it's trying to make your slides better, more engaging.
+
+03:51.900 --> 03:57.180
+And yeah, that's what, uh, using shapes and smart art allow you to do.
+
+03:57.240 --> 03:57.660
+All right.
+
+03:57.660 --> 04:08.280
+So, um, have a great Thanksgiving, everybody, and we'll catch you for the
+
+04:08.280 --> 04:09.660
+last two weeks, right after Thanksgiving.
+
+04:09.660 --> 04:11.400
+Thanks.`;
+        // ------------------------------------
+
+        // 2. CORE UTILITIES
+        function timeToSeconds(timeStr) {
+            if (!timeStr) return 0;
+            const parts = timeStr.trim().split(':');
+            
+            // Handle both MM:SS.mmm and HH:MM:SS.mmm formats
+            if (parts.length === 2) {
+                // MM:SS.mmm format
+                let minutes = parseInt(parts[0]) || 0;
+                let seconds = parseFloat(parts[1]) || 0;
+                return minutes * 60 + seconds;
+            } else if (parts.length === 3) {
+                // HH:MM:SS.mmm format
+                let hours = parseInt(parts[0]) || 0;
+                let minutes = parseInt(parts[1]) || 0;
+                let seconds = parseFloat(parts[2]) || 0;
+                return hours * 3600 + minutes * 60 + seconds;
+            }
+            return 0;
+        }
+
+        function parseVtt(vttText) {
+            const cues = vttText.trim().split(/\n\n+/);
+            const parsedCues = [];
+            
+            cues.forEach(cueBlock => {
+                if (cueBlock.startsWith('WEBVTT') || cueBlock.trim() === '') return;
+                
+                const lines = cueBlock.trim().split('\n');
+                const timeLine = lines.find(line => line.includes('-->'));
+                if (!timeLine) return;
+
+                const [startTimeStr, endTimeStr] = timeLine.split(' --> ');
+                const textLines = lines.slice(lines.indexOf(timeLine) + 1);
+                
+                parsedCues.push({
+                    start: timeToSeconds(startTimeStr),
+                    end: timeToSeconds(endTimeStr),
+                    text: textLines.join(' ').trim()
+                });
+            });
+            return parsedCues;
+        }
+
+        // 3. TRANSCRIPT RENDERING AND INTERACTIVITY
+        function populateTranscript() {
+            const container = document.getElementById('transcript-container');
+            container.innerHTML = '';
+
+            parsedTranscript.forEach(cue => {
+                const lineElement = document.createElement('div');
+                lineElement.className = 'transcript-line p-2 cursor-pointer hover:bg-gray-100 rounded-lg';
+                lineElement.dataset.start = cue.start;
+                lineElement.dataset.end = cue.end;
+                lineElement.textContent = cue.text;
+                lineElement.setAttribute('role', 'button');
+                lineElement.setAttribute('tabindex', '0');
+
+                const seekToTime = () => {
+                    if (player && player.seekTo) {
+                        player.seekTo(cue.start, true);
+                        player.playVideo();
+                    }
+                };
+                
+                lineElement.addEventListener('click', seekToTime);
+                lineElement.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') { 
+                        e.preventDefault(); 
+                        seekToTime(); 
+                    }
+                });
+
+                container.appendChild(lineElement);
+            });
+        }
+
+        // 4. SYNC LOGIC
+        function highlightCurrentLine() {
+            if (!player || !player.getCurrentTime) return;
+
+            const currentTime = player.getCurrentTime();
+            const lines = document.querySelectorAll('#transcript-container .transcript-line');
+            let foundActive = false;
+
+            lines.forEach(line => {
+                const start = parseFloat(line.dataset.start);
+                const end = parseFloat(line.dataset.end);
+
+                if (currentTime >= start && currentTime < end) {
+                    if (!line.classList.contains('active-transcript-line')) {
+                        document.querySelector('.active-transcript-line')?.classList.remove('active-transcript-line');
+                        line.classList.add('active-transcript-line');
+                        line.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                    foundActive = true;
+                } else {
+                    line.classList.remove('active-transcript-line');
+                }
+            });
+        }
+
+        // 5. HEIGHT SYNCHRONIZATION (Transcript matches video container)
+        function syncTranscriptHeight() {
+            const mediaQuery = window.matchMedia('(min-width: 1024px)');
+            const videoContainer = document.getElementById('video-container');
+            const transcriptContainer = document.getElementById('transcript-container');
+            
+            if (!videoContainer || !transcriptContainer) return;
+            
+            if (mediaQuery.matches) {
+                // On large screens, match the video container height
+                const videoHeight = videoContainer.offsetHeight;
+                transcriptContainer.style.maxHeight = videoHeight + 'px';
+            } else {
+                // On mobile, revert to default fixed height
+                transcriptContainer.style.maxHeight = '24rem'; // h-96 equivalent
+            }
+        }
+
+        // 6. PLAYER STATE MANAGEMENT
+        function onPlayerStateChange(event) {
+            clearInterval(timeUpdater);
+            if (event.data === YT.PlayerState.PLAYING) {
+                timeUpdater = setInterval(highlightCurrentLine, 300);
+            }
+        }
+
+        // 7. INITIALIZATION
+        window.onYouTubeIframeAPIReady = function() {
+            player = new YT.Player('youtube-player', {
+                videoId: VIDEO_ID,
+                events: {
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        };
+
+        // --- DOM READY INITIALIZATION ---
+        document.addEventListener('DOMContentLoaded', () => {
+            parsedTranscript = parseVtt(vttContent);
+            populateTranscript();
+            syncTranscriptHeight();
+            
+            // Load YouTube API
+            if (typeof(YT) == 'undefined' || typeof(YT.Player) == 'undefined') {
+                const tag = document.createElement('script');
+                tag.src = "https://www.youtube.com/iframe_api";
+                document.head.appendChild(tag);
+            } else {
+                onYouTubeIframeAPIReady();
+            }
+            
+            console.log('CSC104 Week 13 page initialized.');
+        });
+
+        // 8. WINDOW RESIZE HANDLER
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(syncTranscriptHeight, 250);
+        });
+    </script>
+</body>
+</html>
