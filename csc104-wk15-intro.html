@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Title for CSC104 Week 15 -->
+    <title>CSC104 - Week 15: Outlook Email and Calendars</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            /* Warm, approachable color scheme suitable for a business/applications class */
+            background-color: #F8F9FA; 
+            color: #343A40;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .code-font {
+            font-family: 'Fira Code', monospace;
+        }
+        
+        /* Style for the currently active transcript line */
+        .active-transcript-line {
+            background-color: #f0f7ff;
+            font-weight: 600;
+            border-left: 4px solid #1e88e5;
+            padding-left: 12px;
+            transition: background-color 0.2s;
+        }
+
+        /* Skip link style (Accessibility requirement) */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: #1E88E5;
+            color: #F8F9FA;
+            padding: 8px;
+            z-index: 100;
+            transition: top 0.3s;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        /* Custom scrollbar for transcript */
+        #transcript-container::-webkit-scrollbar {
+            width: 8px;
+        }
+        #transcript-container::-webkit-scrollbar-thumb {
+            background-color: #ced4da;
+            border-radius: 10px;
+        }
+        #transcript-container::-webkit-scrollbar-thumb:hover {
+            background-color: #adb5bd;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+    <a href="#main-content" class="skip-link rounded-br-md">Skip to main content</a>
+    
+    <div id="main-content" class="max-w-7xl mx-auto">
+        <header class="mb-8">
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-800 mb-2">CSC104 - Week 15: Outlook Email and Calendars</h1>
+            <p class="text-lg text-gray-600">Aloha, and welcome to <strong>Week 15</strong>—the final week of the semester! We're powering through <strong>Outlook email and calendars</strong>, essential productivity tools for professional communication and time management. This week covers email management fundamentals, including composing, formatting, organizing messages, and applying email etiquette. You'll also explore calendar features for scheduling appointments, managing meetings, and coordinating tasks. The email assignment is required, while the calendar assignment offers extra credit opportunities. By the end of this week, you'll have the skills to manage your professional communication and schedule effectively using industry-standard tools.</p>
+        </header>
+
+        <main>
+            <!-- Video and Transcript Section using v2 Guide Layout -->
+            <div class="flex flex-col lg:flex-row gap-4 w-full mb-8">
+                <!-- Video Player Section: 66% width on large screens -->
+                <div class="w-full lg:w-2/3 flex-shrink-0">
+                    <h2 class="text-2xl font-semibold mb-4 text-gray-700">Video Lecture: Outlook Email and Calendars</h2>
+                    <div id="video-container" style="width: 100%; height: 0; padding-bottom: 56.25%; position: relative;">
+                        <iframe id="youtube-player"
+                                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+                                src="https://www.youtube.com/embed/2wiaV4RBVRw?enablejsapi=1"
+                                title="YouTube video player"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin"
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                    <p class="mt-4 text-sm text-gray-500">Video ID: <span class="code-font">2wiaV4RBVRw</span></p>
+                </div>
+
+                <!-- Transcript Container Section: 33% width on large screens -->
+                <div class="w-full lg:w-1/3 flex-shrink-0">
+                    <h2 class="text-2xl font-semibold mb-4 text-gray-700">Video Transcript</h2>
+                    <div id="transcript-container" class="h-96 overflow-y-scroll bg-white shadow-inner p-4 rounded-lg border border-gray-300">
+                        <p class="text-gray-500 text-center">Loading transcript...</p>
+                    </div>
+                    <p class="mt-4 text-sm text-gray-600">Click any line in the transcript or use the <strong>Enter/Space</strong> keys when focused to jump to that moment in the video.</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // 1. CONFIGURATION
+        const VIDEO_ID = '2wiaV4RBVRw';
+        let player;
+        let timeUpdater;
+        let parsedTranscript = [];
+
+        // --- VTT CONTENT ---
+        const vttContent = `WEBVTT
+
+00:00.740 --> 00:06.940
+Aloha. So week 15, the last week of the semester, and we're going to power through Outlook,
+
+00:07.420 --> 00:15.320
+email and calendars. Okay, so what you're going to do for this week, obviously you're going to read
+
+00:15.320 --> 00:20.480
+email and Outlook, and then there's one practice for each, and then there's one assignment for
+
+00:20.480 --> 00:27.520
+each. Now the email assignment is the required assignment, and you can do the calendar assignment
+
+00:27.520 --> 00:33.680
+for some extra credit points, about half an assignment's worth. So let's take a quick look
+
+00:33.680 --> 00:41.700
+at the email assignments, how that works. Okay, because it's a little bit different,
+
+00:41.700 --> 00:45.460
+and it's the same for the calendar. It works a little bit different than
+
+00:45.460 --> 00:50.960
+it did, it does for the other things, because other things are project-based.
+
+00:51.440 --> 00:57.440
+Now the email and the calendar assignment in Cengage is,
+
+00:57.520 --> 01:07.580
+because you can't really set it up as an assignment that way, what it does is
+
+01:07.580 --> 01:15.280
+you have to do things, like this is the email, so you have a bunch of questions,
+
+01:15.280 --> 01:23.700
+you have three attempts, it can take a little while to get through these. It's like it says
+
+01:23.700 --> 01:27.500
+I'm on task four, because I'm on task four, and I'm on task four, and I'm on task four,
+
+01:27.520 --> 01:34.180
+because I did one, two, and three. Oh, this is what I missed, didn't do, so you can see I did some of these.
+
+01:34.180 --> 01:39.460
+Here let's jump to this one, check spelling. And so basically what I'm asking you to do,
+
+01:39.460 --> 01:46.820
+check the spelling of the first flag word, maintenance. Okay, correct the spelling.
+
+01:46.820 --> 01:51.460
+Check spelling in a second, and then ignore all instances of that spelling.
+
+01:51.460 --> 01:55.280
+So you're gonna go to maintenance, and oops,
+
+01:57.520 --> 02:03.580
+telling change it piece them in I'm going to ignore all because that's what it said to do
+
+02:03.580 --> 02:07.460
+okay and it says answer correct and then it'll move to the next one
+
+02:07.460 --> 02:14.720
+okay so every single question you get it comes up and it says it
+
+02:14.720 --> 02:20.880
+you get another one and it looks like you have three attempts but it looks like you when you
+
+02:20.880 --> 02:26.700
+come back in because I played with it once and I skipped create a signature so I didn't do it
+
+02:26.700 --> 02:32.540
+and now it says I only have two attempts remaining even though I didn't do it before
+
+02:32.540 --> 02:39.440
+all right I think I tried it and I couldn't find it I can never find signatures when I try to do
+
+02:39.440 --> 02:48.500
+them but anyway and this looks a little bit different than my outlook okay but it works
+
+02:48.500 --> 02:54.220
+similar to same as outlook this is my outlook this is my full outlook how I choose to look at
+
+02:54.220 --> 02:54.820
+my outlook
+
+02:54.820 --> 02:56.100
+um
+
+02:56.100 --> 02:56.680
+um
+
+02:56.680 --> 02:56.700
+um
+
+02:57.420 --> 03:00.660
+okay so here's we'll pick something like this one
+
+03:00.660 --> 03:05.220
+and mine is set up so that it doesn't download all the pictures automatically
+
+03:05.220 --> 03:07.520
+this kind of stuff okay
+
+03:07.520 --> 03:11.480
+and so it's very similar
+
+03:11.480 --> 03:18.180
+um outlook's very similar in the real outlook
+
+03:18.180 --> 03:24.640
+I'm using classic outlook there is a new outlook I turn it off because I don't like it
+
+03:24.640 --> 03:26.420
+um
+
+03:26.700 --> 03:30.760
+this might be more real new outlook but anyway
+
+03:30.760 --> 03:36.220
+okay your emails appear you click on it your reading pane is on the right
+
+03:36.220 --> 03:39.420
+you can change that and move in get rid of it and do all that kind of stuff
+
+03:39.420 --> 03:48.240
+okay so just so you know it's very similar to the outlook client that people use like I use daily
+
+03:48.240 --> 03:54.000
+and all my computers and even on my phone sometimes
+
+03:54.000 --> 03:56.680
+um I have to use it because I have to use it on my phone sometimes
+
+03:56.680 --> 04:01.240
+it's hard to use my college email
+
+04:03.160 --> 04:06.680
+because it's unlike your college email your college email is a
+
+04:07.560 --> 04:11.640
+google email so yours is a gmail mine is a microsoft email
+
+04:12.520 --> 04:20.520
+so it's hard to use microsoft 365 efficiently without using the college I mean without using
+
+04:21.080 --> 04:26.440
+microsoft stuff and outlook works and the calendar works together they get integrated
+
+04:26.680 --> 04:34.980
+and whether you know this or not outlook and google don't mesh well
+
+04:34.980 --> 04:41.660
+okay and so if you're using this normally you'll have this is your email and you'll have your
+
+04:41.660 --> 04:49.100
+calendar here and this will be your calendar on your outlook calendar so when you do the calendaring
+
+04:49.100 --> 04:54.760
+you'll you'll have this view but it's all the same as it's in the same application it's in outlook
+
+04:54.760 --> 04:55.120
+okay
+
+04:55.120 --> 04:55.160
+okay
+
+04:55.160 --> 04:55.660
+okay
+
+04:55.660 --> 04:55.680
+okay
+
+04:55.680 --> 04:55.700
+okay
+
+04:55.700 --> 04:55.720
+okay
+
+04:55.720 --> 04:55.740
+okay
+
+04:55.740 --> 04:55.760
+okay
+
+04:55.760 --> 04:55.800
+okay
+
+04:55.800 --> 04:55.820
+okay
+
+04:55.820 --> 04:55.860
+okay
+
+04:55.860 --> 04:55.920
+okay
+
+04:55.920 --> 04:56.080
+okay
+
+04:56.080 --> 04:56.100
+okay
+
+04:56.100 --> 04:56.140
+okay
+
+04:56.140 --> 04:56.160
+okay
+
+04:56.160 --> 04:56.320
+okay
+
+04:56.320 --> 04:56.640
+okay
+
+04:56.640 --> 04:56.660
+okay
+
+04:56.680 --> 05:04.980
+so like I said the biggest thing here on this outlook assignment is you're now task of 26 or
+
+05:04.980 --> 05:11.620
+whatever and you just go through them and it looks like you can come back and it'll save where you're
+
+05:11.620 --> 05:19.140
+at and when you're done you click submit and it'll give you a score okay you can look go what's my
+
+05:19.140 --> 05:25.140
+score going to be oh there's one wrong you don't have all these I haven't done yet that's a file
+
+05:25.140 --> 05:26.660
+that's the important thing you can do is you can go and you can go and you can go and you can go and
+
+05:26.660 --> 05:28.680
+and you can go and you can go and you can go and you can go I just forward an email line copy email
+
+05:28.680 --> 05:29.380
+swing by what I say,
+
+05:29.380 --> 05:30.100
+recipients, create a folder close comes down
+
+05:30.100 --> 05:30.500
+recipients, create a folder close comes down
+
+05:30.500 --> 05:31.840
+recipients, create a folder close comes down
+
+05:31.840 --> 05:32.420
+all right
+
+05:32.420 --> 05:32.980
+all right
+
+05:32.980 --> 05:33.480
+listings name
+
+05:33.480 --> 05:34.280
+listings name
+
+05:34.280 --> 05:34.840
+listings name
+
+05:34.840 --> 05:35.200
+structure
+
+05:35.200 --> 05:36.000
+If you're on a Mac,
+
+05:36.000 --> 05:36.660
+system,
+
+05:36.660 --> 05:37.300
+case,
+
+05:37.300 --> 05:40.920
+shortcut keys,
+
+05:40.920 --> 05:45.760
+this is the required assignment.
+
+05:45.760 --> 05:46.200
+Chips,
+
+05:46.200 --> 05:46.620
+instructionciller,
+
+05:46.620 --> 05:47.260
+OK,
+
+05:47.260 --> 05:47.760
+understand
+
+05:47.760 --> 05:49.000
+so this is the required assignment
+
+05:49.000 --> 05:49.400
+OK
+
+05:49.400 --> 05:49.560
+OK,
+
+05:49.560 --> 05:51.160
+I'm just going to close mine,
+
+05:51.160 --> 05:55.500
+no care please
+
+05:55.500 --> 05:56.600
+and then the
+
+05:56.600 --> 06:11.840
+extra credit assignment is the calendar version but it's exactly the same format
+
+06:11.840 --> 06:18.720
+okay it's going to I'm open up a new window and then it's gonna have a bunch
+
+06:18.720 --> 06:32.040
+of tasks to do and you need to walk through them just like you did for email
+
+06:32.040 --> 06:39.240
+but here it says it's only 15 tasks there's one of 15 okay change the status
+
+06:39.240 --> 06:46.340
+of the new workshop leaders orientation appointment to tentative right
+
+06:48.720 --> 06:58.480
+show as tentative answers correct and then it's gonna automatically move to
+
+06:58.480 --> 07:08.160
+the next task okay so you're gonna have to work through this and then when
+
+07:08.160 --> 07:13.200
+you're all done again you click Submit and you can do this title you can jump
+
+07:13.200 --> 07:18.120
+around if you really want to okay and then you click Submit
+
+07:18.720 --> 07:24.480
+get your final score okay and again said this is extra credit if you want to
+
+07:24.480 --> 07:29.700
+do it for an extra potential 50 points I think we have 15 weeks so we have
+
+07:29.700 --> 07:39.600
+somewhere around 16 or 17 hundred points in this class so you know if you're
+
+07:39.600 --> 07:47.840
+close it'll help you if you're not close it's not gonna do a lot anyway so treat
+
+07:47.840 --> 07:48.480
+it that way and
+
+07:48.720 --> 07:55.820
+good luck and it's been great having you this semester and hopefully this
+
+07:55.820 --> 08:04.060
+everything worked out for you have a great winter break Merry Christmas and
+
+08:04.060 --> 08:10.900
+maybe we'll see you in the new year thanks bye
+`;
+        // ------------------------------------
+
+        // 2. CORE UTILITIES
+        function timeToSeconds(timeStr) {
+            if (!timeStr) return 0;
+            const parts = timeStr.trim().split(':');
+            
+            // Handle both MM:SS.mmm and HH:MM:SS.mmm formats
+            if (parts.length === 2) {
+                // MM:SS.mmm format
+                let minutes = parseInt(parts[0]) || 0;
+                let seconds = parseFloat(parts[1]) || 0;
+                return minutes * 60 + seconds;
+            } else if (parts.length === 3) {
+                // HH:MM:SS.mmm format
+                let hours = parseInt(parts[0]) || 0;
+                let minutes = parseInt(parts[1]) || 0;
+                let seconds = parseFloat(parts[2]) || 0;
+                return hours * 3600 + minutes * 60 + seconds;
+            }
+            return 0;
+        }
+
+        function parseVtt(vttText) {
+            const cues = vttText.trim().split(/\n\n+/);
+            const parsedCues = [];
+            
+            cues.forEach(cueBlock => {
+                if (cueBlock.startsWith('WEBVTT') || cueBlock.trim() === '') return;
+                
+                const lines = cueBlock.trim().split('\n');
+                const timeLine = lines.find(line => line.includes('-->'));
+                if (!timeLine) return;
+
+                const [startTimeStr, endTimeStr] = timeLine.split(' --> ');
+                const textLines = lines.slice(lines.indexOf(timeLine) + 1);
+                
+                parsedCues.push({
+                    start: timeToSeconds(startTimeStr),
+                    end: timeToSeconds(endTimeStr),
+                    text: textLines.join(' ').trim()
+                });
+            });
+            return parsedCues;
+        }
+
+        // 3. TRANSCRIPT RENDERING AND INTERACTIVITY
+        function populateTranscript() {
+            const container = document.getElementById('transcript-container');
+            container.innerHTML = '';
+
+            parsedTranscript.forEach(cue => {
+                const lineElement = document.createElement('div');
+                lineElement.className = 'transcript-line p-2 cursor-pointer hover:bg-gray-100 rounded-lg';
+                lineElement.dataset.start = cue.start;
+                lineElement.dataset.end = cue.end;
+                lineElement.textContent = cue.text;
+                lineElement.setAttribute('role', 'button');
+                lineElement.setAttribute('tabindex', '0');
+
+                const seekToTime = () => {
+                    if (player && player.seekTo) {
+                        player.seekTo(cue.start, true);
+                        player.playVideo();
+                    }
+                };
+                
+                lineElement.addEventListener('click', seekToTime);
+                lineElement.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') { 
+                        e.preventDefault(); 
+                        seekToTime(); 
+                    }
+                });
+
+                container.appendChild(lineElement);
+            });
+        }
+
+        // 4. SYNC LOGIC
+        function highlightCurrentLine() {
+            if (!player || !player.getCurrentTime) return;
+
+            const currentTime = player.getCurrentTime();
+            const lines = document.querySelectorAll('#transcript-container .transcript-line');
+            let foundActive = false;
+
+            lines.forEach(line => {
+                const start = parseFloat(line.dataset.start);
+                const end = parseFloat(line.dataset.end);
+
+                if (currentTime >= start && currentTime < end) {
+                    if (!line.classList.contains('active-transcript-line')) {
+                        document.querySelector('.active-transcript-line')?.classList.remove('active-transcript-line');
+                        line.classList.add('active-transcript-line');
+                        line.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                    foundActive = true;
+                } else {
+                    line.classList.remove('active-transcript-line');
+                }
+            });
+        }
+
+        // 5. HEIGHT SYNCHRONIZATION (Transcript matches video container)
+        function syncTranscriptHeight() {
+            const mediaQuery = window.matchMedia('(min-width: 1024px)');
+            const videoContainer = document.getElementById('video-container');
+            const transcriptContainer = document.getElementById('transcript-container');
+            
+            if (!videoContainer || !transcriptContainer) return;
+            
+            if (mediaQuery.matches) {
+                // On large screens, match the video container height
+                const videoHeight = videoContainer.offsetHeight;
+                transcriptContainer.style.maxHeight = videoHeight + 'px';
+            } else {
+                // On mobile, revert to default fixed height
+                transcriptContainer.style.maxHeight = '24rem'; // h-96 equivalent
+            }
+        }
+
+        // 6. PLAYER STATE MANAGEMENT
+        function onPlayerStateChange(event) {
+            clearInterval(timeUpdater);
+            if (event.data === YT.PlayerState.PLAYING) {
+                timeUpdater = setInterval(highlightCurrentLine, 300);
+            }
+        }
+
+        // 7. INITIALIZATION
+        window.onYouTubeIframeAPIReady = function() {
+            player = new YT.Player('youtube-player', {
+                videoId: VIDEO_ID,
+                events: {
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        };
+
+        // --- DOM READY INITIALIZATION ---
+        document.addEventListener('DOMContentLoaded', () => {
+            parsedTranscript = parseVtt(vttContent);
+            populateTranscript();
+            syncTranscriptHeight();
+            
+            // Load YouTube API
+            if (typeof(YT) == 'undefined' || typeof(YT.Player) == 'undefined') {
+                const tag = document.createElement('script');
+                tag.src = "https://www.youtube.com/iframe_api";
+                document.head.appendChild(tag);
+            } else {
+                onYouTubeIframeAPIReady();
+            }
+            
+            console.log('CSC104 Week 15 page initialized.');
+        });
+
+        // 8. WINDOW RESIZE HANDLER
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(syncTranscriptHeight, 250);
+        });
+    </script>
+</body>
+</html>
