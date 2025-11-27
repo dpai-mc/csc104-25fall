@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Title for CSC104 Week 14 -->
+    <title>CSC104 - Week 14: Inserting WordArt, Data, and Charts in PowerPoint</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            /* Warm, approachable color scheme suitable for a business/applications class */
+            background-color: #F8F9FA; 
+            color: #343A40;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .code-font {
+            font-family: 'Fira Code', monospace;
+        }
+        
+        /* Style for the currently active transcript line */
+        .active-transcript-line {
+            background-color: #f0f7ff;
+            font-weight: 600;
+            border-left: 4px solid #1e88e5;
+            padding-left: 12px;
+            transition: background-color 0.2s;
+        }
+
+        /* Skip link style (Accessibility requirement) */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: #1E88E5;
+            color: #F8F9FA;
+            padding: 8px;
+            z-index: 100;
+            transition: top 0.3s;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        /* Custom scrollbar for transcript */
+        #transcript-container::-webkit-scrollbar {
+            width: 8px;
+        }
+        #transcript-container::-webkit-scrollbar-thumb {
+            background-color: #ced4da;
+            border-radius: 10px;
+        }
+        #transcript-container::-webkit-scrollbar-thumb:hover {
+            background-color: #adb5bd;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+    <a href="#main-content" class="skip-link rounded-br-md">Skip to main content</a>
+    
+    <div id="main-content" class="max-w-7xl mx-auto">
+        <header class="mb-8">
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-800 mb-2">CSC104 - Week 14: Inserting WordArt, Data, and Charts in PowerPoint</h1>
+            <p class="text-lg text-gray-600">Aloha, and welcome to <strong>Week 14</strong>—our second to last week and final week focused on PowerPoint! This week, we're exploring <strong>inserting WordArt, data, and charts</strong> to add visual interest and convey information effectively. You'll learn how to insert and format WordArt for stylized text effects, work with charts to visualize data, and import content from other presentations. These skills will help you create more dynamic and data-driven presentations. By the end of this week, you'll be able to incorporate sophisticated visual elements that elevate your PowerPoint presentations to a professional level.</p>
+        </header>
+
+        <main>
+            <!-- Video and Transcript Section using v2 Guide Layout -->
+            <div class="flex flex-col lg:flex-row gap-4 w-full mb-8">
+                <!-- Video Player Section: 66% width on large screens -->
+                <div class="w-full lg:w-2/3 flex-shrink-0">
+                    <h2 class="text-2xl font-semibold mb-4 text-gray-700">Video Lecture: Inserting WordArt, Data, and Charts</h2>
+                    <div id="video-container" style="width: 100%; height: 0; padding-bottom: 56.25%; position: relative;">
+                        <iframe id="youtube-player"
+                                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+                                src="https://www.youtube.com/embed/CplPCvhIbfE?enablejsapi=1"
+                                title="YouTube video player"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin"
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                    <p class="mt-4 text-sm text-gray-500">Video ID: <span class="code-font">CplPCvhIbfE</span></p>
+                </div>
+
+                <!-- Transcript Container Section: 33% width on large screens -->
+                <div class="w-full lg:w-1/3 flex-shrink-0">
+                    <h2 class="text-2xl font-semibold mb-4 text-gray-700">Video Transcript</h2>
+                    <div id="transcript-container" class="h-96 overflow-y-scroll bg-white shadow-inner p-4 rounded-lg border border-gray-300">
+                        <p class="text-gray-500 text-center">Loading transcript...</p>
+                    </div>
+                    <p class="mt-4 text-sm text-gray-600">Click any line in the transcript or use the <strong>Enter/Space</strong> keys when focused to jump to that moment in the video.</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // 1. CONFIGURATION
+        const VIDEO_ID = 'CplPCvhIbfE';
+        let player;
+        let timeUpdater;
+        let parsedTranscript = [];
+
+        // --- VTT CONTENT ---
+        const vttContent = `WEBVTT
+
+00:00.280 --> 00:06.500
+Aloha. This is week 14, our second to last week, and it's our last week on PowerPoint.
+
+00:06.820 --> 00:10.720
+And PowerPoint is about inserting word art, charts, and tables.
+
+00:12.100 --> 00:16.180
+Okay, so it's still the standard format for every week.
+
+00:16.520 --> 00:20.940
+There's the reading of the book. There's some practice exercises if you want to use them.
+
+00:21.120 --> 00:23.080
+And then there's the actual assignment.
+
+00:24.540 --> 00:27.560
+Again, so when you do these, obviously you need to download everything.
+
+00:27.560 --> 00:32.420
+And, you know, you get the file, you get the instructions.
+
+00:36.800 --> 00:40.420
+So let's quickly go through those.
+
+00:40.940 --> 00:46.500
+A couple of times I've gotten these where it doesn't load, but I've been able to hit reload and it comes up.
+
+00:46.860 --> 00:51.180
+So I think I've once I had to hit it twice, but everything else just once.
+
+00:53.000 --> 00:56.240
+Okay, so you're going to start your thing and I've already done it once.
+
+00:56.240 --> 00:57.540
+You can see I've already done it once.
+
+00:57.720 --> 01:00.380
+But you'll download everything.
+
+01:01.100 --> 01:05.900
+You have two files here you need and a Word document and your PowerPoint.
+
+01:06.800 --> 01:17.480
+And then you will go in here and I'm just going to open the Word document instructions right now.
+
+01:18.120 --> 01:19.880
+I just want to walk through them a little bit.
+
+01:19.900 --> 01:26.960
+There's nothing here that that I know of that really
+
+01:26.960 --> 01:27.440
+impacts the PowerPoint.
+
+01:28.160 --> 01:32.480
+Or is difficult to understand in terms of how to do stuff.
+
+01:33.760 --> 01:37.960
+All right, so you can have this presentation.
+
+01:37.960 --> 01:39.520
+You're going to start with this presentation.
+
+01:40.020 --> 01:43.140
+You're going to have two support files.
+
+01:43.440 --> 01:45.340
+One is going to be a JPEG file.
+
+01:45.340 --> 01:48.260
+So it's an image file and one is going to be another PowerPoint file.
+
+01:48.860 --> 01:56.800
+And what you're going to do as you go through this, you're going to use some slides from the other PowerPoint and install them into your PowerPoint.
+
+01:57.560 --> 01:59.560
+Okay, so.
+
+01:59.560 --> 02:01.560
+You know.
+
+02:01.560 --> 02:07.560
+Import the picture, sharpen it, you know, set the size kind of stuff.
+
+02:07.560 --> 02:09.560
+You know, position it.
+
+02:09.560 --> 02:11.560
+Here's where you're going to put it.
+
+02:11.560 --> 02:13.560
+Okay, so it's all about.
+
+02:13.560 --> 02:15.560
+Images.
+
+02:15.560 --> 02:17.560
+Changing them to word art.
+
+02:17.560 --> 02:19.560
+Changing text to word art.
+
+02:19.560 --> 02:21.560
+So how do you change text to word art?
+
+02:21.560 --> 02:23.560
+How do you apply special effects?
+
+02:23.560 --> 02:25.560
+How do you change text to text?
+
+02:25.560 --> 02:26.760
+How do you change text to text?
+
+02:26.760 --> 02:27.760
+How do you change text to text?
+
+02:27.760 --> 02:29.760
+How do you change text to text?
+
+02:29.760 --> 02:31.640
+How do you add a chart?
+
+02:33.040 --> 02:34.040
+Okay.
+
+02:34.040 --> 02:37.920
+You have a chart and then you want to basically add this data to the chart.
+
+02:37.920 --> 02:39.920
+So you can insert a chart and then you modify the data to be this data.
+
+02:43.920 --> 02:46.920
+Here's the chart.
+
+02:46.920 --> 02:49.640
+That you'll end up adding.
+
+02:49.640 --> 02:51.640
+You're going to take these slides.
+
+02:51.640 --> 02:55.640
+Stick them in from this other presentation.
+
+02:56.760 --> 03:03.180
+okay and do some other stuff with word art and charts and it's basically when
+
+03:03.180 --> 03:09.060
+you're done you're gonna have this just Sam capital margin profit explanation
+
+03:09.060 --> 03:18.240
+with some word art your graph and then you'll have these like three or four
+
+03:18.240 --> 03:22.420
+inserted charts from the other slide presentation where you also have to do
+
+03:22.420 --> 03:30.160
+some modifications you'll do this funky word art thing here okay and then
+
+03:30.160 --> 03:34.180
+you'll move some slides around and you'll end up with this presentation of
+
+03:34.180 --> 03:40.180
+nine slides all right so um I guess I really didn't want to say too much this
+
+03:40.180 --> 03:48.160
+week just follow along go through the steps you're unsure make sure you read
+
+03:48.160 --> 03:52.360
+at least read the sections so you know what's in
+
+03:52.360 --> 03:52.380
+there and don't forget to hit grow to start thank you for watching and I'll see you soon.
+
+03:52.420 --> 03:56.380
+there and you know that you can do it you can pull that up in parallel
+
+03:56.380 --> 04:04.640
+depending upon how much real estate you have on your computer you know I would
+
+04:04.640 --> 04:14.860
+probably in addition to having the word document I might have this pulled up in
+
+04:14.860 --> 04:22.960
+another window okay so this will be like the project window and then I might have
+
+04:22.960 --> 04:32.500
+the text up in this other window so that I can go oh let's see replace sample data
+
+04:32.500 --> 04:39.740
+how do I do that I could jump to replace sample data right and it'll tell me how
+
+04:39.740 --> 04:44.200
+to replace sample data and then I can do that you know especially if I forgot
+
+04:44.200 --> 04:44.600
+okay
+
+04:44.860 --> 04:51.400
+how to do it all right so that's all I had for this week we need to finish this
+
+04:51.400 --> 04:56.260
+up and then next week we're gonna do outlook so which is email and scheduling
+
+04:56.260 --> 05:03.040
+and so that will also be posted thanks and it's been great having your class
+
+05:03.040 --> 05:09.100
+and they just power through just the two weeks left
+`;
+        // ------------------------------------
+
+        // 2. CORE UTILITIES
+        function timeToSeconds(timeStr) {
+            if (!timeStr) return 0;
+            const parts = timeStr.trim().split(':');
+            
+            // Handle both MM:SS.mmm and HH:MM:SS.mmm formats
+            if (parts.length === 2) {
+                // MM:SS.mmm format
+                let minutes = parseInt(parts[0]) || 0;
+                let seconds = parseFloat(parts[1]) || 0;
+                return minutes * 60 + seconds;
+            } else if (parts.length === 3) {
+                // HH:MM:SS.mmm format
+                let hours = parseInt(parts[0]) || 0;
+                let minutes = parseInt(parts[1]) || 0;
+                let seconds = parseFloat(parts[2]) || 0;
+                return hours * 3600 + minutes * 60 + seconds;
+            }
+            return 0;
+        }
+
+        function parseVtt(vttText) {
+            const cues = vttText.trim().split(/\n\n+/);
+            const parsedCues = [];
+            
+            cues.forEach(cueBlock => {
+                if (cueBlock.startsWith('WEBVTT') || cueBlock.trim() === '') return;
+                
+                const lines = cueBlock.trim().split('\n');
+                const timeLine = lines.find(line => line.includes('-->'));
+                if (!timeLine) return;
+
+                const [startTimeStr, endTimeStr] = timeLine.split(' --> ');
+                const textLines = lines.slice(lines.indexOf(timeLine) + 1);
+                
+                parsedCues.push({
+                    start: timeToSeconds(startTimeStr),
+                    end: timeToSeconds(endTimeStr),
+                    text: textLines.join(' ').trim()
+                });
+            });
+            return parsedCues;
+        }
+
+        // 3. TRANSCRIPT RENDERING AND INTERACTIVITY
+        function populateTranscript() {
+            const container = document.getElementById('transcript-container');
+            container.innerHTML = '';
+
+            parsedTranscript.forEach(cue => {
+                const lineElement = document.createElement('div');
+                lineElement.className = 'transcript-line p-2 cursor-pointer hover:bg-gray-100 rounded-lg';
+                lineElement.dataset.start = cue.start;
+                lineElement.dataset.end = cue.end;
+                lineElement.textContent = cue.text;
+                lineElement.setAttribute('role', 'button');
+                lineElement.setAttribute('tabindex', '0');
+
+                const seekToTime = () => {
+                    if (player && player.seekTo) {
+                        player.seekTo(cue.start, true);
+                        player.playVideo();
+                    }
+                };
+                
+                lineElement.addEventListener('click', seekToTime);
+                lineElement.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') { 
+                        e.preventDefault(); 
+                        seekToTime(); 
+                    }
+                });
+
+                container.appendChild(lineElement);
+            });
+        }
+
+        // 4. SYNC LOGIC
+        function highlightCurrentLine() {
+            if (!player || !player.getCurrentTime) return;
+
+            const currentTime = player.getCurrentTime();
+            const lines = document.querySelectorAll('#transcript-container .transcript-line');
+            let foundActive = false;
+
+            lines.forEach(line => {
+                const start = parseFloat(line.dataset.start);
+                const end = parseFloat(line.dataset.end);
+
+                if (currentTime >= start && currentTime < end) {
+                    if (!line.classList.contains('active-transcript-line')) {
+                        document.querySelector('.active-transcript-line')?.classList.remove('active-transcript-line');
+                        line.classList.add('active-transcript-line');
+                        line.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                    foundActive = true;
+                } else {
+                    line.classList.remove('active-transcript-line');
+                }
+            });
+        }
+
+        // 5. HEIGHT SYNCHRONIZATION (Transcript matches video container)
+        function syncTranscriptHeight() {
+            const mediaQuery = window.matchMedia('(min-width: 1024px)');
+            const videoContainer = document.getElementById('video-container');
+            const transcriptContainer = document.getElementById('transcript-container');
+            
+            if (!videoContainer || !transcriptContainer) return;
+            
+            if (mediaQuery.matches) {
+                // On large screens, match the video container height
+                const videoHeight = videoContainer.offsetHeight;
+                transcriptContainer.style.maxHeight = videoHeight + 'px';
+            } else {
+                // On mobile, revert to default fixed height
+                transcriptContainer.style.maxHeight = '24rem'; // h-96 equivalent
+            }
+        }
+
+        // 6. PLAYER STATE MANAGEMENT
+        function onPlayerStateChange(event) {
+            clearInterval(timeUpdater);
+            if (event.data === YT.PlayerState.PLAYING) {
+                timeUpdater = setInterval(highlightCurrentLine, 300);
+            }
+        }
+
+        // 7. INITIALIZATION
+        window.onYouTubeIframeAPIReady = function() {
+            player = new YT.Player('youtube-player', {
+                videoId: VIDEO_ID,
+                events: {
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        };
+
+        // --- DOM READY INITIALIZATION ---
+        document.addEventListener('DOMContentLoaded', () => {
+            parsedTranscript = parseVtt(vttContent);
+            populateTranscript();
+            syncTranscriptHeight();
+            
+            // Load YouTube API
+            if (typeof(YT) == 'undefined' || typeof(YT.Player) == 'undefined') {
+                const tag = document.createElement('script');
+                tag.src = "https://www.youtube.com/iframe_api";
+                document.head.appendChild(tag);
+            } else {
+                onYouTubeIframeAPIReady();
+            }
+            
+            console.log('CSC104 Week 14 page initialized.');
+        });
+
+        // 8. WINDOW RESIZE HANDLER
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(syncTranscriptHeight, 250);
+        });
+    </script>
+</body>
+</html>
