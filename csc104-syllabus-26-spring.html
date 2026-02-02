@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSC104: Computers and Computer Applications</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #ffffff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background-color: #2563eb;
+            color: white;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .course-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        h2 {
+            color: #2563eb;
+            font-size: 1.8rem;
+            margin: 2rem 0 1rem 0;
+            border-bottom: 3px solid #2563eb;
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            color: #2563eb;
+            font-size: 1.4rem;
+            margin: 1.5rem 0 0.8rem 0;
+        }
+
+        h4 {
+            color: #2563eb;
+            font-size: 1.2rem;
+            margin: 1rem 0 0.5rem 0;
+        }
+
+        .description-box {
+            background-color: #f8fafc;
+            border-left: 4px solid #2563eb;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .slo-list {
+            background-color: #f1f5f9;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        .slo-list ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .slo-list li {
+            margin: 1rem 0;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .slo-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #2563eb;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .phase-container {
+            background-color: #f8fafc;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border: 1px solid #e2e8f0;
+        }
+
+        .phase-header {
+            background-color: #2563eb;
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .week-item {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 0.8rem 0;
+            border-left: 4px solid #2563eb;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .week-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+
+        .week-title {
+            font-weight: bold;
+            color: #2563eb;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .week-topics {
+            color: #4b5563;
+            margin: 0.5rem 0;
+        }
+
+        .week-details {
+            font-size: 0.9rem;
+            color: #6b7280;
+            line-height: 1.4;
+        }
+
+        .collapsible {
+            cursor: pointer;
+            user-select: none;
+            position: relative;
+            padding-right: 2rem;
+        }
+
+        .collapsible::after {
+            content: "▼";
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: transform 0.3s ease;
+            color: #2563eb;
+        }
+
+        .collapsible.active::after {
+            transform: translateY(-50%) rotate(180deg);
+        }
+
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .collapsible-content.active {
+            max-height: 500px;
+        }
+
+        .assignment {
+            background-color: #dcfce7;
+            border-left: 4px solid #16a34a;
+            padding: 0.8rem;
+            margin: 0.5rem 0;
+            border-radius: 0 6px 6px 0;
+            font-size: 0.9rem;
+        }
+
+        .project {
+            background-color: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 0.8rem;
+            margin: 0.5rem 0;
+            border-radius: 0 6px 6px 0;
+            font-size: 0.9rem;
+        }
+
+        .nav-tabs {
+            display: flex;
+            border-bottom: 2px solid #e2e8f0;
+            margin: 2rem 0 1rem 0;
+            flex-wrap: wrap;
+        }
+
+        .nav-tab {
+            background: none;
+            border: none;
+            padding: 1rem 2rem;
+            cursor: pointer;
+            font-size: 1rem;
+            color: #6b7280;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .nav-tab:hover {
+            color: #2563eb;
+            background-color: #f8fafc;
+        }
+
+        .nav-tab.active {
+            color: #2563eb;
+            border-bottom-color: #2563eb;
+            font-weight: bold;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .btn {
+            background: rgba(255,255,255,0.2);
+            border: 2px solid rgba(255,255,255,0.5);
+            color: white;
+            font-size: 1rem;
+            padding: 0.8rem 1.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+
+        .textbook-info {
+            background-color: #e0f2fe;
+            border-left: 4px solid #0284c7;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .nav-tab {
+                padding: 0.8rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .phase-container {
+                padding: 1rem;
+            }
+
+            .week-item {
+                padding: 0.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.7rem;
+            }
+
+            .nav-tabs {
+                flex-direction: column;
+            }
+
+            .nav-tab {
+                text-align: center;
+                border-bottom: 1px solid #e2e8f0;
+                border-radius: 0;
+            }
+
+            .nav-tab.active {
+                border-bottom: 1px solid #2563eb;
+                background-color: #f8fafc;
+            }
+        }
+
+        /* Focus styles for accessibility */
+        .nav-tab:focus,
+        .collapsible:focus {
+            outline: 2px solid #2563eb;
+            outline-offset: 2px;
+        }
+
+        /* Skip to content link for screen readers */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 6px;
+            background: #2563eb;
+            color: white;
+            padding: 8px;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+
+        .skip-link:focus {
+            top: 6px;
+        }
+
+        /* PDF styles for printing */
+        @media print {
+            body {
+                font-family: Arial, sans-serif;
+                font-size: 12px;
+                line-height: 1.4;
+                color: #000;
+            }
+            
+            .container {
+                max-width: none;
+                padding: 0;
+            }
+            
+            header {
+                background: none !important;
+                color: #000 !important;
+                padding: 1rem 0;
+                border-bottom: 2px solid #000;
+            }
+            
+            .nav-tabs, .btn, .collapsible::after {
+                display: none !important;
+            }
+            
+            .tab-content {
+                display: block !important;
+            }
+            
+            .collapsible-content {
+                max-height: none !important;
+                overflow: visible !important;
+            }
+            
+            .phase-container, .description-box, .slo-list, .textbook-info {
+                border: 1px solid #ccc;
+                background: none;
+                break-inside: avoid;
+            }
+            
+            .week-item {
+                border: 1px solid #ccc;
+                break-inside: avoid;
+                margin: 0.5rem 0;
+            }
+            
+            h2 {
+                page-break-after: avoid;
+                border-bottom: 2px solid #000;
+            }
+            
+            .page-break {
+                page-break-before: always;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <header>
+        <div class="container">
+            <h1>CSC104: Computers and Computer Applications</h1>
+            <p class="course-subtitle">Online Course - No Synchronous Meetings Required</p>
+            <div style="margin-top: 1.5rem;">
+                <button class="btn" onclick="downloadSyllabusAsPDF()">
+                    📄 Download Syllabus (PDF)
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content" class="container">
+        <div class="nav-tabs" role="tablist">
+            <button class="nav-tab active" role="tab" aria-selected="true" aria-controls="overview-tab" id="overview-btn">Course Overview</button>
+            <button class="nav-tab" role="tab" aria-selected="false" aria-controls="textbook-tab" id="textbook-btn">Textbook & Resources</button>
+            <button class="nav-tab" role="tab" aria-selected="false" aria-controls="schedule-tab" id="schedule-btn">Course Schedule</button>
+            <button class="nav-tab" role="tab" aria-selected="false" aria-controls="policies-tab" id="policies-btn">Policies & Support</button>
+        </div>
+
+        <div id="overview-tab" class="tab-content active" role="tabpanel" aria-labelledby="overview-btn">
+            <section>
+                <h2>Course Description</h2>
+                <div class="description-box">
+                    <p>This course will present the computer as a problem-solving tool, with a focus on word processing, spreadsheet, presentation, email and group scheduling applications. Additional topics include an introduction to fundamental computer concepts such as operating systems, hardware, networking and graphics.</p>
+                </div>
+
+                <h2>Student Learning Objectives</h2>
+                <div class="slo-list">
+                    <p>Upon successful completion of this course, students will be able to:</p>
+                    <ul>
+                        <li>Use a word-processing application to create, format edit and save a multi-page document that includes features such as tables, ClipArt, borders, shading, headers and footers, as measured by exam questions, exercises and/or projects.</li>
+                        <li>Use a presentation application to create, format, edit and save a presentation that includes features such as multiple slide layouts, consistent slide design, ClipArt, slide master, headers, footers, transitions and animations, as measured by exam questions, exercises and/or projects.</li>
+                        <li>Use a spreadsheet application to create, format, edit and save a workbook that includes features such as formulas, functions, ClipArt, borders, shading, charts, headers and footers, as measured by exam questions, exercises, and/or projects.</li>
+                        <li>Use an email and scheduling application to compose, reply and manage email as well as to create and schedule meetings using an integrated scheduler.</li>
+                    </ul>
+                </div>
+
+                <h2>Course Format</h2>
+                <div class="phase-container">
+                    <h4>Online Learning Environment</h4>
+                    <p>This is a hybrid course where we meet in-person weekly for 1 hr and 45 min. All other instruction is delivered through Canvas, allowing you to learn at your own pace while meeting weekly deadlines. </p>
+                    
+                    <h4>Weekly Structure</h4>
+                    <ul style="list-style-type: disc; padding-left: 2rem; margin: 1rem 0;">
+                        <li>New content and assignments released each week</li>
+                        <li>Interactive tutorials and hands-on exercises reviewed in class weekly</li>
+                        <li>Regular feedback and instructor support</li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+
+        <div id="textbook-tab" class="tab-content" role="tabpanel" aria-labelledby="textbook-btn">
+            <section>
+                <h2>Required Textbook</h2>
+                <div class="textbook-info">
+                    <h4>Two Options Available</h4>
+                    <p><strong>Recommended:</strong> Purchase directly through the course shell in Canvas</p>
+                    
+                    <div style="margin-top: 1rem;">
+                        <p><strong>Option 1: Cengage Unlimited - $150 for 4 months</strong></p>
+                        <ul style="list-style-type: disc; padding-left: 2rem; margin: 0.5rem 0;">
+                            <li>Best option if you have more than 1 course that uses Cengage books</li>
+                            <li>All Cengage textbooks are included in this subscription</li>
+                        </ul>
+                        
+                        <p style="margin-top: 1rem;"><strong>Option 2: Course-Specific Access - $142 for 6 months</strong></p>
+                        <ul style="list-style-type: disc; padding-left: 2rem; margin: 0.5rem 0;">
+                            <li>MindTap + eBook for this course only</li>
+                            <li>ISBN: 9780357676660</li>
+                        </ul>
+                    </div>
+                    
+                    <p style="margin-top: 1rem;"><em>Note: Purchasing through Canvas ensures seamless integration with course assignments and provides immediate access to all materials.</em></p>
+                </div>
+
+                <h2>Software Applications</h2>
+                <div class="phase-container">
+                    <h4>Microsoft 365</h4>
+                    <p><strong>FREE for all students!</strong> Microsoft 365 is provided at no cost to Mendocino College students.</p>
+                    
+                    <p><strong>Installation Support:</strong> Contact <a href="mailto:it-help@mendocino.edu" style="color: #2563eb;">it-help@mendocino.edu</a> if you need assistance installing Microsoft 365 on your personal machine.</p>
+                    
+                    <p><strong>Important:</strong> Desktop version (Mac or Windows) is preferred for projects in this course as we may use some features that are not part of the web-based apps.</p>
+                    
+                    <div style="margin-top: 1rem;">
+                        <p>Students will work extensively with:</p>
+                        <ul style="list-style-type: disc; padding-left: 2rem; margin: 1rem 0;">
+                            <li><strong>Microsoft Word:</strong> Document creation and formatting (Weeks 2-6)</li>
+                            <li><strong>Microsoft Excel:</strong> Spreadsheet analysis and data visualization (Weeks 7-11)</li>
+                            <li><strong>Microsoft PowerPoint:</strong> Presentation design and delivery (Weeks 12-14)</li>
+                            <li><strong>Microsoft Outlook:</strong> Email and calendar management (Week 15)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h2>Technical Requirements</h2>
+                <div class="description-box">
+                    <p><strong>Minimum System Requirements:</strong></p>
+                    <ul style="list-style-type: disc; padding-left: 2rem; margin: 1rem 0;">
+                        <li>Reliable internet connection (broadband recommended)</li>
+                        <li>Updated web browser (Chrome, Firefox, Safari, or Edge)</li>
+                        <li>Computer with Windows 10/11 or macOS 10.14 or newer</li>
+                        <li>Webcam and microphone (for video assignments if required)</li>
+                        <li>Ability to install Microsoft Office applications</li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+
+        <div id="schedule-tab" class="tab-content" role="tabpanel" aria-labelledby="schedule-btn">
+            <section>
+                <h2>15-Week Course Schedule</h2>
+                
+                <div class="phase-container">
+                    <div class="phase-header collapsible" tabindex="0" role="button" aria-expanded="false">Introduction & File Management (Week 1)</div>
+                    <div class="collapsible-content">
+                        <div class="week-item">
+                            <div class="week-title">Week 1: Intro and Online Environment (2/2 - 2/8/2026)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="phase-container">
+                    <div class="phase-header collapsible" tabindex="0" role="button" aria-expanded="false">Microsoft Word Mastery (Weeks 2-6)</div>
+                    <div class="collapsible-content">
+                        <div class="week-item">
+                            <div class="week-title">Week 2: Introeduction to Word Part1 (2/9 - 2/15/2026)</div>
+                        </div>
+
+                        <div class="week-item">
+                            <div class="week-title">Week 3: Word 2 (2/16 - 2/22/2026)</div>
+                        </div>
+
+                        <div class="week-item">
+                            <div class="week-title">Week 4: Word 3 (2/23 - 3/1/2026)</div>
+                        </div>
+
+                        <div class="week-item">
+                            <div class="week-title">Week 5: Word 4 (3/2 - 3/8/2026)</div>
+                        </div>
+
+                        <div class="week-item">
+                            <div class="week-title">Week 6: Word 5 + Project (3/9- 3/15/2026)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="phase-container">
+                    <div class="phase-header collapsible" tabindex="0" role="button" aria-expanded="false">Microsoft Excel Proficiency (Weeks 7-11)</div>
+                    <div class="collapsible-content">
+                        <div class="week-item">
+                            <div class="week-title">Week 7: Excel 1 (3/16 - 3/22/2026)</div>
+                        </div>
+
+                        <div class="week-item">
+                            <div class="week-title">Week 8: Excel 2 (3/23 - 3/29/2026)</div>
+                        </div>
+
+                        <div class="week-item">
+                            <div class="week-title">Week 9: Excel 3 (4/6 - 4/12/2026)</div>
+                        </div>
+
+                        <div class="week-item">
+                            <div class="week-title">Week 10: Excel 4 (4/13 - 4/19/2026)</div>
+                        </div>
+
+                        <div class="week-item">
+                            <div class="week-title">Week 11: Excel Project (4/20 - 4/26/2026)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="phase-container">
+                    <div class="phase-header collapsible" tabindex="0" role="button" aria-expanded="false">Microsoft PowerPoint & Communication (Weeks 12-15)</div>
+                    <div class="collapsible-content">
+                        <div class="week-item">
+                            <div class="week-title">Week 12: PPT1 (4/27 - 5/3/2026)</div>
+                        </div>
+
+                        <div class="week-item">
+                            <div class="week-title">Week 13: PPT2 (5/4 - 5/10/2026)</div>
+                        </div>
+
+                        <div class="week-item">
+                            <div class="week-title">Week 14: PPT3 (5/11 - 5/17/2026)</div>
+                        </div>
+
+                        <div class="week-item">
+                            <div class="week-title">Week 15: Outlook (5/18 - 5/22/2026)</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div id="policies-tab" class="tab-content" role="tabpanel" aria-labelledby="policies-btn">
+            <section>
+                <h2>Course Policies</h2>
+                
+                <h3>Instructor Information</h3>
+                <div class="description-box">
+                    <p><strong>Instructor:</strong> David Pai<br>
+                    <strong>Office:</strong> Rm 4170 (1st floor, SW corner of Library Bldg)<br>
+                    <strong>Email:</strong> <a href="mailto:dpai@mendocino.edu" style="color: #2563eb;">dpai@mendocino.edu</a><br>
+                    <strong>Phone:</strong> 707-468-3126 (office)<br>
+                    <strong>Zoom Room:</strong> <a href="https://mendocino-edu.zoom.us/my/davepai" style="color: #2563eb;">Personal Meeting Room</a></p>
+                </div>
+
+                <h3>Contact Hours</h3>
+                <div class="phase-container">
+                    <h4><a href="https://mendocino-edu.zoom.us/my/davepai" style="color: #2563eb;">Online</a></h4>
+                    <p>Mondays 2:00 PM - 4:00 PM (<a href="mailto:dpai@mendocino.edu?subject=Online%20Office%20Hour" style="color: #2563eb;">email</a> to confirm time)</p>
+                    
+                    <h4>In Office (Ukiah Campus)</h4>
+                    <ul style="list-style-type: disc; padding-left: 2rem; margin: 1rem 0;">
+                        <li>Tuesdays: 12:30 PM - 1:30 PM</li>
+                        <li>Wednesdays: 12:30 PM - 1:30 PM</li>
+                        <li>Thursdays: 12:30 PM - 1:30 PM </li>
+                    </ul>
+                    
+                    <h4>Other</h4>
+                    <p>By appointment via <a href="https://calendly.com/dpai/" style="color: #2563eb;" target="_blank" rel="noopener">online schedule</a></p>
+                </div>
+                
+                <h3>Attendance & Participation</h3>
+                <div class="description-box">
+                    <p>Regular participation is essential for success. In addition to attending class weeekly, students are expected to:</p>
+                    <ul style="list-style-type: disc; padding-left: 2rem; margin: 1rem 0;">
+                        <li>Log into Canvas at least 3 times per week</li>
+                        <li>Complete weekly assignments by posted deadlines</li>
+                        <li>Participate meaningfully in discussion forums</li>
+                        <li>Respond to instructor communications within 48 hours</li>
+                    </ul>
+                </div>
+
+                <h3>Assignment Submission & Late Work</h3>
+                <div class="phase-container">
+                    <p><strong>Late Work Policy:</strong> Late work that is submitted through Cengage is accepted until the end of the course. Major projects are ONLY ACCEPTED on the Due Date defined in that assignment.</p>
+                </div>
+                    </ul>
+                    <p><strong>Extensions:</strong> Students facing extenuating circumstances should contact the instructor before the deadline to discuss possible extensions.</p>
+                </div>
+
+                <h3>Grading Scale</h3>
+                <div class="slo-list">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem;">
+                        <div><strong>A:</strong> 90-100%</div>
+                        <div><strong>B:</strong> 80-89%</div>
+                        <div><strong>C:</strong> 70-79%</div>
+                        <div><strong>D:</strong> 60-69%</div>
+                        <div><strong>F:</strong> Below 60%</div>
+                    </div>
+                </div>
+
+                <h3>Assessment Breakdown</h3>
+                <div class="phase-container">
+                    <ul style="list-style-type: disc; padding-left: 2rem; margin: 1rem 0;">
+                        <li><strong>Weekly Assignments:</strong> Regular practice exercises and skill-building activities</li>
+                        <li><strong>Major Projects:</strong> Comprehensive projects for Word and Excel</li>
+                        
+                    </ul>
+                    
+                </div>
+
+                <h2>Student Support Resources</h2>
+                
+                <h3>Technical Support</h3>
+                <div class="description-box">
+                    <p><strong>Canvas Help:</strong> Available 24/7 through the Canvas Help menu<br>
+                    <strong>IT Support:</strong> Contact Mendocino College IT for On-campus technical assistance.<br>
+                    <strong>Software Issues:</strong> Microsoft Office support available through CSC tutors at MESA and the instructor.<br>
+                    <strong>Internet Connectivity:</strong> Contact your local internet service provider, visit campus for WiFi access, check with Library and/or IT Support for loaner hotspots and chromebooks.</p>
+                </div>
+
+                <h3>Academic Support</h3>
+                <div class="phase-container">
+                    <p><strong>Instructor Office Hours:</strong><br>
+                        <ul>
+                            <li>Mondays 2:00 PM - 4:00 PM (Zoom - please pre-schedule an <a href="https://calendly.com/dpai" target="_blank">appointment</a><)</li>
+                            <li>Tuesdays 12:30 PM - 1:30 PM (in-person)</li>
+                            <li>Wednesdays 12:30 PM - 1:30 PM (in-person) </li>
+                            <li>Thursdays 10:00 AM - 11:00 AM (Zoom)</li>
+                            <li>Other: by <a href="https://calendly.com/dpai" target="_blank">appointment</a></li>
+                        </ul>
+                    <strong>Tutoring:</strong> Contact MESA for additional support<br>
+                    <strong>Study Groups:</strong> Form virtual study groups with classmates through Canvas discussions<br>
+                    <strong>Library Resources:</strong> Access research databases and online resources through the college library</p>
+                </div>
+
+                <h3>Students with Disabilities</h3>
+                <div class="slo-list">
+                    <p>Mendocino College is committed to providing equal access to educational opportunities. Students with disabilities who may need accommodations should make an appointment with the Disability Resource Center as soon as possible. All discussions will remain confidential.</p>
+                    <p><strong>Contact Information:</strong><br>
+                    Phone: (707) 468-3031<br>
+                    Email: <a href="mailto:drc@mendocino.edu" style="color: #2563eb;">drc@mendocino.edu</a></p>
+                </div>
+
+                <h3>Academic Integrity</h3>
+                <div class="description-box">
+                    <p>Students are expected to maintain high standards of academic honesty. This includes:</p>
+                    <ul style="list-style-type: disc; padding-left: 2rem; margin: 1rem 0;">
+                        <li>Completing all work independently unless collaboration is specifically assigned</li>
+                        <li>Properly citing any external sources used in projects</li>
+                        <li>Not sharing assignment files with other students</li>
+                        <li>Following all Canvas quiz and exam guidelines</li>
+                    </ul>
+                    <p>Violations of academic integrity may result in failure of the assignment or course. For complete policies, refer to the Student Handbook.</p>
+                </div>
+
+                <h2>Success Tips for Online Learning</h2>
+                <div class="phase-container">
+                    <h4>Time Management</h4>
+                    <ul style="list-style-type: disc; padding-left: 2rem; margin: 1rem 0;">
+                        <li>Set aside dedicated study time each week (recommended: 6-9 hours per week)</li>
+                        <li>Use a calendar to track assignment due dates</li>
+                        <li>Start assignments early to avoid last-minute technical issues</li>
+                        <li>Break larger projects into smaller, manageable tasks</li>
+                    </ul>
+                    
+                    <h4>Technical Preparation</h4>
+                    <ul style="list-style-type: disc; padding-left: 2rem; margin: 1rem 0;">
+                        <li>Test your computer and internet connection before starting assignments</li>
+                        <li>Keep software updated (Canvas, Microsoft Office, web browser)</li>
+                        <li>Save work frequently and maintain backup copies</li>
+                        <li>Have a backup plan for internet connectivity issues</li>
+                    </ul>
+                    
+                    <h4>Getting Help</h4>
+                    <ul style="list-style-type: disc; padding-left: 2rem; margin: 1rem 0;">
+                        <li>Don't wait until the last minute to ask for help</li>
+                        <li>Use discussion forums to connect with classmates</li>
+                        <li>Contact the instructor with specific questions</li>
+                        <li>Take advantage of MindTap tutorials and practice exercises</li>
+                    </ul>
+                </div>
+
+                <h2>Important Dates</h2>
+                <div class="slo-list">
+                    <p><strong>Add/Drop Deadline:</strong> Check college calendar for current semester dates<br>
+                    <strong>Last Day to Withdraw:</strong> Check college calendar for current semester dates<br>
+                    <strong>Spring Break:</strong> Mar 30 - Apr 5, 2026 (No new assignments posted)<br>
+                    <strong>Final Week:</strong> May 18-22, 2026<br>
+                    <strong>Grades Due:</strong> May 29, 2026</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        // Tab functionality
+        function initializeTabs() {
+            const tabButtons = document.querySelectorAll('.nav-tab');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove active class from all tabs and contents
+                    tabButtons.forEach(tab => {
+                        tab.classList.remove('active');
+                        tab.setAttribute('aria-selected', 'false');
+                    });
+                    tabContents.forEach(content => {
+                        content.classList.remove('active');
+                    });
+
+                    // Add active class to clicked tab and corresponding content
+                    button.classList.add('active');
+                    button.setAttribute('aria-selected', 'true');
+                    const targetTab = button.getAttribute('aria-controls');
+                    document.getElementById(targetTab).classList.add('active');
+                });
+
+                // Keyboard navigation for tabs
+                button.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        button.click();
+                    }
+                });
+            });
+        }
+
+        // Collapsible functionality
+        function initializeCollapsibles() {
+            const collapsibles = document.querySelectorAll('.collapsible');
+
+            collapsibles.forEach(collapsible => {
+                collapsible.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    const content = this.nextElementSibling;
+                    
+                    if (content.classList.contains('active')) {
+                        content.classList.remove('active');
+                        this.setAttribute('aria-expanded', 'false');
+                    } else {
+                        content.classList.add('active');
+                        this.setAttribute('aria-expanded', 'true');
+                    }
+                });
+
+                // Keyboard support for collapsibles
+                collapsible.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        this.click();
+                    }
+                });
+            });
+        }
+
+        // Download syllabus as PDF function
+        function downloadSyllabusAsPDF() {
+            // Create a new window for printing
+            const printWindow = window.open('', '_blank', 'width=800,height=600');
+            
+            // Get all the content from each tab
+            const overviewContent = document.getElementById('overview-tab').innerHTML;
+            const textbookContent = document.getElementById('textbook-tab').innerHTML;
+            const scheduleContent = document.getElementById('schedule-tab').innerHTML;
+            const policiesContent = document.getElementById('policies-tab').innerHTML;
+            
+            // Function to expand all collapsible content for PDF
+            function expandAllContent(htmlString) {
+                // Create a temporary element to manipulate the HTML
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = htmlString;
+                
+                // Show all collapsible content
+                const collapsibleContents = tempDiv.querySelectorAll('.collapsible-content');
+                collapsibleContents.forEach(content => {
+                    content.style.display = 'block';
+                    content.style.maxHeight = 'none';
+                    content.style.overflow = 'visible';
+                    content.classList.add('active');
+                });
+                
+                return tempDiv.innerHTML;
+            }
+            
+            // Expand all content before creating PDF
+            const expandedOverview = expandAllContent(overviewContent);
+            const expandedTextbook = expandAllContent(textbookContent);
+            const expandedSchedule = expandAllContent(scheduleContent);
+            const expandedPolicies = expandAllContent(policiesContent);
+            
+            // Create the complete HTML document for PDF
+            const htmlContent = `
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <title>CSC104 Syllabus - Computers and Computer Applications</title>
+                    <meta charset="UTF-8">
+                    <style>
+                        body { 
+                            font-family: Arial, sans-serif; 
+                            line-height: 1.4; 
+                            color: #000; 
+                            max-width: 800px; 
+                            margin: 0 auto; 
+                            padding: 20px;
+                            font-size: 12px;
+                        }
+                        h1 { 
+                            color: #2563eb; 
+                            font-size: 24px; 
+                            margin-bottom: 10px; 
+                            text-align: center; 
+                            border-bottom: 3px solid #2563eb;
+                            padding-bottom: 10px;
+                        }
+                        h2 { 
+                            color: #2563eb; 
+                            font-size: 18px; 
+                            margin: 20px 0 10px 0; 
+                            border-bottom: 2px solid #2563eb; 
+                            padding-bottom: 5px;
+                            page-break-after: avoid;
+                        }
+                        h3 { 
+                            color: #374151; 
+                            font-size: 16px; 
+                            margin: 15px 0 8px 0; 
+                        }
+                        h4 { 
+                            color: #4b5563; 
+                            font-size: 14px; 
+                            margin: 10px 0 5px 0; 
+                        }
+                        .course-subtitle { 
+                            text-align: center; 
+                            font-size: 14px; 
+                            margin-bottom: 20px; 
+                            color: #6b7280; 
+                        }
+                        .description-box, .slo-list, .phase-container, .textbook-info { 
+                            border: 1px solid #ccc; 
+                            padding: 10px; 
+                            margin: 10px 0; 
+                            background: #f9f9f9;
+                            break-inside: avoid;
+                        }
+                        .week-item { 
+                            border: 1px solid #ddd; 
+                            padding: 8px; 
+                            margin: 8px 0; 
+                            background: white;
+                            break-inside: avoid;
+                        }
+                        .week-title { 
+                            font-weight: bold; 
+                            color: #2563eb; 
+                            margin-bottom: 5px;
+                        }
+                        .week-topics, .week-details { 
+                            margin: 5px 0; 
+                            font-size: 11px;
+                        }
+                        .assignment { 
+                            background-color: #dcfce7; 
+                            border-left: 4px solid #16a34a; 
+                            padding: 8px; 
+                            margin: 5px 0;
+                            font-size: 11px;
+                        }
+                        .project { 
+                            background-color: #fef3c7; 
+                            border-left: 4px solid #f59e0b; 
+                            padding: 8px; 
+                            margin: 5px 0;
+                            font-size: 11px;
+                        }
+                        .phase-header { 
+                            background-color: #2563eb; 
+                            color: white; 
+                            padding: 8px; 
+                            margin-bottom: 10px; 
+                            font-weight: bold; 
+                            text-align: center;
+                        }
+                        ul { 
+                            margin: 10px 0; 
+                            padding-left: 20px; 
+                        }
+                        li { 
+                            margin: 5px 0; 
+                        }
+                        a { 
+                            color: #2563eb; 
+                            text-decoration: underline;
+                        }
+                        .page-break { 
+                            page-break-before: always; 
+                        }
+                        .collapsible-content {
+                            display: block !important;
+                            max-height: none !important;
+                            overflow: visible !important;
+                        }
+                        /* Hide interactive elements */
+                        .collapsible::after,
+                        .nav-tabs,
+                        button:not(.print-button) {
+                            display: none !important;
+                        }
+                        /* Ensure all content is visible */
+                        .collapsible-content.active {
+                            display: block !important;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <h1>CSC104: Computers and Computer Applications</h1>
+                    <p class="course-subtitle">Online Course - No Synchronous Meetings Required</p>
+                    
+                    <h2>Course Overview</h2>
+                    ${expandedOverview.replace(/<section>/g, '<div>').replace(/<\/section>/g, '</div>')}
+                    
+                    <div class="page-break"></div>
+                    <h2>Textbook & Resources</h2>
+                    ${expandedTextbook.replace(/<section>/g, '<div>').replace(/<\/section>/g, '</div>')}
+                    
+                    <div class="page-break"></div>
+                    <h2>Course Schedule</h2>
+                    ${expandedSchedule.replace(/<section>/g, '<div>').replace(/<\/section>/g, '</div>')}
+                    
+                    <div class="page-break"></div>
+                    <h2>Policies & Support</h2>
+                    ${expandedPolicies.replace(/<section>/g, '<div>').replace(/<\/section>/g, '</div>')}
+                    
+                    <div style="margin-top: 30px; text-align: center; font-size: 10px; color: #666;">
+                        <p>Generated on ${new Date().toLocaleDateString()} | CSC104 Syllabus | Mendocino College</p>
+                    </div>
+                </body>
+                </html>
+            `;
+            
+            // Write the content to the new window
+            printWindow.document.open();
+            printWindow.document.write(htmlContent);
+            printWindow.document.close();
+            
+            // Wait for content to load, then trigger print dialog
+            printWindow.onload = function() {
+                setTimeout(() => {
+                    printWindow.print();
+                }, 500);
+            };
+        }
+
+        // Initialize all interactive elements when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeTabs();
+            initializeCollapsibles();
+        });
+
+        // Smooth scrolling for skip link
+        document.addEventListener('DOMContentLoaded', function() {
+            const skipLink = document.querySelector('.skip-link');
+            if (skipLink) {
+                skipLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                        target.focus();
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
